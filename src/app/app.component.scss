@@ -97,8 +97,13 @@ ion-menu.ios ion-list#labels-list ion-list-header {
   margin-bottom: 8px;
 }
 
+img{
+  max-width: 130px;
+}
+
 ion-menu.ios ion-list-header,
 ion-menu.ios ion-note {
+  margin-bottom: 2rem;
   padding-left: 16px;
   padding-right: 16px;
 }
@@ -116,4 +121,9 @@ ion-note {
 
 ion-item.selected {
   --color: var(--ion-color-primary);
+}
+
+
+ion-menu{
+  --width: 250px;
 }
