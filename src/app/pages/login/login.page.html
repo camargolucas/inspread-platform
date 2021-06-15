@@ -1,0 +1,42 @@
+<ion-content>
+  <div class="conteudo">
+    <ion-row class="logo">
+      <img src="/assets/images/logo_pink.svg" />
+    </ion-row>
+
+    <ion-row class="login">
+      <img src="/assets/images/login.png" />
+    </ion-row>
+
+    <ion-row>
+      <form [formGroup]="form">
+        <mat-form-field appearance="outline">
+          <mat-label>Email</mat-label>
+          <input formControlName="email" matInput />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Senha</mat-label>
+          <input formControlName="password" matInput />
+        </mat-form-field>
+      </form>
+    </ion-row>
+
+    <ion-row class="remember-and-forgetPassword">
+      <div>
+        <mat-checkbox class="example-margin">Lembrar</mat-checkbox>              
+      </div>
+      <div class="forget-password">
+        <ion-button fill="clear">Esqueceu a senha?</ion-button>
+      </div>
+    </ion-row>
+
+    <ion-row class="login-btn">
+      <ion-button expand="block">Login</ion-button>
+    </ion-row>
+
+    <ion-row class="signup">
+      <p>Não possui conta? <ion-button fill="clear">Cadastre-se</ion-button></p>
+    </ion-row>
+  </div>
+</ion-content>

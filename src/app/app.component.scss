@@ -16,6 +16,9 @@ ion-menu.md ion-list {
 ion-menu.md ion-note {
   margin-bottom: 30px;
 }
+ion-list-header{
+  margin-bottom: 2rem;
+}
 
 ion-menu.md ion-list-header,
 ion-menu.md ion-note {
@@ -103,7 +106,7 @@ img{
 
 ion-menu.ios ion-list-header,
 ion-menu.ios ion-note {
-  margin-bottom: 2rem;
+
   padding-left: 16px;
   padding-right: 16px;
 }
