@@ -29,6 +29,17 @@ const routes: Routes = [
     path: 'login',
     loadChildren: () => import('./pages/login/login.module').then( m => m.LoginPageModule)
   },
+  {
+    path: 'password-recovery',
+    loadChildren: () => import('./pages/password-recovery/password-recovery.module').then( m => m.PasswordRecoveryPageModule),
+    data: {title: 'Recuperação de senha'}
+  },
+  {
+    path: 'password-recovery/:id',
+    loadChildren: () => import('./pages/password-recovery/password-recovery.module').then( m => m.PasswordRecoveryPageModule),
+    data: {title: 'Nova Senha'}
+  },
+
 
  
 ];
