@@ -9,6 +9,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { HeaderPageModule } from './components/header/header.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatSelectModule } from '@angular/material/select';
 
 
 @NgModule({
@@ -16,7 +17,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
   entryComponents: [],
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule,
      HeaderPageModule, BrowserAnimationsModule, 
-     FormsModule, ReactiveFormsModule],
+     FormsModule, ReactiveFormsModule, MatSelectModule ],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],
 })

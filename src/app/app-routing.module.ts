@@ -38,7 +38,15 @@ const routes: Routes = [
     path: 'password-recovery/:id',
     loadChildren: () => import('./pages/password-recovery/password-recovery.module').then( m => m.PasswordRecoveryPageModule),
     data: {title: 'Nova Senha'}
+  },  {
+    path: 'signup',
+    loadChildren: () => import('./pages/signup/signup.module').then( m => m.SignupPageModule)
   },
+  {
+    path: 'influencers-modal',
+    loadChildren: () => import('./pages/influencers-modal/influencers-modal.module').then( m => m.InfluencersModalPageModule)
+  },
+
 
 
  

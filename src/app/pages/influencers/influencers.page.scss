@@ -1,0 +1,29 @@
+.user-avatar{
+    margin-right: 1rem;
+    img{    
+        max-width: 60px;
+    }
+}
+
+
+ion-card{
+    margin-bottom: 1.5rem;
+    ion-card-content{
+        padding: 1rem 0.5rem 0.5rem 0.5rem;
+        text-align: center;
+    }
+}
+
+ion-col{
+    margin-bottom: 1rem;
+}
+
+.col-label{
+    display: flex;
+    flex-direction: column;
+    color: var(--ion-color-medium-shade);
+
+    .title-col{
+        font-weight: 500;
+    }
+}

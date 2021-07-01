@@ -1,5 +1,37 @@
 <app-header></app-header>
 
 <ion-content>
-
+    <ion-card *ngFor="let postagem of postagens" >
+        <ion-card-content>
+          <ion-row style="align-items: center;">
+            <ion-thumbnail class="user-avatar">
+              <img src="/assets/images/aa.jpg" />
+            </ion-thumbnail>
+    
+            <!-- <ion-col style="text-align: start;" sizeXs="5" sizeMd="3"><span>Isabel ferreira dos santos</span></ion-col> -->
+            <ion-col style="text-align: start;" sizeXs="9" sizeMd="2.5" class="col-label">
+                <span class="title-col">Nome</span>
+                <span>{{postagem.nome}}</span>
+            </ion-col>
+            <ion-col style="text-align: start;" sizeXs="2.5" sizeMd="2.5" class="col-label">
+                <span class="title-col">Story</span>
+                <span>{{postagem.story}}</span>
+            </ion-col>
+         
+            <ion-col sizeXs="3" sizeMd="2.5"  class="col-label">
+                <span class="title-col">Feed</span>
+                <span>{{postagem.feed}}</span>
+            </ion-col>
+            <ion-col sizeXs="3" sizeMd="2.5" class="col-label">
+                <span class="title-col">Reels</span>
+                <span>{{postagem.reels}}</span>
+            </ion-col>
+            <ion-col sizeXs="3.5" sizeMd="2.5" class="col-label">
+                <span class="title-col">Data</span>
+                <span>{{postagem.data}}</span>
+            </ion-col>
+          
+          </ion-row>
+        </ion-card-content>
+      </ion-card>
 </ion-content>

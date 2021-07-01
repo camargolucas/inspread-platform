@@ -1,5 +1,40 @@
 <app-header></app-header>
 
 <ion-content>
+  <ion-card (click)="openDetails(influencer)" *ngFor="let influencer of influencers" >
+    <ion-card-content>
+      <ion-row style="align-items: center;">
+        <ion-thumbnail class="user-avatar">
+          <img src="/assets/images/aa.jpg" />
+        </ion-thumbnail>
 
+        <!-- <ion-col style="text-align: start;" sizeXs="5" sizeMd="3"><span>Isabel ferreira dos santos</span></ion-col> -->
+        <ion-col style="text-align: start;" sizeXs="5" sizeMd="3" class="col-label">
+            <span class="title-col">Nome</span>
+            <span>{{influencer.nome}}</span>
+        </ion-col>
+        <ion-col style="text-align: start;" sizeXs="4" sizeMd="2" class="col-label">
+            <span class="title-col">Tag</span>
+            <span>{{influencer.tag}}</span>
+        </ion-col>
+     
+        <ion-col  class="col-label">
+            <span class="title-col">Telefone</span>
+            <span>{{influencer.telefone}}</span>
+        </ion-col>
+        <ion-col class="col-label">
+            <span class="title-col">Genero</span>
+            <span>{{influencer.genero}}</span>
+        </ion-col>
+        <ion-col class="col-label">
+            <span class="title-col">Idade</span>
+            <span>{{influencer.idade}}</span>
+        </ion-col>
+        <ion-col  class="col-label">
+            <span class="title-col">UF</span>
+            <span>{{influencer.uf}}</span>
+        </ion-col>
+      </ion-row>
+    </ion-card-content>
+  </ion-card>
 </ion-content>

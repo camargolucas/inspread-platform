@@ -28,4 +28,63 @@
 
 span{
     color: var(--ion-color-medium);
+    text-transform: inherit;
+}
+
+ion-content{
+    --padding-bottom: 1rem;
+    --padding-top: 1rem;
+    --padding-start: 1rem;
+    --padding-end: 1rem;
+}
+
+.generic-title{
+    font-size: 30px !important;
+    margin-top: 3rem !important;
+    margin-bottom: 3rem !important;
+}
+
+.generic-back-button{
+    text-transform: inherit !important;
+    position: absolute;
+    right: 0;
+
+    ion-button{
+        height: 30px;
+    }
+}
+
+ion-card{
+    margin: 0;
+}
+
+.mat-vertical-content-container {
+    margin-left: 18px !important;
+    border: 0;
+    position: relative;
+}
+
+.mat-stepper-label-position-bottom .mat-horizontal-stepper-header, .mat-vertical-stepper-header {
+    padding: 24px 5px;
+}
+
+.mat-vertical-content {
+    padding: 0 0px 24px 15px !important;
+}
+
+.mat-step-icon-content, .mat-step-icon .mat-icon {
+    span{
+        color: white !important;
+    }
+}
+
+.influencer-modal{
+    --width: 800px;
+}
+
+
+@media (min-width:778px) {
+    .hide{
+        display: block;
+    }
 }

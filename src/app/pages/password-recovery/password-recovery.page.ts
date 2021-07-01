@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-password-recovery',
@@ -8,12 +9,27 @@ import { FormControl, FormGroup } from '@angular/forms';
 })
 export class PasswordRecoveryPage implements OnInit {
   form:FormGroup
-  constructor() { }
+  constructor(private router: ActivatedRoute) { }
+  newPasswordScreen = false;
 
   ngOnInit() {
-    this.form = new FormGroup({
-      email: new FormControl('')
-    })
+   
+    if(this.router.snapshot.params['id']){
+      this.newPasswordScreen = true;
+
+      this.form = new FormGroup({
+        newPassword: new FormControl(''),
+        confirmPassword: new FormControl('')
+      })
+
+    }else{
+      this.form = new FormGroup({
+        email: new FormControl('')
+      })
+    }
+
+    
+    
   }
 
 }
