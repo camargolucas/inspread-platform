@@ -13,7 +13,7 @@ export class InfluencersPage implements OnInit {
     {
       nome:'Isabel Ferreira dos Santos',
       tag:'@joellma',
-      telefone:'114412431',
+      telefone:'22222222',
       genero:'Feminino',
       idade: '25',
       uf: 'SP'

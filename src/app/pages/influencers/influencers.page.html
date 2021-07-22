@@ -1,6 +1,14 @@
 <app-header></app-header>
 
 <ion-content>
+
+  <ion-row>
+    <mat-form-field appearance="outline">
+      <mat-label><ion-icon style="margin-right: 0.5rem;" name="search-outline"></ion-icon>Buscar Influencer</mat-label>
+      <input placeholder="Digite nome de um influencer" matInput />
+    </mat-form-field>
+  </ion-row>
+
   <ion-card (click)="openDetails(influencer)" *ngFor="let influencer of influencers" >
     <ion-card-content>
       <ion-row style="align-items: center;">

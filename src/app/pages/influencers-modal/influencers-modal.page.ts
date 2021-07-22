@@ -4,6 +4,8 @@ import { StepperOrientation } from '@angular/material/stepper';
 import { Observable } from 'rxjs';
 import {BreakpointObserver} from '@angular/cdk/layout';
 import {map} from 'rxjs/operators';
+import { Router } from '@angular/router';
+import { ModalController } from '@ionic/angular';
 @Component({
   selector: 'app-influencers-modal',
   templateUrl: './influencers-modal.page.html',
@@ -71,7 +73,7 @@ export class InfluencersModalPage implements OnInit {
     {checked:false, name:'Outra Opção'}
   ]
   
-  constructor(private _formBuilder: FormBuilder, private breakpointObserver: BreakpointObserver) {
+  constructor(private _formBuilder: FormBuilder, private breakpointObserver: BreakpointObserver, private router:Router, private modal:ModalController) {
     this.stepperOrientation = breakpointObserver.observe('(min-width: 800px)')
     .pipe(map(({matches}) => matches ? 'horizontal' : 'vertical'));
    }
@@ -80,6 +82,11 @@ export class InfluencersModalPage implements OnInit {
 
   ngOnInit() {
     console.log(this.influencer)
+  }
+
+  back(){
+    this.router.navigate(['/home'])
+    this.modal.dismiss()
   }
 
 }

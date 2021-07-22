@@ -8,6 +8,8 @@ import { PostagemPageRoutingModule } from './postagem-routing.module';
 
 import { PostagemPage } from './postagem.page';
 import { HeaderPageModule } from 'src/app/components/header/header.module';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 
 @NgModule({
   imports: [
@@ -15,7 +17,9 @@ import { HeaderPageModule } from 'src/app/components/header/header.module';
     FormsModule,
     IonicModule,
     PostagemPageRoutingModule,
-    HeaderPageModule
+    HeaderPageModule,
+    MatFormFieldModule,
+    MatInputModule
   ],
   declarations: [PostagemPage]
 })

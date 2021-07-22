@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
+import { EnvironmentService } from 'src/app/services/environment.service';
 
 @Component({
   selector: 'app-login',
@@ -11,7 +12,8 @@ export class LoginPage implements OnInit {
 
   form:FormGroup
   constructor(
-    private router:Router
+    private router:Router,
+    public env:EnvironmentService
   ) { }
 
   ngOnInit() {

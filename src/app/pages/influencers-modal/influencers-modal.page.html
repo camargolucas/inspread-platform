@@ -1,5 +1,8 @@
 <ion-content>
-  <mat-stepper
+  <div style="position: absolute; right:0;top: 0;">
+    <ion-button (click)="back()" fill="clear">Voltar</ion-button>
+  </div>
+  <mat-stepper style="margin-top: 1rem;"
     class="example-stepper"
     [orientation]="(stepperOrientation | async)!"
   >
@@ -8,6 +11,10 @@
 
       <form [formGroup]="firstFormGroup">
         <div class="flex-content">
+
+          <div style="text-align: center;width: 100%;">
+            <img style="max-width: 130px;" src="/assets/images/print-teste.jpg">
+          </div>
           <mat-form-field appearance="outline" style="max-width: 100%">
             <mat-label>Nome</mat-label>
             <input

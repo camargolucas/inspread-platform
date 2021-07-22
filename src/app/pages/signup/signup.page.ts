@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { EnvironmentService } from 'src/app/services/environment.service';
 
 @Component({
   selector: 'app-signup',
@@ -8,7 +9,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 })
 export class SignupPage implements OnInit {
   form:FormGroup
-  constructor() { }
+  constructor(public env:EnvironmentService) { }
 
   ngOnInit() {
     this.form = new FormGroup({

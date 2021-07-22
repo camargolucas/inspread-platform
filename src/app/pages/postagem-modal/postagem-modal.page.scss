@@ -1,0 +1,54 @@
+
+.section{  
+    width: 100%;
+    display: flex;
+    align-items: center;
+
+
+    ion-icon{
+        font-size: 50px;
+    }
+
+    .title{
+        margin: 0 2rem 0 1rem !important;
+        ion-text{
+            font-size: 28px;
+        }
+    }
+
+    .line{
+        width: 100%;      
+        border: solid 1px #e8e8e8;
+    }
+   
+}
+
+
+.content-section{
+    margin-bottom: 1.5rem;
+    .input-button{
+        .mat-form-field{
+            margin-right: 1rem !important;
+            max-width: 100px;
+        }
+    
+        ion-button{
+            --border-radius: 20px;
+            height: 36px;
+        }
+    }
+
+
+   .images-upload{
+
+      img{
+            max-width: 130px;
+            margin-right: 1rem;
+      }
+   }
+    
+}
+
+.mat-form-field-appearance-outline .mat-form-field-outline {
+    border-radius: 30px;
+  }

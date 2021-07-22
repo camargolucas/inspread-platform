@@ -2,7 +2,7 @@
 <ion-app>
  
   <ion-split-pane  style="z-index: 2;" contentId="main-content">
-    <ion-menu contentId="main-content" type="overlay" side="end">
+    <ion-menu [ngClass]="{'display-none': hideMenu.includes(router.url.toString().split('/', 2)[1])}" contentId="main-content" type="overlay" side="{{env.isMobile? 'end':'start'}}">
       <ion-content>
         <ion-list id="inbox-list">
           <ion-list-header>

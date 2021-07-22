@@ -1,44 +1,62 @@
-<ion-content>
+<ion-content  [ngClass]="{'ion-padding': env.isMobile}" class="ion-no-padding content-withou-scroll">
   <div class="conteudo">
-    <ion-row class="logo">
-      <img src="/assets/images/logo_pink.svg" />
-    </ion-row>
-
-    <ion-row class="login">
-      <img src="/assets/images/login.png" />
-    </ion-row>
-
     <ion-row>
-      <form [formGroup]="form">
-        <mat-form-field appearance="outline">
-          <mat-label>Email</mat-label>
-          <input formControlName="email" matInput />
-        </mat-form-field>
+      <ion-col class="col-form-content"> 
+        <div class="form-content">
+        <ion-row class="logo">
+          <img src="/assets/images/logo_pink.svg" />
+        </ion-row>
 
-        <mat-form-field appearance="outline">
-          <mat-label>Senha</mat-label>
-          <input formControlName="password" matInput />
-        </mat-form-field>
-      </form>
-    </ion-row>
+        <ion-row class="login">
+          <img src="/assets/images/login.png" />
+        </ion-row>
 
-    <ion-row class="remember-and-forgetPassword">
-      <div>
-        <mat-checkbox color="primary" class="example-margin">Lembrar</mat-checkbox>              
+        <ion-row>
+          <form [formGroup]="form">
+            <mat-form-field appearance="outline">
+              <mat-label>Email</mat-label>
+              <input formControlName="email" matInput />
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+              <mat-label>Senha</mat-label>
+              <input formControlName="password" matInput />
+            </mat-form-field>
+          </form>
+        </ion-row>
+
+        <ion-row class="remember-and-forgetPassword">
+          <div>
+            <mat-checkbox color="primary" class="example-margin"
+              >Lembrar</mat-checkbox
+            >
+          </div>
+          <div class="forget-password">
+            <ion-button (click)="navigate('/password-recovery')" fill="clear"
+              >Esqueceu a senha?</ion-button
+            >
+          </div>
+        </ion-row>
+
+        <ion-row class="login-btn">
+          <ion-button (click)="navigate('/home')" color="primary" expand="block"
+            >Login</ion-button
+          >
+        </ion-row>
+
+        <ion-row class="signup">
+          <span
+            >Não possui conta?
+            <ion-button (click)="navigate('/signup')" fill="clear"
+              >Cadastre-se</ion-button
+            ></span
+          >
+        </ion-row>
       </div>
-      <div class="forget-password">
-        <ion-button (click)="navigate('/password-recovery')" fill="clear">Esqueceu a senha?</ion-button>
-      </div>
-    </ion-row>
-
-    <ion-row class="login-btn">
-      <ion-button (click)="navigate('/home')" color="primary" expand="block">Login</ion-button>
-
-    </ion-row>
-    
-
-    <ion-row class="signup">
-      <span>Não possui conta? <ion-button (click)="navigate('/signup')" fill="clear">Cadastre-se</ion-button></span>
+      </ion-col>
+      <ion-col *ngIf="!env.isMobile" class="desktop-image">
+        <img src="/assets/images/login_image.png" />
+      </ion-col>
     </ion-row>
   </div>
 </ion-content>

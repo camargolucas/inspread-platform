@@ -16,7 +16,7 @@
 @import "~@ionic/angular/css/normalize.css";
 @import "~@ionic/angular/css/structure.css";
 @import "~@ionic/angular/css/typography.css";
-@import '~@ionic/angular/css/display.css';
+@import "~@ionic/angular/css/display.css";
 
 /* Optional CSS utils that can be commented out */
 @import "~@ionic/angular/css/padding.css";
@@ -25,66 +25,100 @@
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
 
-
-span{
-    color: var(--ion-color-medium);
-    text-transform: inherit;
+span {
+  color: var(--ion-color-medium);
+  text-transform: inherit;
 }
 
-ion-content{
-    --padding-bottom: 1rem;
-    --padding-top: 1rem;
-    --padding-start: 1rem;
-    --padding-end: 1rem;
+ion-title {
+  color: var(--ion-color-medium);
 }
 
-.generic-title{
-    font-size: 30px !important;
-    margin-top: 3rem !important;
-    margin-bottom: 3rem !important;
+ion-content {
+  --padding-bottom: 1rem;
+  --padding-top: 1rem;
+  --padding-start: 1rem;
+  --padding-end: 1rem;
+ 
 }
 
-.generic-back-button{
-    text-transform: inherit !important;
-    position: absolute;
-    right: 0;
-
-    ion-button{
-        height: 30px;
-    }
+.content-withou-scroll{
+  --offset-bottom: hidden!important;
+  --overflow: hidden;
+  overflow: hidden;
+  &::-webkit-scrollbar {
+    display: none;
+    overflow: hidden;
+  }
 }
 
-ion-card{
-    margin: 0;
+
+ion-split-pane {
+  --side-max-width: 18%;
+
+  @media (max-width: 878px) {
+    --side-max-width: 28% !important;
+  }
+}
+
+main{
+
+ padding: 0;
+}
+
+
+.generic-title {
+  font-size: 30px !important;
+  margin-top: 3rem !important;
+  margin-bottom: 3rem !important;
+}
+
+.generic-back-button {
+  text-transform: inherit !important;
+  position: absolute;
+  right: 0;
+
+  ion-button {
+    height: 30px;
+  }
+}
+
+ion-card {
+  margin: 0;
 }
 
 .mat-vertical-content-container {
-    margin-left: 18px !important;
-    border: 0;
-    position: relative;
+  margin-left: 18px !important;
+  border: 0;
+  position: relative;
 }
 
-.mat-stepper-label-position-bottom .mat-horizontal-stepper-header, .mat-vertical-stepper-header {
-    padding: 24px 5px;
+.mat-stepper-label-position-bottom .mat-horizontal-stepper-header,
+.mat-vertical-stepper-header {
+  padding: 24px 5px;
 }
 
 .mat-vertical-content {
-    padding: 0 0px 24px 15px !important;
+  padding: 0 0px 24px 15px !important;
 }
 
-.mat-step-icon-content, .mat-step-icon .mat-icon {
-    span{
-        color: white !important;
-    }
+.mat-step-icon-content,
+.mat-step-icon .mat-icon {
+  span {
+    color: white !important;
+  }
 }
 
-.influencer-modal{
-    --width: 800px;
+.influencer-modal {
+  --width: 800px;
 }
 
+@media (min-width: 778px) {
+  .hide {
+    display: block;
+  }
+}
 
-@media (min-width:778px) {
-    .hide{
-        display: block;
-    }
+.display-none {
+  display: none;
 }

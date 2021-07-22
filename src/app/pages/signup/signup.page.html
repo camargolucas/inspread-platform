@@ -1,49 +1,74 @@
-<ion-content>
+<ion-content [ngClass]="{'ion-padding': env.isMobile}" class="ion-no-padding">
   <div class="generic-back-button">
     <ion-button routerLink="/login" fill="clear">
       <span>Voltar</span>
     </ion-button>
   </div>
-  <ion-row style="align-items: baseline">
-    <img style="max-width: 40px" src="/assets/images/logo_pink_small.svg" />
-    <span class="generic-title">Cadastrar</span>
-  </ion-row>
   <ion-row>
-    <form [formGroup]="form">
-      <mat-form-field appearance="outline">
-        <mat-label>Nome</mat-label>
-        <input formControlName="name" matInput />
-      </mat-form-field>
+    <ion-col class="col-title-form" sizeXs="12" size="9" sizeLg="9"> 
+      <div class="title-form">
+        <div class="img-cadastrar">
+          <img
+            style="max-width: 40px"
+            src="/assets/images/logo_pink_small.svg"
+          />
+          <span class="generic-title">Cadastrar</span>
+        </div>
 
-      <mat-form-field appearance="outline">
-        <mat-label>Telefone</mat-label>
-        <input formControlName="tel" matInput />
-      </mat-form-field>
-      <mat-form-field appearance="outline">
-        <mat-label>Qtd Seguidores</mat-label>
-        <input formControlName="qtFollowers" matInput />
-      </mat-form-field>
-      <mat-form-field appearance="outline">
-        <mat-label>Link Rede Social</mat-label>
-        <input formControlName="linkSocialMedia" matInput />
-      </mat-form-field>
-      <mat-form-field appearance="outline">
-        <mat-label>Email</mat-label>
-        <input formControlName="email" matInput />
-      </mat-form-field>
-      <mat-form-field appearance="outline">
-        <mat-label>Confirmar Email</mat-label>
-        <input formControlName="confirmEmail" matInput />
-      </mat-form-field>
-      <mat-form-field appearance="outline">
-        <mat-label>Senha</mat-label>
-        <input formControlName="password" matInput />
-      </mat-form-field>
-      <mat-form-field appearance="outline">
-        <mat-label>Confirmar Senha</mat-label>
-        <input formControlName="confirmPassword" matInput />
-      </mat-form-field>
-    </form>
-    <ion-button style="width: 100%" expand="block"> Cadastrar </ion-button>
+        <ion-col size="auto" class="col-form-content">
+          <div class="col-content">
+            <ion-row>
+              <form [formGroup]="form">
+                <div class="form-content">
+                  <div class="content">
+                    <mat-form-field appearance="outline">
+                      <mat-label>Nome</mat-label>
+                      <input formControlName="name" matInput />
+                    </mat-form-field>
+
+                    <mat-form-field appearance="outline">
+                      <mat-label>Telefone</mat-label>
+                      <input formControlName="tel" matInput />
+                    </mat-form-field>
+                    <mat-form-field appearance="outline">
+                      <mat-label>Qtd Seguidores</mat-label>
+                      <input formControlName="qtFollowers" matInput />
+                    </mat-form-field>
+                    <mat-form-field appearance="outline">
+                      <mat-label>Link Rede Social</mat-label>
+                      <input formControlName="linkSocialMedia" matInput />
+                    </mat-form-field>
+                  </div>
+                  <div class="content">
+                    <mat-form-field appearance="outline">
+                      <mat-label>Email</mat-label>
+                      <input formControlName="email" matInput />
+                    </mat-form-field>
+                    <mat-form-field appearance="outline">
+                      <mat-label>Confirmar Email</mat-label>
+                      <input formControlName="confirmEmail" matInput />
+                    </mat-form-field>
+                    <mat-form-field appearance="outline">
+                      <mat-label>Senha</mat-label>
+                      <input formControlName="password" matInput />
+                    </mat-form-field>
+                    <mat-form-field appearance="outline">
+                      <mat-label>Confirmar Senha</mat-label>
+                      <input formControlName="confirmPassword" matInput />
+                    </mat-form-field>
+                  </div>
+                </div>
+              </form>
+              <ion-button style="width: 100%" expand="block">
+                Cadastrar
+              </ion-button>
+            </ion-row>
+          </div>
+        </ion-col>
+      </div>
+    </ion-col>
+    <ion-col *ngIf="!env.isMobile" class="desktop-image">
+      <img src="/assets/images/cadastro_desktop.png" />
+    </ion-col>
   </ion-row>
 </ion-content>

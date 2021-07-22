@@ -1,7 +1,13 @@
 <app-header></app-header>
 
 <ion-content>
-    <ion-card *ngFor="let postagem of postagens" >
+    <ion-row>
+      <mat-form-field appearance="outline">
+        <mat-label><ion-icon style="margin-right: 0.5rem;" name="search-outline"></ion-icon>Buscar Postagem</mat-label>
+        <input placeholder="Digite nome de um influencer" matInput />
+      </mat-form-field>
+    </ion-row>
+    <ion-card (click)="goTo(postagem)" *ngFor="let postagem of postagens" >
         <ion-card-content>
           <ion-row style="align-items: center;">
             <ion-thumbnail class="user-avatar">
@@ -13,16 +19,16 @@
                 <span class="title-col">Nome</span>
                 <span>{{postagem.nome}}</span>
             </ion-col>
-            <ion-col style="text-align: start;" sizeXs="2.5" sizeMd="2.5" class="col-label">
+            <ion-col sizeXs="2.5" sizeMd="2" class="col-label">
                 <span class="title-col">Story</span>
                 <span>{{postagem.story}}</span>
             </ion-col>
          
-            <ion-col sizeXs="3" sizeMd="2.5"  class="col-label">
+            <ion-col sizeXs="3" sizeMd="2"  class="col-label">
                 <span class="title-col">Feed</span>
                 <span>{{postagem.feed}}</span>
             </ion-col>
-            <ion-col sizeXs="3" sizeMd="2.5" class="col-label">
+            <ion-col sizeXs="3" sizeMd="2" class="col-label">
                 <span class="title-col">Reels</span>
                 <span>{{postagem.reels}}</span>
             </ion-col>

@@ -6,7 +6,7 @@
       <ion-card-content>
         <ion-row>
           <div size="4" class="img-title">
-            <small> Usuário </small>
+            <small>Meu Usuário </small>
             <ion-thumbnail>
               <img src="/assets/images/aa.jpg" />
             </ion-thumbnail>
@@ -18,7 +18,7 @@
           </div>
         </ion-row>
         <ion-row class="more-info">
-          <small
+          <small (click)="goTo('/influencers-modal')"
             >Saiba mais <ion-icon name="chevron-forward-outline"></ion-icon
           ></small>
         </ion-row>
@@ -49,8 +49,8 @@
             </ul>
           </div>
         </ion-row>
-        <ion-row class="more-info">
-          <small
+        <ion-row  class="more-info">
+          <small  (click)="goTo('/postagem')" 
             >Saiba mais <ion-icon name="chevron-forward-outline"></ion-icon
           ></small>
         </ion-row>

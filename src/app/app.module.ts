@@ -12,8 +12,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatSelectModule } from '@angular/material/select';
 
 
+
 @NgModule({
-  declarations: [AppComponent, ],
+  declarations: [AppComponent ],
   entryComponents: [],
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule,
      HeaderPageModule, BrowserAnimationsModule, 

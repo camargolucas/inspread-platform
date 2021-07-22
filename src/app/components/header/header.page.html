@@ -1,7 +1,7 @@
 <ion-header style="z-index: 1;" [translucent]="true">
-  <ion-toolbar>
+  <ion-toolbar>   
     <div class="title-img">
-    <div style="margin-left: 0.5rem;">
+    <div *ngIf="env.isMobile" style="margin-left: 0.5rem;">
       <img src="/assets/images/logo_pink_small.svg">
     </div>
     <ion-title style="text-align: center;">{{ pageName }}</ion-title>

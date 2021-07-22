@@ -4,9 +4,9 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { InfluencersPageRoutingModule } from './influencers-routing.module';
+import { PostagemModalPageRoutingModule } from './postagem-modal-routing.module';
 
-import { InfluencersPage } from './influencers.page';
+import { PostagemModalPage } from './postagem-modal.page';
 import { HeaderPageModule } from 'src/app/components/header/header.module';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
@@ -16,11 +16,11 @@ import { MatInputModule } from '@angular/material/input';
     CommonModule,
     FormsModule,
     IonicModule,
-    InfluencersPageRoutingModule,
+    PostagemModalPageRoutingModule,
     HeaderPageModule,
     MatFormFieldModule,
     MatInputModule
   ],
-  declarations: [InfluencersPage]
+  declarations: [PostagemModalPage]
 })
-export class InfluencersPageModule {}
+export class PostagemModalPageModule {}

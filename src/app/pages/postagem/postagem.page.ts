@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-postagem',
@@ -32,7 +33,12 @@ export class PostagemPage implements OnInit {
      
     }
   ]
-  constructor() { }
+  constructor(private router:Router) { }
+
+  goTo(postagem){ 
+    this.router.navigate(['/postagem-modal'])
+    localStorage.setItem('postagem', JSON.stringify(postagem))
+  }
 
   ngOnInit() {
   }

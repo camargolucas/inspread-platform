@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { EnvironmentService } from 'src/app/services/environment.service';
 
 @Component({
   selector: 'app-password-recovery',
@@ -9,7 +10,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class PasswordRecoveryPage implements OnInit {
   form:FormGroup
-  constructor(private router: ActivatedRoute) { }
+  constructor(private router: ActivatedRoute, public env:EnvironmentService) { }
   newPasswordScreen = false;
 
   ngOnInit() {
