@@ -1,6 +1,8 @@
 import { Route } from '@angular/compiler/src/core';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ModalController } from '@ionic/angular';
+import { InfluencersModalPage } from '../influencers-modal/influencers-modal.page';
 
 @Component({
   selector: 'app-home',
@@ -9,11 +11,20 @@ import { Router } from '@angular/router';
 })
 export class HomePage implements OnInit {
 
-  constructor(private route:Router) { }
+  constructor(private route:Router, private modal:ModalController) { }
 
-  goTo(url){
+  async goTo(url){
    
-    this.route.navigate([url])
+      const modal = await this.modal.create({
+      component:InfluencersModalPage,
+      componentProps: {
+        influencer:"influecer"
+      },
+      cssClass: 'influencer-modal'
+    })
+
+    return await modal.present();
+
   }
 
   ngOnInit() {

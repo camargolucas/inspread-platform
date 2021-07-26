@@ -32,6 +32,7 @@ span {
 
 ion-title {
   color: var(--ion-color-medium);
+  opacity: 0.7;
 }
 
 ion-content {
@@ -77,6 +78,7 @@ main{
   text-transform: inherit !important;
   position: absolute;
   right: 0;
+  z-index: 2;
 
   ion-button {
     height: 30px;

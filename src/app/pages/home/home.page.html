@@ -6,7 +6,7 @@
       <ion-card-content>
         <ion-row>
           <div size="4" class="img-title">
-            <small>Meu Usuário </small>
+            <span>Meu Usuário </span>
             <ion-thumbnail>
               <img src="/assets/images/aa.jpg" />
             </ion-thumbnail>
@@ -16,11 +16,14 @@
             <p><ion-icon  name="at-outline"></ion-icon> isabelfrreira</p>
             <p><ion-icon src="/assets/images/followers-icon.svg"></ion-icon>1520</p>
           </div>
+          <div class="floating-icon">
+            <ion-icon name="person-outline"></ion-icon>
+          </div>
         </ion-row>
         <ion-row class="more-info">
-          <small (click)="goTo('/influencers-modal')"
+          <span (click)="goTo('/influencers-modal')"
             >Saiba mais <ion-icon name="chevron-forward-outline"></ion-icon
-          ></small>
+          ></span>
         </ion-row>
       </ion-card-content>
     </ion-card>
@@ -30,7 +33,7 @@
         <ion-row>
           <div size="4" class="img-title">
             <div>
-              <small> Última Postagem </small>
+              <span> Última Postagem </span>
               <p class="title-card-postagem">Adidas</p>
             </div>
             <ul>
@@ -48,11 +51,14 @@
               </li>
             </ul>
           </div>
+          <div class="floating-icon">
+            <ion-icon src="/assets/images/postagem-icon.svg"></ion-icon>
+          </div>
         </ion-row>
         <ion-row  class="more-info">
-          <small  (click)="goTo('/postagem')" 
+          <span  (click)="goTo('/postagem')" 
             >Saiba mais <ion-icon name="chevron-forward-outline"></ion-icon
-          ></small>
+          ></span>
         </ion-row>
       </ion-card-content>
     </ion-card>

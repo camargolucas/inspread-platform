@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { EnvironmentService } from './services/environment.service';
+import { UserService } from './services/user.service';
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
@@ -24,7 +25,7 @@ export class AppComponent {
   ]
 
   public labels = ['Family', 'Friends', 'Notes', 'Work', 'Travel', 'Reminders'];
-  constructor(public router:Router, private activatedRoute: ActivatedRoute, public env:EnvironmentService) {
+  constructor(public router:Router, private activatedRoute: ActivatedRoute, public env:EnvironmentService, private user:UserService) {
      
   }
 
@@ -46,6 +47,10 @@ export class AppComponent {
     this.router.navigate(['/login'], {replaceUrl:true})
   }
 
+
+  openUserModal(){
+    this.user.openModalUser();
+  }
  
 
 

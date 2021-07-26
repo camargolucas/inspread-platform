@@ -9,9 +9,7 @@ ion-menu.md ion-content {
   --padding-bottom: 20px;
 }
 
-ion-menu.md ion-list {
-  padding: 20px 0;
-}
+
 
 ion-menu.md ion-note {
   margin-bottom: 30px;
@@ -132,9 +130,23 @@ ion-note {
 
 ion-item.selected {
   --color: var(--ion-color-primary);
+  opacity: 100%;
+
+}
+
+ion-item{
+  opacity: 70%;
+  &:hover{
+    opacity: 100%;
+    transition: all 1s;
+   
+  }
 }
 
 
 ion-menu{
   --width: 250px;
 }
+
+
+

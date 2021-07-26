@@ -1,30 +1,83 @@
-
 <ion-app>
- 
-  <ion-split-pane  style="z-index: 2;" contentId="main-content">
-    <ion-menu [ngClass]="{'display-none': hideMenu.includes(router.url.toString().split('/', 2)[1])}" contentId="main-content" type="overlay" side="{{env.isMobile? 'end':'start'}}">
+  <ion-split-pane style="z-index: 2" contentId="main-content">
+    <ion-menu
+      [ngClass]="{
+        'display-none': hideMenu.includes(
+          router.url.toString().split('/', 2)[1]
+        )
+      }"
+      contentId="main-content"
+      type="overlay"
+      side="{{ env.isMobile ? 'end' : 'start' }}"
+    >
       <ion-content>
         <ion-list id="inbox-list">
           <ion-list-header>
-            <img src="/assets/images/logo_pink.svg">
-          </ion-list-header>        
-          <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages; let i = index">
-            <ion-item routerDirection="root" [routerLink]="[p.url]" lines="none" detail="false" routerLinkActive="selected">
-             <!--  <ion-icon slot="start" [ios]="p.icon + '-outline'" [md]="p.icon + '-sharp'"></ion-icon> -->
-             <ion-icon style="margin-right: 0.5rem;" color="primary" [src]="p.icon"></ion-icon>
+            <img src="/assets/images/logo_pink.svg" />
+          </ion-list-header>
+          <ion-menu-toggle
+            auto-hide="false"
+            *ngFor="let p of appPages; let i = index"
+          >
+            <ion-item
+              class="item-menu"
+              routerDirection="root"
+              [routerLink]="[p.url]"
+              lines="none"
+              detail="false"
+              routerLinkActive="selected"
+            >
+              <!--  <ion-icon slot="start" [ios]="p.icon + '-outline'" [md]="p.icon + '-sharp'"></ion-icon> -->
+              <ion-icon
+                style="margin-right: 0.5rem"
+                color="primary"
+                [src]="p.icon"
+              ></ion-icon>
               <ion-label>{{ p.title }}</ion-label>
             </ion-item>
           </ion-menu-toggle>
-          <ion-menu-toggle  auto-hide="false">
-            <ion-item (click)="logout()"lines="none" detail="false" >
-         
-              <ion-icon style="margin-right: 0.5rem;" color="primary" name="log-out-outline"></ion-icon>
-              <ion-label>{{ 'Sair' }}</ion-label>
+          <ion-menu-toggle *ngIf="env.isMobile" auto-hide="false">
+            <ion-item
+              class="item-menu"
+              (click)="openUserModal()"
+              lines="none"
+              detail="false"
+              routerLinkActive="selected"
+            >
+              <ion-icon
+                style="margin-right: 0.5rem"
+                color="primary"
+                name="person-outline"
+              ></ion-icon>
+              <ion-label>{{ "Meu perfil" }}</ion-label>
+            </ion-item>
+
+            <ion-item
+              class="item-menu"
+              (click)="logout()"
+              lines="none"
+              detail="false"
+              routerLinkActive="selected"
+            >
+              <ion-icon
+                style="margin-right: 0.5rem"
+                color="primary"
+                name="log-out-outline"
+              ></ion-icon>
+              <ion-label>{{ "Sair" }}</ion-label>
             </ion-item>
           </ion-menu-toggle>
-         
-        </ion-list>     
+        </ion-list>
       </ion-content>
+      <ion-footer>
+        <ion-toolbar>
+          <div style="display: flex; align-items: center; justify-content:center;">
+            <img style="width:6px; margin-right: 0.5rem;" src="/assets/images/logo_pink_only1.svg">
+            <span >Inspread Digital - v.1.0.0 </span>
+           
+          </div>
+        </ion-toolbar>
+      </ion-footer>
     </ion-menu>
     <ion-router-outlet id="main-content"></ion-router-outlet>
   </ion-split-pane>

@@ -1,13 +1,26 @@
-<ion-header style="z-index: 1;" [translucent]="true">
-  <ion-toolbar>   
+<ion-header style="z-index: 1" [translucent]="true">
+  <ion-toolbar>
     <div class="title-img">
-    <div *ngIf="env.isMobile" style="margin-left: 0.5rem;">
-      <img src="/assets/images/logo_pink_small.svg">
-    </div>
-    <ion-title style="text-align: center;">{{ pageName }}</ion-title>
-  </div>
-    <ion-buttons slot="end">
-      <ion-menu-button></ion-menu-button>
-    </ion-buttons>   
+      <div *ngIf="env.isMobile" style="margin-left: 0.5rem">
+        <img src="/assets/images/logo_pink_small.svg" />
+      </div>
+      <ion-title style="text-align: center">{{ pageName }}</ion-title>
+    </div>   
+    <ion-buttons  slot="end">
+      <ion-button *ngIf="env.isMobile" >
+        <ion-menu-button id="main-content"></ion-menu-button>
+      </ion-button>
+      <div *ngIf="!env.isMobile"  class="avatar">
+        <ion-thumbnail  (click)="presentPopover($event)">
+          <img src="/assets/images/aa.jpg">
+        </ion-thumbnail>
+        <ion-button *ngIf="!env.isMobile" (click)="presentPopover($event)" fill="clear">     
+          <ion-icon          
+            name="chevron-down-outline"
+          ></ion-icon>
+        </ion-button>
+      </div>
+     
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>

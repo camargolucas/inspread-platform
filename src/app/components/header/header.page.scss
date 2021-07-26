@@ -7,3 +7,15 @@ ion-title{
     display: flex;
     align-items: center;
 }
+
+.avatar{
+    display: flex;
+    align-items: center;
+    &:hover{
+        cursor: pointer;
+    }
+    margin-right: 0.5rem;
+    img{
+        max-width: 90px;
+    }
+}

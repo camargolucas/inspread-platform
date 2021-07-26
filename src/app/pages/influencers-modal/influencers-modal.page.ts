@@ -85,7 +85,7 @@ export class InfluencersModalPage implements OnInit {
   }
 
   back(){
-    this.router.navigate(['/home'])
+  
     this.modal.dismiss()
   }
 
