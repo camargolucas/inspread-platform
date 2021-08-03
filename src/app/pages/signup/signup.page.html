@@ -24,42 +24,66 @@
                     <mat-form-field appearance="outline">
                       <mat-label>Nome</mat-label>
                       <input formControlName="name" matInput />
+                      <mat-error>
+                        <p>{{getErrorMsg('name', form.controls.name)}}</p>
+                      </mat-error>
                     </mat-form-field>
 
                     <mat-form-field appearance="outline">
                       <mat-label>Telefone</mat-label>
                       <input formControlName="tel" matInput />
+                      <mat-error>
+                        <p>{{getErrorMsg('tel', form.controls.tel)}}</p>
+                      </mat-error>
                     </mat-form-field>
                     <mat-form-field appearance="outline">
                       <mat-label>Qtd Seguidores</mat-label>
                       <input formControlName="qtFollowers" matInput />
+                      <mat-error>
+                        <p>{{getErrorMsg('qtFollowers', form.controls.qtFollowers)}}</p>
+                      </mat-error>
                     </mat-form-field>
                     <mat-form-field appearance="outline">
                       <mat-label>Link Rede Social</mat-label>
                       <input formControlName="linkSocialMedia" matInput />
+                      <mat-error>
+                        <p>{{getErrorMsg('linkSocialMedia', form.controls.linkSocialMedia)}}</p>
+                      </mat-error>
                     </mat-form-field>
                   </div>
                   <div class="content">
                     <mat-form-field appearance="outline">
                       <mat-label>Email</mat-label>
                       <input formControlName="email" matInput />
+                      <mat-error>
+                        <p>{{getErrorMsg('email', form.controls.email)}}</p>
+                      </mat-error>
                     </mat-form-field>
                     <mat-form-field appearance="outline">
                       <mat-label>Confirmar Email</mat-label>
                       <input formControlName="confirmEmail" matInput />
+                      <mat-error>
+                        <p>{{getErrorMsg('confirmEmail', form.controls.confirmEmail)}}</p>
+                      </mat-error>
                     </mat-form-field>
                     <mat-form-field appearance="outline">
                       <mat-label>Senha</mat-label>
-                      <input formControlName="password" matInput />
+                      <input type="password" formControlName="password" matInput />
+                      <mat-error>
+                        <p>{{getErrorMsg('password', form.controls.password)}}</p>
+                      </mat-error>
                     </mat-form-field>
                     <mat-form-field appearance="outline">
                       <mat-label>Confirmar Senha</mat-label>
-                      <input formControlName="confirmPassword" matInput />
+                      <input type="password" formControlName="confirmPassword" matInput />
+                      <mat-error>
+                        <p>{{getErrorMsg('confirmPassword', form.controls.confirmPassword)}}</p>
+                      </mat-error>
                     </mat-form-field>
                   </div>
                 </div>
               </form>
-              <ion-button style="width: 100%" expand="block">
+              <ion-button (click)="signUp()" style="width: 100%" expand="block">
                 Cadastrar
               </ion-button>
             </ion-row>

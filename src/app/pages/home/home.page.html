@@ -17,11 +17,12 @@
             <p><ion-icon src="/assets/images/followers-icon.svg"></ion-icon>1520</p>
           </div>
           <div class="floating-icon">
-            <ion-icon name="person-outline"></ion-icon>
+            <!-- <ion-icon name="person-outline"></ion-icon> -->
+            <img class="user" src="/assets/images/character_user.png">
           </div>
         </ion-row>
         <ion-row class="more-info">
-          <span (click)="goTo('/influencers-modal')"
+          <span (click)="goToUser('/influencers-modal')"
             >Saiba mais <ion-icon name="chevron-forward-outline"></ion-icon
           ></span>
         </ion-row>
@@ -34,7 +35,7 @@
           <div size="4" class="img-title">
             <div>
               <span> Última Postagem </span>
-              <p class="title-card-postagem">Adidas</p>
+              <!-- <p class="title-card-postagem">Adidas</p> -->
             </div>
             <ul>
               <li>
@@ -52,11 +53,12 @@
             </ul>
           </div>
           <div class="floating-icon">
-            <ion-icon src="/assets/images/postagem-icon.svg"></ion-icon>
+            <img class="postagem" src="/assets/images/a1.jpg">
+            <!-- <ion-icon src="/assets/images/postagem-icon.svg"></ion-icon> -->
           </div>
         </ion-row>
         <ion-row  class="more-info">
-          <span  (click)="goTo('/postagem')" 
+          <span  (click)="goToPostagem()" 
             >Saiba mais <ion-icon name="chevron-forward-outline"></ion-icon
           ></span>
         </ion-row>

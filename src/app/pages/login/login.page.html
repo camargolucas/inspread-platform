@@ -13,22 +13,30 @@
 
         <ion-row>
           <form [formGroup]="form">
-            <mat-form-field appearance="outline">
+            <mat-form-field  appearance="outline">
               <mat-label>Email</mat-label>
-              <input formControlName="email" matInput />
+              <input formControlName="email" matInput  required/>
+              <mat-error>
+                <p>{{getErrorMsg('email', form.controls.email)}}</p>
+              </mat-error>
+            </mat-form-field>
+           
+
+            <mat-form-field  appearance="outline">
+              <mat-label>Senha</mat-label>
+              <input formControlName="password" matInput required type="password" />
+              <mat-error>
+                <p>{{getErrorMsg('password', form.controls.password)}}</p>
+              </mat-error>
             </mat-form-field>
 
-            <mat-form-field appearance="outline">
-              <mat-label>Senha</mat-label>
-              <input formControlName="password" matInput />
-            </mat-form-field>
           </form>
         </ion-row>
 
         <ion-row class="remember-and-forgetPassword">
           <div>
             <mat-checkbox color="primary" class="example-margin"
-              >Lembrar</mat-checkbox
+              >Lembrar email</mat-checkbox
             >
           </div>
           <div class="forget-password">
@@ -39,7 +47,7 @@
         </ion-row>
 
         <ion-row class="login-btn">
-          <ion-button (click)="navigate('/home')" color="primary" expand="block"
+          <ion-button (click)="login()" color="primary" expand="block"
             >Login</ion-button
           >
         </ion-row>

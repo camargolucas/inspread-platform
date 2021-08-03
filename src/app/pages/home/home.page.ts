@@ -13,7 +13,7 @@ export class HomePage implements OnInit {
 
   constructor(private route:Router, private modal:ModalController) { }
 
-  async goTo(url){
+  async goToUser(url){
    
       const modal = await this.modal.create({
       component:InfluencersModalPage,
@@ -25,6 +25,10 @@ export class HomePage implements OnInit {
 
     return await modal.present();
 
+  }
+
+  goToPostagem(){
+    this.route.navigate(['/postagem'])
   }
 
   ngOnInit() {
