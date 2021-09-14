@@ -14,6 +14,7 @@ import {MatSliderModule} from '@angular/material/slider';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatOptionModule } from '@angular/material/core';
 import {MatSelectModule} from '@angular/material/select';
+import { NgxMaskModule } from 'ngx-mask';
 @NgModule({
   imports: [
     CommonModule,
@@ -26,6 +27,7 @@ import {MatSelectModule} from '@angular/material/select';
     ReactiveFormsModule,
     MatSliderModule,
     MatCheckboxModule,
+    NgxMaskModule.forRoot(),
   
     MatSelectModule
     

@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
 import { EnvironmentService } from 'src/app/services/environment.service';
+import { LoginService } from 'src/app/services/login.service';
 
 @Component({
   selector: 'app-login',
@@ -31,13 +32,15 @@ export class LoginPage implements OnInit {
   };
 
   form: FormGroup;
-  constructor(private router: Router, public env: EnvironmentService) {}
+  constructor(private router: Router, public env: EnvironmentService, private loginService:LoginService) {}
 
   ngOnInit() {
     this.form = new FormGroup({
       email: new FormControl('', [Validators.maxLength(40), Validators.email]),
       password: new FormControl('',[Validators.maxLength(16), Validators.minLength(5)]),
     });
+
+    this.loginService.signIn();
   }
 
   getErrorMsg(error, control) {

@@ -22,12 +22,13 @@
               placeholder="Last name, First name"
               formControlName="nome"
               required
+               
             />
           </mat-form-field>
           <div class="tag-idade-genero">
             <mat-form-field appearance="outline">
               <mat-label>Tag</mat-label>
-              <input matInput formControlName="tag" required />
+              <input matInput formControlName="tag"  [maxlength]="30" />
             </mat-form-field>
             <div class="flex-field">
               <mat-form-field appearance="outline" class="idade">
@@ -36,12 +37,14 @@
                   matInput
                   placeholder="Last name, First name"
                   formControlName="idade"
-                  required
+                  maxlength="3"
+                  type="number"
+                   
                 />
               </mat-form-field>
               <mat-form-field class="genero" appearance="outline">
                 <mat-label>Genero</mat-label>
-                <input matInput formControlName="genero" required />
+                <input matInput formControlName="genero"   />
               </mat-form-field>
             </div>
           </div>
@@ -51,28 +54,25 @@
           <ion-col size="6">
             <mat-form-field appearance="outline">
               <mat-label>Telefone</mat-label>
-              <input matInput formControlName="telefone" required />
+              <input  matInput formControlName="telefone"  [maxlength]="15"  mask="(00) 00000-0000" required />
             </mat-form-field>
           </ion-col>
           <ion-col size="6">
             <mat-form-field appearance="outline">
               <mat-label>Qtd Seguidores</mat-label>
-              <input matInput formControlName="qtdSeguidores" required />
+              <input matInput formControlName="qtdSeguidores"   required/>
             </mat-form-field>
           </ion-col>
         </ion-row>
           <mat-form-field appearance="outline">
             <mat-label>Email</mat-label>
-            <input matInput formControlName="email" required />
+            <input matInput formControlName="email"  required/>
           </mat-form-field>
           <mat-form-field appearance="outline">
             <mat-label>Cpf</mat-label>
-            <input matInput formControlName="cpf" required />
+            <input matInput formControlName="cpf" [maxlength]="14"  mask="CPF_CNPJ"/>
           </mat-form-field>
-        </div>
-        <div>
-          <button mat-button matStepperNext>Next</button>
-        </div>
+        </div>     
       </form>
     </mat-step>
     <!-- END FIRST FORM DADOS PESSOAIS -->
@@ -160,7 +160,9 @@
               matInput
               formControlName="cep"
               placeholder="Ex. 12345678"
-              required
+              [maxlength]="9"
+              mask="00000-000"
+               
             />
           </mat-form-field>
           <mat-form-field appearance="outline">
@@ -169,7 +171,7 @@
               matInput
               formControlName="rua"
               placeholder="Ex. 12345678"
-              required
+               
             />
           </mat-form-field>
           <mat-form-field appearance="outline">
@@ -178,7 +180,7 @@
               matInput
               formControlName="bairro"
               placeholder="Ex. 12345678"
-              required
+               
             />
           </mat-form-field>
           <div class="flex-field">
@@ -188,7 +190,7 @@
                 matInput
                 formControlName="numero"
                 placeholder="Ex. 12345678"
-                required
+                 
               />
             </mat-form-field>
             <mat-form-field appearance="outline" class="complemento">
@@ -197,7 +199,7 @@
                 matInput
                 formControlName="complemento"
                 placeholder="Ex. 12345678"
-                required
+                 
               />
             </mat-form-field>
           </div>
@@ -209,7 +211,7 @@
                   matInput
                   formControlName="estado"
                   placeholder="Ex. 12345678"
-                  required
+                   
                 />
               </mat-form-field>
             </ion-col>
@@ -220,16 +222,12 @@
                   matInput
                   formControlName="cidade"
                   placeholder="Ex. 12345678"
-                  required
+                   
                 />
               </mat-form-field>
             </ion-col>
           </ion-row>
-        </div>
-        <div>
-          <button mat-button matStepperPrevious>Back</button>
-          <button mat-button matStepperNext>Next</button>
-        </div>
+        </div>      
       </form>
     </mat-step>
     <!-- FIM THIRD FORRM GROUP ENDERECO  -->
@@ -244,7 +242,7 @@
               formControlName="banco"
               matInput
               placeholder="Ex. 12345678"
-              required
+               
             />
           </mat-form-field>
           <div class="cc-agencia">
@@ -254,7 +252,7 @@
                 formControlName="contaCorrente"
                 matInput
                 placeholder="Ex. 12345678"
-                required
+                 
               />
             </mat-form-field>
             <mat-form-field appearance="outline">
@@ -263,7 +261,7 @@
                 formControlName="agencia"
                 matInput
                 placeholder="Ex. 12345678"
-                required
+                 
               />
             </mat-form-field>
           </div>
@@ -274,7 +272,7 @@
               formControlName="nome"
               matInput
               placeholder="Ex. 12345678"
-              required
+               
             />
           </mat-form-field>
           <mat-form-field appearance="outline">
@@ -283,14 +281,14 @@
               formControlName="cpf"
               matInput
               placeholder="Ex. 12345678"
-              required
+              [maxlength]="14"
+              mask="CPF_CNPJ"
+        
+               
             />
           </mat-form-field>
         </div>
-        <div>
-          <button mat-button matStepperPrevious>Back</button>
-          <button mat-button matStepperNext>Next</button>
-        </div>
+       
       </form>
     </mat-step>
   </mat-stepper>

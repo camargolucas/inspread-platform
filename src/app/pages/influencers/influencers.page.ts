@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
+import { UserService } from 'src/app/services/user.service';
 import { InfluencersModalPage } from '../influencers-modal/influencers-modal.page';
 
 @Component({
@@ -36,9 +37,10 @@ export class InfluencersPage implements OnInit {
     }
   ]
 
-  constructor(private modal:ModalController) { }
+  constructor(private modal:ModalController, private userService:UserService) { }
 
   ngOnInit() {
+    this.userService.getInfluencers();
   }
 
 

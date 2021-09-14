@@ -16,7 +16,7 @@
           color="secondary"
           src="/assets/images/story-icon.svg"
         ></ion-icon>
-        <div class="title"><ion-text color="secondary">Feed</ion-text></div>
+        <div class="title"><ion-text color="secondary">Story</ion-text></div>
         <div class="line"></div>
       </div>
       <div class="content-section">
@@ -26,12 +26,23 @@
             <input matInput />
           </mat-form-field>
 
-          <ion-button color="secondary">Anexar Story</ion-button>
+         
+          <input
+          style="display: none"
+          type="file" (change)="onFileChanged($event)"
+          #fileInput multiple>
+          <ion-button (click)="fileInput.click()" color="secondary"> Anexar Story</ion-button>
+      
         </ion-row>
         <ion-row class="images-upload">
-          <div>
+          <!-- <div>
             <img src="/assets/images/print-teste.jpg">
+          </div> -->
+          <div *ngFor="let image of uploadedImages; let i = index">
+             
+            <img (click)="removeImage(image.id)" [src]="_DomSanitizationService.bypassSecurityTrustUrl(image.tempImage)"  width="200" />	
           </div>
+          
         </ion-row>
       </div>
     </ion-row>

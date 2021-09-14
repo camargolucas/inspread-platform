@@ -16,36 +16,36 @@ export class InfluencersModalPage implements OnInit {
 
   firstFormGroup = this._formBuilder.group({
     nome: ['', Validators.required],
-    idade: ['', Validators.required],
-    tag: ['', Validators.required],
+    idade: [''],
+    tag: [''],
     telefone: ['', Validators.required],
-    genero: ['', Validators.required],
+    genero: [''],
     qtdSeguidores: ['', Validators.required],
     email: ['', Validators.required],
-    cpf: ['', Validators.required] 
+    cpf: [''] 
   });
   secondFormGroup = this._formBuilder.group({
-    porcSeguidoresMulheres: ['', Validators.required],
-    permuta: ['', Validators.required],
-    firstState: ['', Validators.required],
-    secondState: ['', Validators.required],
+    porcSeguidoresMulheres: ['', ],
+    permuta: ['',],
+    firstState: ['', ],
+    secondState: ['', ],
     
   });
   thirdFormGroup = this._formBuilder.group({
-    cep: ['', Validators.required],
-    rua: ['', Validators.required],
-    bairro: ['', Validators.required],
-    numero: ['', Validators.required],
-    complemento: ['', Validators.required],
-    estado: ['', Validators.required],
-    cidade: ['', Validators.required]
+    cep: ['', ],
+    rua: ['', ],
+    bairro: ['',],
+    numero: ['', ],
+    complemento: ['', ],
+    estado: ['',],
+    cidade: ['', ]
   });
   fourthFormGroup = this._formBuilder.group({
-    banco: ['', Validators.required],
-    contaCorrente: ['', Validators.required],
-    agencia: ['', Validators.required],
-    nome: ['', Validators.required],
-    cpf: ['', Validators.required],
+    banco: ['', ],
+    contaCorrente: ['', ],
+    agencia: ['',],
+    nome: ['', ],
+    cpf: ['',],
   });
   stepperOrientation: Observable<StepperOrientation>;
   porcSeguidores = 0;
