@@ -1,5 +1,7 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
+import { ModalController } from '@ionic/angular';
+import { ImageBigscreenPage } from './image-bigscreen/image-bigscreen.page';
 
 @Component({
   selector: 'app-postagem-modal',
@@ -7,43 +9,73 @@ import { DomSanitizer } from '@angular/platform-browser';
   styleUrls: ['./postagem-modal.page.scss'],
 })
 export class PostagemModalPage implements OnInit {
-  @ViewChild('fileInput') uploadElRef: ElementRef
+  @ViewChild('fileInputStory') uploadElRef: ElementRef
 
-  constructor(public _DomSanitizationService: DomSanitizer) { }
+  constructor(public _DomSanitizationService: DomSanitizer, private modal:ModalController) { }
   selectedFile;
-  uploadedImages = []
+  uploadedImagesFeed = []
+  uploadedImagesStory = []
+  uploadedImagesReels = []
+  uploadedImages = {
+    story: [],
+    reels: [],
+    feed:[]
+  }
+  
+  types = ['story', 'reels', 'feed']
 
   ngOnInit() {
   }
 
-  removeImage(id){
-    console.log(id);
-    const index = this.uploadedImages.findIndex(img =>{
+  removeImage(id, type) {
+
+    const index = this.uploadedImages[type].findIndex(img => {
       return img.id == id
     })
-    
-    this.uploadedImages.splice(index, 1);
+
+    this.uploadedImages[type].splice(index, 1);
+  }
+
+  async openModalImage(image){
+    console.log(image)
+    const modal = await this.modal.create({
+      component: ImageBigscreenPage,
+      componentProps: {
+        data:image
+      }
+    })
+
+    await modal.present()
   }
 
 
-  onFileChanged(event) {
+  onFileChanged(event, type) {
+
     this.selectedFile = event.target
     Array.from(this.selectedFile.files).forEach((element, index) => {
       let image = URL.createObjectURL(element)
       let imageId = new Date().getTime() + index;
 
       let objImage = {
-        tempImage : image,
+        tempImage: image,
         id: imageId
       }
-    
-      this.uploadedImages.push(objImage)
-      this.uploadElRef.nativeElement.value = ''
+      console.log(type)
+      this.uploadedImages[type].push(objImage)
+     /*  if (type == 'story') {
+        this.uploadedImagesStory.push(objImage)
+      } else if (type == 'reels') {
+        this.uploadedImagesReels.push(objImage)
+      } else if (type == 'feed') {
+        this.uploadedImagesFeed.push(objImage)
+      } */
+
+      //this.uploadElRef.nativeElement.value = ''
     });
 
-       
+
 
   }
-  
+
 
 }

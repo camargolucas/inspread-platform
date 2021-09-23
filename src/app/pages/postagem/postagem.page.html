@@ -1,12 +1,18 @@
 <app-header></app-header>
 
 <ion-content>
+  <ion-fab class="fab" vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button (click)="goTo(postagem)" >
+      <ion-icon name="add-outline"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
     <ion-row>
       <mat-form-field appearance="outline">
         <mat-label><ion-icon style="margin-right: 0.5rem;" name="search-outline"></ion-icon>Buscar Postagem</mat-label>
         <input placeholder="Digite nome de um influencer" matInput />
       </mat-form-field>
     </ion-row>
+    <h3 *ngIf="!(postagens && postagens.length)">Ainda não há postagens );</h3>
     <ion-card (click)="goTo(postagem)" *ngFor="let postagem of postagens" >
         <ion-card-content>
           <ion-row style="align-items: center;">

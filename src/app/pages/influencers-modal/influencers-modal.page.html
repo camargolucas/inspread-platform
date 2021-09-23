@@ -242,6 +242,7 @@
               formControlName="banco"
               matInput
               placeholder="Ex. 12345678"
+
                
             />
           </mat-form-field>
@@ -252,6 +253,7 @@
                 formControlName="contaCorrente"
                 matInput
                 placeholder="Ex. 12345678"
+                [maxlength]="4"
                  
               />
             </mat-form-field>
@@ -261,6 +263,7 @@
                 formControlName="agencia"
                 matInput
                 placeholder="Ex. 12345678"
+                mask="00000-0"
                  
               />
             </mat-form-field>
