@@ -10,6 +10,11 @@
 </ion-header>
 <ion-content>
   <div>
+    <ion-fab class="fab" vertical="bottom" horizontal="end" slot="fixed">
+      <ion-fab-button (click)="save()" >
+        <ion-icon name="add-outline"></ion-icon>
+      </ion-fab-button>
+    </ion-fab>
     <ion-row>
       <div class="section">
         <ion-icon color="secondary" src="/assets/images/story-icon.svg"></ion-icon>
@@ -34,10 +39,20 @@
           <!-- <div>
             <img src="/assets/images/print-teste.jpg">
           </div> -->
-          <div (click)="openModalImage(image)" class="div-uploaded-image" *ngFor="let image of uploadedImages['story']; let i = index">
-            <div class="close-button"><ion-button (click)="removeImage(image.id, 'story')" fill="clear"><ion-icon name="close-outline"></ion-icon></ion-button></div>
-            <img  [src]="_DomSanitizationService.bypassSecurityTrustUrl(image.tempImage)"
+          <div class="div-uploaded-image" *ngFor="let image of uploadedImages['story']; let i = index">
+            <div class="close-button">
+              <ion-button (click)="removeImage(image.id, 'story')" fill="clear">
+                <ion-icon name="close-outline"></ion-icon>
+              </ion-button>
+            </div>
+            <img (click)="openModalImage(image)" [src]="_DomSanitizationService.bypassSecurityTrustUrl(image.tempImage)"
               width="200" />
+            <div class="div-visualization-field">
+              <mat-form-field appearance="outline">
+                <mat-label>Visualizações</mat-label>
+                <input [(ngModel)]="image.visualization" type="number" matInput />
+              </mat-form-field>
+            </div>
           </div>
           <h3 style="color: gray;" *ngIf="!(uploadedImages['story'] && uploadedImages['story'].length)">
             Você ainda não colocou nenhuma imagem ):
@@ -69,10 +84,19 @@
         </ion-row>
         <ion-row class="images-upload">
 
-          <div style="position: relative;" *ngFor="let image of uploadedImages['feed']; let i = index">
-            <div class="close-button"><ion-button (click)="removeImage(image.id, 'feed')" fill="clear"><ion-icon name="close-outline"></ion-icon></ion-button></div>            
-            <img 
-              [src]="_DomSanitizationService.bypassSecurityTrustUrl(image.tempImage)" width="200" />
+          <div class="div-uploaded-image" *ngFor="let image of uploadedImages['feed']; let i = index">
+            <div class="close-button">
+              <ion-button (click)="removeImage(image.id, 'feed')" fill="clear">
+                <ion-icon name="close-outline"></ion-icon>
+              </ion-button>
+            </div>
+            <img [src]="_DomSanitizationService.bypassSecurityTrustUrl(image.tempImage)" width="200" />
+            <div class="div-visualization-field">
+              <mat-form-field appearance="outline">
+                <mat-label>Visualizações</mat-label>
+                <input [(ngModel)]="image.visualization" type="number" matInput />
+              </mat-form-field>
+            </div>
           </div>
           <h3 style="color: gray;" *ngIf="!(uploadedImages['feed'] && uploadedImages['feed'].length)">
             Você ainda não colocou nenhuma imagem ):
@@ -102,10 +126,19 @@
         </ion-row>
         <ion-row class="images-upload">
 
-          <div style="position: relative;" *ngFor="let image of uploadedImages['reels']; let i = index">
-            <div class="close-button"><ion-button (click)="removeImage(image.id, 'reels')" fill="clear"><ion-icon name="close-outline"></ion-icon></ion-button></div>            
-            <img 
-              [src]="_DomSanitizationService.bypassSecurityTrustUrl(image.tempImage)" width="200" />
+          <div class="div-uploaded-image" *ngFor="let image of uploadedImages['reels']; let i = index">
+            <div class="close-button">
+              <ion-button (click)="removeImage(image.id, 'reels')" fill="clear">
+                <ion-icon name="close-outline"></ion-icon>
+              </ion-button>
+            </div>
+            <img [src]="_DomSanitizationService.bypassSecurityTrustUrl(image.tempImage)" width="200" />
+            <div class="div-visualization-field">
+              <mat-form-field appearance="outline">
+                <mat-label>Visualizações</mat-label>
+                <input type="number" matInput />
+              </mat-form-field>
+            </div>
           </div>
           <h3 style="color: gray;" *ngIf="!(uploadedImages['reels'] && uploadedImages['reels'].length)">
             Você ainda não colocou nenhuma imagem ):

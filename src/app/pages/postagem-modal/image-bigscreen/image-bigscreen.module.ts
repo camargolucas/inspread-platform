@@ -8,12 +8,14 @@ import { ImageBigscreenPageRoutingModule } from './image-bigscreen-routing.modul
 
 import { ImageBigscreenPage } from './image-bigscreen.page';
 
+
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    ImageBigscreenPageRoutingModule
+    ImageBigscreenPageRoutingModule,
+
   ],
   declarations: [ImageBigscreenPage]
 })

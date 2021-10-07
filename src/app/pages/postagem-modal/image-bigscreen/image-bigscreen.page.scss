@@ -2,10 +2,17 @@
     
     width: 100%;
     height: 100%;
-
+    background: #303030;
     img{
         width: 100%;
         height: 100%;
         object-fit: scale-down;
     }
+}
+
+ion-content{
+    --padding-bottom: 0;
+    --padding-end: 0;
+    --padding-top: 0;
+    --padding-start: 0;
 }

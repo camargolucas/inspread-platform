@@ -48,6 +48,10 @@ export class PostagemModalPage implements OnInit {
     await modal.present()
   }
 
+  save(){
+    console.log(this.uploadedImages)
+  }
+
 
   onFileChanged(event, type) {
 
@@ -58,7 +62,8 @@ export class PostagemModalPage implements OnInit {
 
       let objImage = {
         tempImage: image,
-        id: imageId
+        id: imageId,
+        visualization: 0
       }
       console.log(type)
       this.uploadedImages[type].push(objImage)

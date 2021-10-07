@@ -25,7 +25,7 @@
 
 .close-button{
     position: absolute;
-    top: -23px;
+    top: -27px;
     right: 0;
     z-index: 2; 
 
@@ -39,6 +39,15 @@
 .div-uploaded-image{
     position: relative;
     cursor: pointer;
+    margin-right: 1rem; 
+     margin-bottom: 1rem;
+
+    .div-visualization-field{
+
+        .mat-form-field{
+            max-width: 140px;
+        }
+    }
 }
 
 .content-section{
@@ -59,9 +68,7 @@
    .images-upload{
 
       img{
-            max-width: 130px;
-            margin-right: 1rem;
-            margin-bottom: 1rem;
+            max-width: 130px;           
       }
    }
     
