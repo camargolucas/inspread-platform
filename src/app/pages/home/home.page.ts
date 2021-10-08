@@ -18,7 +18,9 @@ export class HomePage implements OnInit {
       const modal = await this.modal.create({
       component:InfluencersModalPage,
       componentProps: {
-        influencer:"influecer"
+        influencer:"influecer",
+        isEditMode: true,
+        isVisualizationMode: false
       },
       cssClass: 'influencer-modal'
     })

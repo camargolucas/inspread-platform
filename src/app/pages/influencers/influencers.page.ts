@@ -45,11 +45,13 @@ export class InfluencersPage implements OnInit {
 
 
 
-  async openDetails(influecer){
+  async openDetails(influencer){
     const modal = await this.modal.create({
       component:InfluencersModalPage,
       componentProps: {
-        influencer:influecer
+        influencer:influencer,
+        isEditMode: false,
+        isVisualizationMode: true
       },
       cssClass: 'influencer-modal'
     })

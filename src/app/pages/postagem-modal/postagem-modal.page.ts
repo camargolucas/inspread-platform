@@ -1,6 +1,6 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
-import { ModalController } from '@ionic/angular';
+import { AlertController, ModalController } from '@ionic/angular';
 import { ImageBigscreenPage } from './image-bigscreen/image-bigscreen.page';
 
 @Component({
@@ -11,7 +11,7 @@ import { ImageBigscreenPage } from './image-bigscreen/image-bigscreen.page';
 export class PostagemModalPage implements OnInit {
   @ViewChild('fileInputStory') uploadElRef: ElementRef
 
-  constructor(public _DomSanitizationService: DomSanitizer, private modal:ModalController) { }
+  constructor(public _DomSanitizationService: DomSanitizer, private modal:ModalController, private alertController:AlertController) { }
   selectedFile;
   uploadedImagesFeed = []
   uploadedImagesStory = []
@@ -49,9 +49,36 @@ export class PostagemModalPage implements OnInit {
   }
 
   save(){
+    this.presentAlert()
     console.log(this.uploadedImages)
   }
 
+  async presentAlert() {
+    const alert = await this.alertController.create({
+      cssClass: 'my-custom-class',
+      header: 'Deseja finalizar?',
+      message: 'Deseja salvar suas alteracoes?',
+      buttons: [
+        {
+          text:'Sim',
+          handler:() => {
+            console.log('pressed YES')
+          }
+        },
+        {
+          text:'Não',
+          handler:() => {
+            console.log('pressed NO')
+          }
+        }
+      ]
+    });
+
+    await alert.present();
+
+    const { role } = await alert.onDidDismiss();
+    console.log('onDidDismiss resolved with role', role);
+  }
 
   onFileChanged(event, type) {
 

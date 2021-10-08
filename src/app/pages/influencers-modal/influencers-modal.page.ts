@@ -13,6 +13,8 @@ import { ModalController } from '@ionic/angular';
 })
 export class InfluencersModalPage implements OnInit {
   @Input() influencer
+  @Input() isEditMode
+  @Input() isVisualizationMode
 
   firstFormGroup = this._formBuilder.group({
     nome: ['', Validators.required],
@@ -82,6 +84,36 @@ export class InfluencersModalPage implements OnInit {
 
   ngOnInit() {
     console.log(this.influencer)
+    this.influencer = {
+      nome: 'Jhennifer',
+      email:'Jhejhe@gmail.com',
+      cpf:'40346922423'
+    }
+
+    if (this.isEditMode|| this.isVisualizationMode){
+      this.populate()
+    }
+
+    this.visualizationMode()
+  
+  }
+
+  visualizationMode(){
+    if (this.visualizationMode){
+      this.firstFormGroup.disable()
+      this.secondFormGroup.disable()
+      this.thirdFormGroup.disable()
+    }else{
+      this.firstFormGroup.enable()
+      this.secondFormGroup.enable()
+      this.thirdFormGroup.enable()
+    }
+  }
+
+  populate(){
+      Object.keys(this.firstFormGroup.controls).forEach(element => {
+        this.firstFormGroup.controls[element].setValue(this.influencer[element])
+    });
   }
 
   back(){

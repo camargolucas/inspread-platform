@@ -14,7 +14,7 @@ const routes: Routes = [
   {
     path: 'home',
     loadChildren: () => import('./pages/home/home.module').then( m => m.HomePageModule),
-    data: {title: 'Início'}
+    data:  {title: 'Início' },
   },   {
     path: 'influencers',
     loadChildren: () => import('./pages/influencers/influencers.module').then( m => m.InfluencersPageModule),
@@ -23,7 +23,8 @@ const routes: Routes = [
   {
     path: 'postagem',
     loadChildren: () => import('./pages/postagem/postagem.module').then( m => m.PostagemPageModule),
-    data: {title: 'Lista de Postagem'}
+    data: {title: 'Lista de Postagem'},
+
   },
   {
     path: 'login',
