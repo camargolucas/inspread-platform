@@ -44,7 +44,7 @@ export class AppComponent {
   }
 
   logout(){
-    this.router.navigate(['/login'], {replaceUrl:true})
+    this.user.logout()
   }
 
 

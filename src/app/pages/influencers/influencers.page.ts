@@ -41,9 +41,19 @@ export class InfluencersPage implements OnInit {
 
   ngOnInit() {
     this.userService.getInfluencers();
+    this.filteredInfluencers = this.influencers
   }
 
 
+  filteredInfluencers = []
+  filter(event){
+    const wordToFilter = event.target.value
+    if(wordToFilter != null){
+      this.filteredInfluencers = this.influencers.filter(influencer =>{
+        return influencer.nome.toLowerCase().includes(wordToFilter.toLowerCase())
+      })
+    }
+  }
 
   async openDetails(influencer){
     const modal = await this.modal.create({

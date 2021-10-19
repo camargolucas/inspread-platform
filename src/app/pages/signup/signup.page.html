@@ -1,5 +1,5 @@
 <ion-content [ngClass]="{'ion-padding': env.isMobile}" class="ion-no-padding">
-  <div class="generic-back-button">
+  <div class="generic-back-button" [ngClass]="{'left': !env.isMobile}">
     <ion-button routerLink="/login" fill="clear">
       <span>Voltar</span>
     </ion-button>

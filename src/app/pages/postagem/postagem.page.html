@@ -9,11 +9,11 @@
     <ion-row>
       <mat-form-field appearance="outline">
         <mat-label><ion-icon style="margin-right: 0.5rem;" name="search-outline"></ion-icon>Buscar Postagem</mat-label>
-        <input placeholder="Digite nome de um influencer" matInput />
+        <input (keyup)="filter($event)" placeholder="Digite nome de um influencer" matInput />
       </mat-form-field>
     </ion-row>
     <h3 *ngIf="!(postagens && postagens.length)">Ainda não há postagens );</h3>
-    <ion-card (click)="goTo(postagem)" *ngFor="let postagem of postagens" >
+    <ion-card (click)="goTo(postagem)" *ngFor="let postagem of filteredPosts" >
         <ion-card-content>
           <ion-row style="align-items: center;">
             <ion-thumbnail class="user-avatar">

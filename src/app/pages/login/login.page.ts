@@ -63,10 +63,18 @@ export class LoginPage implements OnInit {
      return false
   }
 
+  setUserStorage(user){
+    localStorage.setItem('user', JSON.stringify(user))
+  }
+
   login(){
-   
+    let userObject = {
+      nome: 'Larissa Ribeiro',
+      email: this.form.controls['email'].value
+    }
    
     if(this.validateForm(this.form)){
+      this.setUserStorage(userObject)
       this.navigate('/home')
      
     }else{
@@ -80,8 +88,5 @@ export class LoginPage implements OnInit {
     }
     
   }
-
-
-
 
 }

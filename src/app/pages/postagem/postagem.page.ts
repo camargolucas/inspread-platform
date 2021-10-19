@@ -40,7 +40,18 @@ export class PostagemPage implements OnInit {
     localStorage.setItem('postagem', JSON.stringify(postagem))
   }
 
+  filteredPosts = []
+  filter(event){
+    const wordToFilter = event.target.value
+    if(wordToFilter != null){
+      this.filteredPosts = this.postagens.filter(post =>{
+        return post.nome.toLowerCase().includes(wordToFilter.toLowerCase())
+      })
+    }
+  }
+
   ngOnInit() {
+    this.filteredPosts = this.postagens
   }
 
 }
