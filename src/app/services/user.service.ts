@@ -16,6 +16,11 @@ export class UserService {
     private http: HttpClient
   ) {}
 
+
+  pagesToRemoveWithoutPermission = [
+    'influencers'
+  ]
+
   private setHeader() {
     const headerDict = {
       'Content-Type': 'application/json',

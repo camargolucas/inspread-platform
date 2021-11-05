@@ -1,12 +1,18 @@
 <ion-content>
-    <div class="close-btn">
-      <ion-button (click)="dismiss()" fill="clear">
-        <ion-icon name="close-circle"></ion-icon>
-      </ion-button>
-     
+  <div class="close-btn">
+    <ion-button (click)="dismiss()" fill="clear">
+      <ion-icon name="close-circle"></ion-icon>
+    </ion-button>
+
+  </div>
+  <div class="div-img">
+    <img [src]="_DomSanitizationService.bypassSecurityTrustUrl(data.tempImage)">
+    <div class="div-visualization-number">
+      <span>
+        <ion-icon name="eye"></ion-icon>{{data.visualization | number:'1.0-0'}} 
+      </span>
     </div>
-    <div class="div-img">
-      <img [src]="_DomSanitizationService.bypassSecurityTrustUrl(data.tempImage)">
-    </div>
+  </div>
+
 
 </ion-content>

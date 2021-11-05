@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
+import { UserService } from './user.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthenticationService {
 
-  constructor() { }
+  constructor(private user:UserService) { }
 
 
   loadedUser() {
@@ -15,6 +16,16 @@ export class AuthenticationService {
       return user ? true : false;
     } catch (error) {
       console.error(error)
+    }
+  }
+
+
+  cantAccessThisPage(pageId){
+    try {
+      const permissionsToExclude = this.user.pagesToRemoveWithoutPermission
+      return permissionsToExclude.includes(pageId)
+    } catch (error) {
+      console.log('can get user', error)
     }
   }
 }

@@ -9,15 +9,15 @@ import { Router } from '@angular/router';
 export class PostagemPage implements OnInit {
   postagens = [
     {
-      nome:'Isabel Ferreira dos Santos',
+      nome:'Joyce da Costa',
       story:'1',
       reels:'2',
       feed:'2',
-      data: '2/10/2016',
+      data: '2/10/2019',
      
     },
     {
-      nome:'Isabel Ferreira dos Santos',
+      nome:'Marisa Silveira',
       story:'1',
       reels:'2',
       feed:'2',

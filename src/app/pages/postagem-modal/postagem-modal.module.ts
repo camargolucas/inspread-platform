@@ -10,6 +10,7 @@ import { PostagemModalPage } from './postagem-modal.page';
 import { HeaderPageModule } from 'src/app/components/header/header.module';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { NgxMaskModule } from 'ngx-mask';
 
 @NgModule({
   imports: [
@@ -19,7 +20,8 @@ import { MatInputModule } from '@angular/material/input';
     PostagemModalPageRoutingModule,
     HeaderPageModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
+    NgxMaskModule.forRoot(),
   ],
   declarations: [PostagemModalPage]
 })

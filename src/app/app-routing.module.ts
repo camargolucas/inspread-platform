@@ -1,7 +1,8 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
-import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
+
 import { AuthGuard } from './guard/auth.guard';
+import { PermissionGuard } from './guard/permission.guard';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -19,8 +20,8 @@ const routes: Routes = [
   }, {
     path: 'influencers',
     loadChildren: () => import('./pages/influencers/influencers.module').then(m => m.InfluencersPageModule),
-    data: { title: 'Lista de Influencers' },
-    canActivate: [AuthGuard]
+    data: { title: 'Lista de Influencers', id:'influencers' },
+    canActivate: [AuthGuard, PermissionGuard],
   },
   {
     path: 'postagem',
@@ -50,7 +51,7 @@ const routes: Routes = [
   {
     path: 'influencers-modal',
     loadChildren: () => import('./pages/influencers-modal/influencers-modal.module').then(m => m.InfluencersModalPageModule),
-    canActivate: [AuthGuard]
+    
   },
   {
     path: 'postagem-modal',
@@ -67,9 +68,9 @@ const routes: Routes = [
 
 @NgModule({
   imports: [
-    RouterModule.forRoot(routes)
+    RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules })
   ],
-  providers: [AuthGuard],
+  providers: [AuthGuard, PermissionGuard],
   exports: [RouterModule],
 
 })

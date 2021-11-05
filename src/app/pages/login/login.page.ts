@@ -70,7 +70,8 @@ export class LoginPage implements OnInit {
   login(){
     let userObject = {
       nome: 'Larissa Ribeiro',
-      email: this.form.controls['email'].value
+      email: this.form.controls['email'].value,
+      cargo: 'admin'
     }
    
     if(this.validateForm(this.form)){

@@ -15,6 +15,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatOptionModule } from '@angular/material/core';
 import {MatSelectModule} from '@angular/material/select';
 import { NgxMaskModule } from 'ngx-mask';
+import { BrowserModule } from '@angular/platform-browser';
 @NgModule({
   imports: [
     CommonModule,
@@ -28,7 +29,7 @@ import { NgxMaskModule } from 'ngx-mask';
     MatSliderModule,
     MatCheckboxModule,
     NgxMaskModule.forRoot(),
-  
+    BrowserModule,
     MatSelectModule
     
     

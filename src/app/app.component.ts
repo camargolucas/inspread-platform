@@ -9,14 +9,19 @@ import { UserService } from './services/user.service';
 })
 export class AppComponent {
   public appPages = [
-    { title: 'Ínicio', url: '/home', icon: '/assets/images/home-icon.svg' },
-    { title: 'Influencers', url: '/influencers', icon: '/assets/images/influencer-icon.svg' },
-    { title: 'Postagem', url: '/postagem', icon: '/assets/images/postagem-icon.svg' },
-   
+    {id:'home', title: 'Ínicio', url: '/home', icon: '/assets/images/home-icon.svg' },
     
+    {id:'influencers', title: 'Influencers', url: '/influencers', icon: '/assets/images/influencer-icon.svg' },
+    
+    {id:'posts', title: 'Postagem', url: '/postagem', icon: '/assets/images/postagem-icon.svg' },
   ];
 
+  
+
   sideMenu = 'end'
+
+
+
 
   hideMenu = [
     'login',
@@ -25,9 +30,11 @@ export class AppComponent {
   ]
 
   public labels = ['Family', 'Friends', 'Notes', 'Work', 'Travel', 'Reminders'];
-  constructor(public router:Router, private activatedRoute: ActivatedRoute, public env:EnvironmentService, private user:UserService) {
-     
+  constructor(public router: Router, private activatedRoute: ActivatedRoute, public env: EnvironmentService, public user: UserService) {
+    //this.permissionControl()
   }
+
+  // TODO Tratar no guard a rota que necessita autenticação do usuário
 
   ngOnInit(): void {
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
@@ -36,22 +43,32 @@ export class AppComponent {
     setTimeout(() => {
       console.log()
     }, 400);
-   
-    
+
+
   }
-  get isLogin(){
+  get isLogin() {
     return this.router.url == "/login"
   }
 
-  logout(){
+  permissionControl(){
+    const pagesToBlock = ['influencers']
+    
+    const index = this.appPages.findIndex(page =>{
+      return page['url'].includes('influencers')
+    })
+
+    this.appPages.splice(index, 1)   
+  }
+
+  logout() {
     this.user.logout()
   }
 
 
-  openUserModal(){
+  openUserModal() {
     this.user.openModalUser();
   }
- 
+
 
 
 }
