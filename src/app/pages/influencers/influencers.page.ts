@@ -42,6 +42,8 @@ export class InfluencersPage implements OnInit {
   ngOnInit() {
     this.userService.getInfluencers();
     this.filteredInfluencers = this.influencers
+
+    
   }
 
 

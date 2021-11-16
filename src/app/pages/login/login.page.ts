@@ -40,7 +40,8 @@ export class LoginPage implements OnInit {
       password: new FormControl('',[Validators.maxLength(16), Validators.minLength(5)]),
     });
 
-    this.loginService.signIn();
+
+    this.loginService.login()
   }
 
   getErrorMsg(error, control) {

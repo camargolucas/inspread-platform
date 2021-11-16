@@ -14,17 +14,19 @@ export class UserService {
     private modal: ModalController,
     private router: Router,
     private http: HttpClient
-  ) {}
+  ) {
+    
+  }
 
 
   pagesToRemoveWithoutPermission = [
-    'influencers'
+   
   ]
 
   private setHeader() {
     const headerDict = {
       'Content-Type': 'application/json',
-      Accept: 'application/json',
+      'Accept': 'application/json',
       'Access-Control-Allow-Headers': 'Content-Type',
     };
 
@@ -56,7 +58,7 @@ export class UserService {
 
   getInfluencers() {
     return this.http
-      .get('https://app.id.tec.br/influenciador/listar', this.setHeader())
+      .get('https://api.id.tec.br/Influenciador/listar', this.setHeader())
       .subscribe(
         (ret) => {
           console.log(ret);
@@ -66,4 +68,6 @@ export class UserService {
         }
       );
   }
+
+
 }

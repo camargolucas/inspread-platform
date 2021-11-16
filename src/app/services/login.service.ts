@@ -35,4 +35,8 @@ export class LoginService {
       console.log(error)
     })
   }
+
+  login(){
+    return this.http.post('https://api.id.tec.br/Usuario/login', {},this.setHeader()).subscribe(ret => console.log(ret))
+  }
 }

@@ -9,12 +9,12 @@
   </ion-toolbar>
 </ion-header>
 <ion-content>
+  <ion-fab class="fab" vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button color="success" (click)="save()">
+      <ion-icon name="checkmark-outline"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
   <div>
-    <ion-fab class="fab" vertical="bottom" horizontal="end" slot="fixed">
-      <ion-fab-button color="success" (click)="save()" >
-        <ion-icon name="checkmark-outline"></ion-icon>
-      </ion-fab-button>
-    </ion-fab>
     <ion-row>
       <div class="section">
         <ion-icon color="secondary" src="/assets/images/story-icon.svg"></ion-icon>
@@ -50,7 +50,8 @@
             <div class="div-visualization-field">
               <mat-form-field appearance="outline">
                 <mat-label>Visualizações</mat-label>
-                <input [(ngModel)]="image.visualization" type="text" matInput [maxlength]="12"  mask="separator.2" thousandSeparator="." />
+                <input [(ngModel)]="image.visualization" type="text" matInput [maxlength]="12" mask="separator.2"
+                  thousandSeparator="." />
               </mat-form-field>
             </div>
           </div>
@@ -90,11 +91,13 @@
                 <ion-icon name="close-outline"></ion-icon>
               </ion-button>
             </div>
-            <img (click)="openModalImage(image)"  [src]="_DomSanitizationService.bypassSecurityTrustUrl(image.tempImage)" width="200" />
+            <img (click)="openModalImage(image)" [src]="_DomSanitizationService.bypassSecurityTrustUrl(image.tempImage)"
+              width="200" />
             <div class="div-visualization-field">
               <mat-form-field appearance="outline">
                 <mat-label>Visualizações</mat-label>
-                <input [(ngModel)]="image.visualization" type="text" matInput [maxlength]="12"  mask="separator.2" thousandSeparator="." />
+                <input [(ngModel)]="image.visualization" type="text" matInput [maxlength]="12" mask="separator.2"
+                  thousandSeparator="." />
               </mat-form-field>
             </div>
           </div>
@@ -132,11 +135,13 @@
                 <ion-icon name="close-outline"></ion-icon>
               </ion-button>
             </div>
-            <img (click)="openModalImage(image)"  [src]="_DomSanitizationService.bypassSecurityTrustUrl(image.tempImage)" width="200" />
+            <img (click)="openModalImage(image)" [src]="_DomSanitizationService.bypassSecurityTrustUrl(image.tempImage)"
+              width="200" />
             <div class="div-visualization-field">
               <mat-form-field appearance="outline">
                 <mat-label>Visualizações</mat-label>
-                <input [(ngModel)]="image.visualization"  type="text" matInput  [maxlength]="12"  mask="separator.2" thousandSeparator="."/>
+                <input [(ngModel)]="image.visualization" type="text" matInput [maxlength]="12" mask="separator.2"
+                  thousandSeparator="." />
               </mat-form-field>
             </div>
           </div>
