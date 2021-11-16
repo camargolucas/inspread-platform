@@ -74,6 +74,14 @@
    * -------------------------------------------
    */
 
+   .mat-form-field-label{
+    color: white ;
+  }
+
+  .mat-form-field-appearance-outline .mat-form-field-outline{
+    color: rgb(255 255 255 / 50%);
+  }
+
   body {
     --ion-color-primary: #2e62ac;
   --ion-color-primary-rgb: 46,98,172;
