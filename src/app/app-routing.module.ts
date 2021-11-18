@@ -6,7 +6,7 @@ import { PermissionGuard } from './guard/permission.guard';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
- 
+
   {
     path: 'folder/:id',
     loadChildren: () => import('./folder/folder.module').then(m => m.FolderPageModule),
@@ -20,7 +20,7 @@ const routes: Routes = [
   }, {
     path: 'influencers',
     loadChildren: () => import('./pages/influencers/influencers.module').then(m => m.InfluencersPageModule),
-    data: { title: 'Lista de Influencers', id:'influencers' },
+    data: { title: 'Lista de Influencers', id: 'influencers' },
     canActivate: [AuthGuard, PermissionGuard],
   },
   {
@@ -51,7 +51,11 @@ const routes: Routes = [
   {
     path: 'influencers-modal',
     loadChildren: () => import('./pages/influencers-modal/influencers-modal.module').then(m => m.InfluencersModalPageModule),
-    
+
+  },
+  {
+    path: 'choose-type',
+    loadChildren: () => import('./pages/choose-type/choose-type.module').then(m => m.ChooseTypePageModule)
   },
   {
     path: 'postagem-modal',
@@ -61,6 +65,8 @@ const routes: Routes = [
   },
 
   { path: '**', redirectTo: '/home' },
+
+
 
 
 

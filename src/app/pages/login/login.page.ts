@@ -50,6 +50,7 @@ export class LoginPage implements OnInit {
   }
 
   navigate(route) {
+    console.log(route)
     if (route == '/home') {
       this.router.navigate([`${route}`], { replaceUrl: true });
     } else {

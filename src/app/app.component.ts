@@ -26,7 +26,8 @@ export class AppComponent {
   hideMenu = [
     'login',
     'signup',
-    'password-recovery'
+    'password-recovery',
+    'choose-type'
   ]
 
   public labels = ['Family', 'Friends', 'Notes', 'Work', 'Travel', 'Reminders'];
