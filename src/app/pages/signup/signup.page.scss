@@ -11,6 +11,13 @@ form{
 }
 
 
+@media (min-width: 778px) {
+    .img-cadastrar{
+        margin-bottom: 2rem !important;
+    }
+  }
+
+
 .desktop-image{
     justify-content: flex-end;
     display: flex;

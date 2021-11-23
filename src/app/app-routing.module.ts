@@ -45,7 +45,7 @@ const routes: Routes = [
     data: { title: 'Nova Senha' }
   },
   {
-    path: 'signup',
+    path: 'signup/:id',
     loadChildren: () => import('./pages/signup/signup.module').then(m => m.SignupPageModule)
   },
   {

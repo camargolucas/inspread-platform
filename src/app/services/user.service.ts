@@ -20,7 +20,7 @@ export class UserService {
 
 
   pagesToRemoveWithoutPermission = [
-   
+    'influencer', 'admin'
   ]
 
   private setHeader() {

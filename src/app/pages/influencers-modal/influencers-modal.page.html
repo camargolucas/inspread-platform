@@ -77,7 +77,7 @@
     </mat-step>
     <!-- END FIRST FORM DADOS PESSOAIS -->
 
-    <mat-step [stepControl]="secondFormGroup" label="Dados Empresáriais">
+    <mat-step *ngIf="typeUser.toLocaleLowerCase().includes('influencer')" [stepControl]="secondFormGroup" label="Dados Empresáriais">
       <!-- INICIO SECOND FORRM GROUP DADOS EMPRESARIAIS  -->
 
       <form [formGroup]="secondFormGroup">
@@ -149,7 +149,7 @@
     </mat-step>
     <!-- FIM SECOND FORRM GROUP DADOS EMPRESARIAIS  -->
 
-    <mat-step [stepControl]="thirdFormGroup" label="Endereço">
+    <mat-step *ngIf="typeUser.toLocaleLowerCase().includes('influencer')" [stepControl]="thirdFormGroup" label="Endereço">
       <!-- INICIO THIRD FORRM GROUP ENDERECO  -->
 
       <form [formGroup]="thirdFormGroup">
@@ -232,7 +232,7 @@
     </mat-step>
     <!-- FIM THIRD FORRM GROUP ENDERECO  -->
 
-    <mat-step [stepControl]="fourthFormGroup" label="Dados Bancários">
+    <mat-step *ngIf="typeUser.toLocaleLowerCase().includes('influencer')" [stepControl]="fourthFormGroup" label="Dados Bancários">
       <!-- INICIO FOURTH FORRM GROUP DADOS BANCARIOS  -->
       <form [formGroup]="fourthFormGroup">
         <div class="banco-agencia-cc">

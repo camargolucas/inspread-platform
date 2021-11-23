@@ -75,26 +75,32 @@ export class InfluencersModalPage implements OnInit {
     {checked:false, name:'Outra Opção'}
   ]
   
+
+  typeUser:string = 'Empresa'
+
   constructor(private _formBuilder: FormBuilder, private breakpointObserver: BreakpointObserver, private router:Router, private modal:ModalController) {
     this.stepperOrientation = breakpointObserver.observe('(min-width: 800px)')
     .pipe(map(({matches}) => matches ? 'horizontal' : 'vertical'));
+ 
    }
 
 
 
   ngOnInit() {
-    console.log(this.influencer)
+
     this.influencer = {
       nome: 'Jhennifer',
       email:'Jhejhe@gmail.com',
-      cpf:'40346922423'
+      cpf:'40346922423',
+      telefone: '11993124017',
+      qtdSeguidores:'123'
     }
 
     if (this.isEditMode|| this.isVisualizationMode){
       this.populate()
     }
 
-    this.visualizationMode()
+    //this.visualizationMode()
   
   }
 

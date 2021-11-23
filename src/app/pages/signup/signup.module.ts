@@ -9,6 +9,7 @@ import { SignupPageRoutingModule } from './signup-routing.module';
 import { SignupPage } from './signup.page';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { NgxMaskModule } from 'ngx-mask';
 
 @NgModule({
   imports: [
@@ -17,6 +18,7 @@ import { MatInputModule } from '@angular/material/input';
     IonicModule,
     SignupPageRoutingModule,
     MatFormFieldModule,
+    NgxMaskModule.forRoot(),
     MatInputModule,
     ReactiveFormsModule
   ],

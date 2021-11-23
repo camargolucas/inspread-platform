@@ -15,12 +15,9 @@ export class ChooseTypePage implements OnInit {
   }
 
 
-  navigate(route) {
-    console.log(route)
-    if (route == '/home') {
-      this.router.navigate([`${route}`], { replaceUrl: true });
-    } else {
-      this.router.navigate([`${route}`]);
-    }
+  navigate(route, param) {
+
+      this.router.navigate([`${route}/${param}`]);
+
   }
 }

@@ -13,7 +13,7 @@ export class AppComponent {
     
     {id:'influencers', title: 'Influencers', url: '/influencers', icon: '/assets/images/influencer-icon.svg' },
     
-    {id:'posts', title: 'Postagem', url: '/postagem', icon: '/assets/images/postagem-icon.svg' },
+    {id:'posts', title: 'Postagem', url: '/postagem', icon: '/assets/images/postagem-icon.svg' },    
   ];
 
   
@@ -42,7 +42,7 @@ export class AppComponent {
     //Add 'implements OnInit' to the class.
     //console.log(this.router.url.toString().split('/'))
     setTimeout(() => {
-      console.log()
+     
     }, 400);
 
 

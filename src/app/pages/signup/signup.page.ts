@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 import { EnvironmentService } from 'src/app/services/environment.service';
 
 @Component({
@@ -65,8 +66,8 @@ export class SignupPage implements OnInit {
       },
     ],
   };
-
-  constructor(public env: EnvironmentService) {}
+  type:string = 'Influencer'
+  constructor(public env: EnvironmentService, private router:Router) {}
 
   ngOnInit() {
     this.form = new FormGroup({
@@ -79,10 +80,16 @@ export class SignupPage implements OnInit {
       password: new FormControl('', [Validators.required]),
       confirmPassword: new FormControl('', [Validators.required]),
     });
+    this.type = this.checkUrlTypeInfluencer() ? 'Influencer' : 'Empresa'
+    
   }
 
   getErrorMsg(error, control) {
     return this.env.getMessageError(this.errorMsg, error, control);
+  }
+
+  checkUrlTypeInfluencer(){
+    return this.router.url.toString().toLocaleLowerCase().includes('influencer')
   }
 
 

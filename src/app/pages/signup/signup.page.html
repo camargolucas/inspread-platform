@@ -5,14 +5,11 @@
     </ion-button>
   </div>
   <ion-row>
-    <ion-col class="col-title-form" sizeXs="12" size="9" sizeLg="9"> 
+    <ion-col class="col-title-form" sizeXs="12" size="9" sizeLg="9">
       <div class="title-form">
         <div class="img-cadastrar">
-          <img
-            style="max-width: 40px"
-            src="/assets/images/logo_pink_small.svg"
-          />
-          <span class="generic-title">Cadastrar</span>
+          <img style="max-width: 40px" src="/assets/images/logo_pink_small.svg" />
+          <span class="generic-title">Cadastrar {{type}}</span>
         </div>
 
         <ion-col size="auto" class="col-form-content">
@@ -36,20 +33,34 @@
                         <p>{{getErrorMsg('tel', form.controls.tel)}}</p>
                       </mat-error>
                     </mat-form-field>
-                    <mat-form-field appearance="outline">
+
+
+                    <!-- INFLUENCER -->
+                    <mat-form-field *ngIf="checkUrlTypeInfluencer()" appearance="outline">
                       <mat-label>Qtd Seguidores</mat-label>
                       <input formControlName="qtFollowers" matInput />
                       <mat-error>
                         <p>{{getErrorMsg('qtFollowers', form.controls.qtFollowers)}}</p>
                       </mat-error>
                     </mat-form-field>
-                    <mat-form-field appearance="outline">
+                    <mat-form-field *ngIf="checkUrlTypeInfluencer()" appearance="outline">
                       <mat-label>Link Rede Social</mat-label>
                       <input formControlName="linkSocialMedia" matInput />
                       <mat-error>
                         <p>{{getErrorMsg('linkSocialMedia', form.controls.linkSocialMedia)}}</p>
                       </mat-error>
                     </mat-form-field>
+
+                    <!-- EMPRESA -->
+                    <mat-form-field *ngIf="!checkUrlTypeInfluencer()" appearance="outline">
+                      <mat-label>CNPJ</mat-label>
+                      <input [maxlength]="14" mask="CPF_CNPJ" formControlName="qtFollowers" matInput />
+                      <mat-error>
+                        <p>{{getErrorMsg('qtFollowers', form.controls.qtFollowers)}}</p>
+                      </mat-error>
+                    </mat-form-field>
+
+
                   </div>
                   <div class="content">
                     <mat-form-field appearance="outline">
