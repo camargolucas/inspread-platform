@@ -2,10 +2,7 @@
   <div style="position: absolute; right:0;top: 0;">
     <ion-button (click)="back()" fill="clear">Voltar</ion-button>
   </div>
-  <mat-stepper style="margin-top: 1rem;"
-    class="example-stepper"
-    [orientation]="(stepperOrientation | async)!"
-  >
+  <mat-stepper style="margin-top: 1rem;" class="example-stepper" [orientation]="(stepperOrientation | async)!">
     <mat-step [stepControl]="firstFormGroup" label="Dados Pessoais">
       <!-- FIRST FORRM GROUP DADOS PESSOAIS  -->
 
@@ -13,90 +10,74 @@
         <div class="flex-content">
 
           <div style="text-align: center;width: 100%;">
-            <img style="max-width: 130px;" src="/assets/images/print-teste.jpg">
+            <img style="max-width: 130px;" [src]="_DomSanitizationService.bypassSecurityTrustUrl(user.profileImage)">
+            <div>
+              <input style="display: none" type="file" (change)="onFileChanged($event, 'reels')" #fileInput
+                multiple>
+              <ion-button class="btn-upload " (click)="fileInput.click()" color="primary">
+                <ion-icon name="camera"></ion-icon>
+              </ion-button>
+            </div>
           </div>
           <mat-form-field appearance="outline" style="max-width: 100%">
             <mat-label>Nome</mat-label>
-            <input
-              matInput
-              placeholder="Last name, First name"
-              formControlName="nome"
-              required
-               
-            />
+            <input matInput placeholder="Last name, First name" formControlName="nome" required />
           </mat-form-field>
           <div class="tag-idade-genero">
             <mat-form-field appearance="outline">
               <mat-label>Tag</mat-label>
-              <input matInput formControlName="tag"  [maxlength]="30" />
+              <input matInput formControlName="tag" [maxlength]="30" />
             </mat-form-field>
             <div class="flex-field">
               <mat-form-field appearance="outline" class="idade">
                 <mat-label>Idade</mat-label>
-                <input
-                  matInput
-                  placeholder="Last name, First name"
-                  formControlName="idade"
-                  maxlength="3"
-                  type="number"
-                   
-                />
+                <input matInput placeholder="Last name, First name" formControlName="idade" maxlength="3"
+                  type="number" />
               </mat-form-field>
               <mat-form-field class="genero" appearance="outline">
                 <mat-label>Genero</mat-label>
-                <input matInput formControlName="genero"   />
+                <input matInput formControlName="genero" />
               </mat-form-field>
             </div>
           </div>
           <ion-row style="width: 100%;">
 
-         
-          <ion-col size="6">
-            <mat-form-field appearance="outline">
-              <mat-label>Telefone</mat-label>
-              <input  matInput formControlName="telefone"  [maxlength]="15"  mask="(00) 00000-0000" required />
-            </mat-form-field>
-          </ion-col>
-          <ion-col size="6">
-            <mat-form-field appearance="outline">
-              <mat-label>Qtd Seguidores</mat-label>
-              <input matInput formControlName="qtdSeguidores"   required/>
-            </mat-form-field>
-          </ion-col>
-        </ion-row>
+
+            <ion-col size="6">
+              <mat-form-field appearance="outline">
+                <mat-label>Telefone</mat-label>
+                <input matInput formControlName="telefone" [maxlength]="15" mask="(00) 00000-0000" required />
+              </mat-form-field>
+            </ion-col>
+            <ion-col size="6">
+              <mat-form-field appearance="outline">
+                <mat-label>Qtd Seguidores</mat-label>
+                <input matInput formControlName="qtdSeguidores" required />
+              </mat-form-field>
+            </ion-col>
+          </ion-row>
           <mat-form-field appearance="outline">
             <mat-label>Email</mat-label>
-            <input matInput formControlName="email"  required/>
+            <input matInput formControlName="email" required />
           </mat-form-field>
           <mat-form-field appearance="outline">
             <mat-label>Cpf</mat-label>
-            <input matInput formControlName="cpf" [maxlength]="14"  mask="CPF_CNPJ"/>
+            <input matInput formControlName="cpf" [maxlength]="14" mask="CPF_CNPJ" />
           </mat-form-field>
-        </div>     
+        </div>
       </form>
     </mat-step>
     <!-- END FIRST FORM DADOS PESSOAIS -->
 
-    <mat-step *ngIf="typeUser.toLocaleLowerCase().includes('influencer')" [stepControl]="secondFormGroup" label="Dados Empresáriais">
+    <mat-step *ngIf="typeUser.toLocaleLowerCase().includes('influencer')" [stepControl]="secondFormGroup"
+      label="Dados Empresáriais">
       <!-- INICIO SECOND FORRM GROUP DADOS EMPRESARIAIS  -->
 
       <form [formGroup]="secondFormGroup">
         <ion-row>
-          <label
-            ><span
-              >% de mulheres que te seguem <b>{{porcSeguidores}}</b></span
-            ></label
-          >
-          <mat-slider
-            thumbLabel
-            formControlName="porcSeguidoresMulheres"
-            [(ngModel)]="porcSeguidores"
-            tickInterval="1000"
-            step="1"
-            min="0"
-            max="100"
-            aria-label="units"
-          ></mat-slider>
+          <label><span>% de mulheres que te seguem <b>{{porcSeguidores}}</b></span></label>
+          <mat-slider thumbLabel formControlName="porcSeguidoresMulheres" [(ngModel)]="porcSeguidores"
+            tickInterval="1000" step="1" min="0" max="100" aria-label="units"></mat-slider>
         </ion-row>
         <ion-row style="margin-bottom: 2rem">
           <mat-checkbox formControlName="permuta">Aceita permuta?</mat-checkbox>
@@ -104,10 +85,7 @@
 
         <mat-form-field appearance="outline">
           <mat-label>1º Cidade com mais seguidores</mat-label>
-          <mat-select
-            [(ngModel)]="firstStateValue"
-            formControlName="firstState"
-          >
+          <mat-select [(ngModel)]="firstStateValue" formControlName="firstState">
             <mat-option *ngFor="let state of states" [value]="state">
               {{state}}
             </mat-option>
@@ -116,10 +94,7 @@
 
         <mat-form-field appearance="outline">
           <mat-label>2º Cidade com mais seguidores</mat-label>
-          <mat-select
-            [(ngModel)]="secondStateValue"
-            formControlName="secondState"
-          >
+          <mat-select [(ngModel)]="secondStateValue" formControlName="secondState">
             <mat-option *ngFor="let state of states" [value]="state">
               {{state}}
             </mat-option>
@@ -129,15 +104,11 @@
         <ion-row>
           <div class="public-content">
             <div class="content-title">
-              <span
-                >Você definiria seu conteudo adequado para qual publico?</span
-              >
+              <span>Você definiria seu conteudo adequado para qual publico?</span>
             </div>
 
             <ion-col *ngFor="let content of publicContent" size="6">
-              <mat-checkbox [checked]="content.checked"
-                >{{content.name}}</mat-checkbox
-              >
+              <mat-checkbox [checked]="content.checked">{{content.name}}</mat-checkbox>
             </ion-col>
           </div>
         </ion-row>
@@ -149,149 +120,83 @@
     </mat-step>
     <!-- FIM SECOND FORRM GROUP DADOS EMPRESARIAIS  -->
 
-    <mat-step *ngIf="typeUser.toLocaleLowerCase().includes('influencer')" [stepControl]="thirdFormGroup" label="Endereço">
+    <mat-step *ngIf="typeUser.toLocaleLowerCase().includes('influencer')" [stepControl]="thirdFormGroup"
+      label="Endereço">
       <!-- INICIO THIRD FORRM GROUP ENDERECO  -->
 
       <form [formGroup]="thirdFormGroup">
         <div class="flex-content">
           <mat-form-field appearance="outline">
             <mat-label>Cep</mat-label>
-            <input
-              matInput
-              formControlName="cep"
-              placeholder="Ex. 12345678"
-              [maxlength]="9"
-              mask="00000-000"
-               
-            />
+            <input matInput formControlName="cep" placeholder="Ex. 12345678" [maxlength]="9" mask="00000-000" />
           </mat-form-field>
           <mat-form-field appearance="outline">
             <mat-label>Rua</mat-label>
-            <input
-              matInput
-              formControlName="rua"
-              placeholder="Ex. 12345678"
-               
-            />
+            <input matInput formControlName="rua" placeholder="Ex. 12345678" />
           </mat-form-field>
           <mat-form-field appearance="outline">
             <mat-label>Bairro</mat-label>
-            <input
-              matInput
-              formControlName="bairro"
-              placeholder="Ex. 12345678"
-               
-            />
+            <input matInput formControlName="bairro" placeholder="Ex. 12345678" />
           </mat-form-field>
           <div class="flex-field">
             <mat-form-field appearance="outline" class="numero">
               <mat-label>Nº</mat-label>
-              <input
-                matInput
-                formControlName="numero"
-                placeholder="Ex. 12345678"
-                 
-              />
+              <input matInput formControlName="numero" placeholder="Ex. 12345678" />
             </mat-form-field>
             <mat-form-field appearance="outline" class="complemento">
               <mat-label>Complemento</mat-label>
-              <input
-                matInput
-                formControlName="complemento"
-                placeholder="Ex. 12345678"
-                 
-              />
+              <input matInput formControlName="complemento" placeholder="Ex. 12345678" />
             </mat-form-field>
           </div>
           <ion-row class="width:100%">
             <ion-col size="6">
               <mat-form-field appearance="outline">
                 <mat-label>Estado</mat-label>
-                <input
-                  matInput
-                  formControlName="estado"
-                  placeholder="Ex. 12345678"
-                   
-                />
+                <input matInput formControlName="estado" placeholder="Ex. 12345678" />
               </mat-form-field>
             </ion-col>
             <ion-col size="6">
               <mat-form-field appearance="outline">
                 <mat-label>Cidade</mat-label>
-                <input
-                  matInput
-                  formControlName="cidade"
-                  placeholder="Ex. 12345678"
-                   
-                />
+                <input matInput formControlName="cidade" placeholder="Ex. 12345678" />
               </mat-form-field>
             </ion-col>
           </ion-row>
-        </div>      
+        </div>
       </form>
     </mat-step>
     <!-- FIM THIRD FORRM GROUP ENDERECO  -->
 
-    <mat-step *ngIf="typeUser.toLocaleLowerCase().includes('influencer')" [stepControl]="fourthFormGroup" label="Dados Bancários">
+    <mat-step *ngIf="typeUser.toLocaleLowerCase().includes('influencer')" [stepControl]="fourthFormGroup"
+      label="Dados Bancários">
       <!-- INICIO FOURTH FORRM GROUP DADOS BANCARIOS  -->
       <form [formGroup]="fourthFormGroup">
         <div class="banco-agencia-cc">
           <mat-form-field appearance="outline" class="banco">
             <mat-label>Banco</mat-label>
-            <input
-              formControlName="banco"
-              matInput
-              placeholder="Ex. 12345678"
-
-               
-            />
+            <input formControlName="banco" matInput placeholder="Ex. 12345678" />
           </mat-form-field>
           <div class="cc-agencia">
             <mat-form-field appearance="outline">
               <mat-label>C/C</mat-label>
-              <input
-                formControlName="contaCorrente"
-                matInput
-                placeholder="Ex. 12345678"
-                [maxlength]="4"
-                 
-              />
+              <input formControlName="contaCorrente" matInput placeholder="Ex. 12345678" [maxlength]="4" />
             </mat-form-field>
             <mat-form-field appearance="outline">
               <mat-label>Agencia</mat-label>
-              <input
-                formControlName="agencia"
-                matInput
-                placeholder="Ex. 12345678"
-                mask="00000-0"
-                 
-              />
+              <input formControlName="agencia" matInput placeholder="Ex. 12345678" mask="00000-0" />
             </mat-form-field>
           </div>
 
           <mat-form-field appearance="outline">
             <mat-label>Nome Favorecido</mat-label>
-            <input
-              formControlName="nome"
-              matInput
-              placeholder="Ex. 12345678"
-               
-            />
+            <input formControlName="nome" matInput placeholder="Ex. 12345678" />
           </mat-form-field>
           <mat-form-field appearance="outline">
             <mat-label>CPF Favorecido</mat-label>
-            <input
-              formControlName="cpf"
-              matInput
-              placeholder="Ex. 12345678"
-              [maxlength]="14"
-              mask="CPF_CNPJ"
-        
-               
-            />
+            <input formControlName="cpf" matInput placeholder="Ex. 12345678" [maxlength]="14" mask="CPF_CNPJ" />
           </mat-form-field>
         </div>
-       
+
       </form>
     </mat-step>
   </mat-stepper>

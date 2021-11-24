@@ -8,7 +8,7 @@
           <div size="4" class="img-title">
             <span>Meu Usuário </span>
             <ion-thumbnail>
-              <img src="/assets/images/aa.jpg" />
+              <img [src]="_DomSanitizationService.bypassSecurityTrustUrl(user.profileImage)" />
             </ion-thumbnail>
           </div>
           <div class="col-name" size="8">

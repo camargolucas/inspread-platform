@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { DomSanitizer } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 import { PopoverController } from '@ionic/angular';
 import { EnvironmentService } from 'src/app/services/environment.service';
+import { UserService } from 'src/app/services/user.service';
 import { PopoverComponent } from '../popover/popover.component';
 
 @Component({
@@ -11,7 +13,7 @@ import { PopoverComponent } from '../popover/popover.component';
 })
 export class HeaderPage implements OnInit {
   pageName
-  constructor(private route:ActivatedRoute, public env:EnvironmentService, public popoverController: PopoverController) {
+  constructor(private route:ActivatedRoute, public env:EnvironmentService, public popoverController: PopoverController, public _DomSanitizationService: DomSanitizer, public user:UserService) {
     this.pageName = this.route.snapshot.data['title']
    }
 

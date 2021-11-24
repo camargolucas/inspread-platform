@@ -12,7 +12,7 @@
       </ion-button>
       <div *ngIf="!env.isMobile"  class="avatar">
         <ion-thumbnail  (click)="presentPopover($event)">
-          <img src="/assets/images/aa.jpg">
+          <img [src]="_DomSanitizationService.bypassSecurityTrustUrl(user.profileImage)">
         </ion-thumbnail>
         <ion-button *ngIf="!env.isMobile" (click)="presentPopover($event)" fill="clear">     
           <ion-icon          

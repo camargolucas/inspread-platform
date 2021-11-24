@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DomSanitizer } from '@angular/platform-browser';
 import { PopoverController } from '@ionic/angular';
 import { UserService } from 'src/app/services/user.service';
 
@@ -9,7 +10,7 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class PopoverComponent implements OnInit {
 
-  constructor(private user:UserService, private popover:PopoverController) { }
+  constructor(public user:UserService, private popover:PopoverController, public _DomSanitizationService: DomSanitizer) { }
 
   ngOnInit() {}
 

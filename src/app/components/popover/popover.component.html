@@ -2,7 +2,7 @@
   <div>
     <div class="name-image">
       <ion-thumbnail>
-        <img src="/assets/images/aa.jpg">
+        <img [src]="_DomSanitizationService.bypassSecurityTrustUrl(user.profileImage)">
       </ion-thumbnail>
       <span>
         Lucas Camargo

@@ -1,7 +1,9 @@
 import { Route } from '@angular/compiler/src/core';
 import { Component, OnInit } from '@angular/core';
+import { DomSanitizer } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { ModalController } from '@ionic/angular';
+import { UserService } from 'src/app/services/user.service';
 import { InfluencersModalPage } from '../influencers-modal/influencers-modal.page';
 
 @Component({
@@ -11,7 +13,7 @@ import { InfluencersModalPage } from '../influencers-modal/influencers-modal.pag
 })
 export class HomePage implements OnInit {
 
-  constructor(private route:Router, private modal:ModalController) { }
+  constructor(private route:Router, private modal:ModalController, public _DomSanitizationService: DomSanitizer, public user:UserService) { }
 
   async goToUser(url){
    

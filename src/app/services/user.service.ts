@@ -10,12 +10,14 @@ import { InfluencersModalPage } from '../pages/influencers-modal/influencers-mod
 export class UserService {
   headers;
   requestOptions;
+  profileImage = "/assets/images/user-profile.png"
+
   constructor(
     private modal: ModalController,
     private router: Router,
     private http: HttpClient
   ) {
-    
+      
   }
 
 
