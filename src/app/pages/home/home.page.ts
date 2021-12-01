@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { ModalController } from '@ionic/angular';
+import { TypeUser } from 'src/app/interface/typeUser';
 import { UserService } from 'src/app/services/user.service';
 import { InfluencersModalPage } from '../influencers-modal/influencers-modal.page';
 
@@ -13,29 +14,37 @@ import { InfluencersModalPage } from '../influencers-modal/influencers-modal.pag
 })
 export class HomePage implements OnInit {
 
-  constructor(private route:Router, private modal:ModalController, public _DomSanitizationService: DomSanitizer, public user:UserService) { }
+  constructor(private route: Router, private modal: ModalController, public _DomSanitizationService: DomSanitizer, public user: UserService) {
+    console.log('aaaaaa',TypeUser.Influenciador)
+   }
 
-  async goToUser(url){
-   
-      const modal = await this.modal.create({
-      component:InfluencersModalPage,
-      componentProps: {
-        influencer:"influecer",
-        isEditMode: true,
-        isVisualizationMode: false
-      },
-      cssClass: 'influencer-modal'
-    })
+   getTypeUser(type:string){
+     return TypeUser[type]
+   }
 
-    return await modal.present();
+  async goToUser(url) {
+    const user = this.user.getUserStorage()
+    this.user.openModalUser(user)
 
+    
+      
   }
 
-  goToPostagem(){
+  userObj: Object
+  getUserStorage() {
+    try {
+      this.userObj = JSON.parse(localStorage.getItem('user'))
+    } catch (error) {
+      console.error('erro ao pegar usuariuo', error)
+    }
+  }
+
+  goToPostagem() {
     this.route.navigate(['/postagem'])
   }
 
   ngOnInit() {
+    this.getUserStorage()
   }
 
 }

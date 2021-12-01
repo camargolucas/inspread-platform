@@ -14,9 +14,11 @@ export class PopoverComponent implements OnInit {
 
   ngOnInit() {}
 
+ 
 
   goToUser(){
-    this.user.openModalUser()
+    const user = this.user.getUserStorage()
+    this.user.openModalUser(user)
     this.popover.dismiss()
   }
 

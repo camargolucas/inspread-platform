@@ -20,17 +20,17 @@
                   <div class="content">
                     <mat-form-field appearance="outline">
                       <mat-label>Nome</mat-label>
-                      <input formControlName="name" matInput />
+                      <input formControlName="nome" matInput />
                       <mat-error>
-                        <p>{{getErrorMsg('name', form.controls.name)}}</p>
+                        <p>{{getErrorMsg('nome', form.controls?.nome)}}</p>
                       </mat-error>
                     </mat-form-field>
 
                     <mat-form-field appearance="outline">
                       <mat-label>Telefone</mat-label>
-                      <input formControlName="tel" matInput />
+                      <input formControlName="telefone" matInput [maxlength]="15" mask="(00) 00000-0000" type="text"/>
                       <mat-error>
-                        <p>{{getErrorMsg('tel', form.controls.tel)}}</p>
+                        <p>{{getErrorMsg('telefone', form.controls?.telefone)}}</p>
                       </mat-error>
                     </mat-form-field>
 
@@ -38,25 +38,25 @@
                     <!-- INFLUENCER -->
                     <mat-form-field *ngIf="checkUrlTypeInfluencer()" appearance="outline">
                       <mat-label>Qtd Seguidores</mat-label>
-                      <input formControlName="qtFollowers" matInput />
+                      <input formControlName="quantidadeSeguidores" matInput type="number"/>
                       <mat-error>
-                        <p>{{getErrorMsg('qtFollowers', form.controls.qtFollowers)}}</p>
+                        <p>{{getErrorMsg('quantidadeSeguidores', form.controls.quantidadeSeguidores)}}</p>
                       </mat-error>
                     </mat-form-field>
                     <mat-form-field *ngIf="checkUrlTypeInfluencer()" appearance="outline">
                       <mat-label>Link Rede Social</mat-label>
-                      <input formControlName="linkSocialMedia" matInput />
+                      <input formControlName="linkRedeSocial" matInput />
                       <mat-error>
-                        <p>{{getErrorMsg('linkSocialMedia', form.controls.linkSocialMedia)}}</p>
+                        <p>{{getErrorMsg('linkRedeSocial', form.controls.linkRedeSocial)}}</p>
                       </mat-error>
                     </mat-form-field>
 
                     <!-- EMPRESA -->
                     <mat-form-field *ngIf="!checkUrlTypeInfluencer()" appearance="outline">
                       <mat-label>CNPJ</mat-label>
-                      <input [maxlength]="14" mask="CPF_CNPJ" formControlName="qtFollowers" matInput />
+                      <input [maxlength]="14" mask="CPF_CNPJ" formControlName="cnpj" matInput />
                       <mat-error>
-                        <p>{{getErrorMsg('qtFollowers', form.controls.qtFollowers)}}</p>
+                        <p>{{getErrorMsg('cnpj', form.controls.cnpj)}}</p>
                       </mat-error>
                     </mat-form-field>
 

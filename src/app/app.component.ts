@@ -67,7 +67,8 @@ export class AppComponent {
 
 
   openUserModal() {
-    this.user.openModalUser();
+    const user = this.user.getUserStorage()
+    this.user.openModalUser(user);
   }
 
 

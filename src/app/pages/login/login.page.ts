@@ -41,7 +41,7 @@ export class LoginPage implements OnInit {
     });
 
 
-    this.loginService.login()
+
   }
 
   getErrorMsg(error, control) {
@@ -69,16 +69,40 @@ export class LoginPage implements OnInit {
     localStorage.setItem('user', JSON.stringify(user))
   }
 
+  
+
   login(){
     let userObject = {
-      nome: 'Larissa Ribeiro',
-      email: this.form.controls['email'].value,
-      cargo: 'admin'
+    
+      login: this.form.controls['email'].value,
+      senha: this.form.controls['password'].value
     }
    
     if(this.validateForm(this.form)){
-      this.setUserStorage(userObject)
-      this.navigate('/home')
+
+      this.loginService.login(userObject).subscribe(ret => {      
+        console.log(ret)  
+        if(ret['mensagemDeErro']){
+          this.env.alert({
+            header:'Ops, algo deu errado',
+            message: ret['mensagemDeErro'],
+            buttons:['OK']
+          })
+        }else if (ret['idUsuario']){
+          this.navigate('/home')
+          this.setUserStorage(ret)
+        }else{
+          this.env.alert({
+            header:'Ops, algo deu errado',
+            message: 'Houve um problema, tente novamente',
+            buttons:['OK']
+          })
+        }
+      })
+  
+      
+    
+      //this.navigate('/home')
      
     }else{
     

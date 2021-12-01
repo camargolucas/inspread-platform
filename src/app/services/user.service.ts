@@ -1,29 +1,39 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, Type } from '@angular/core';
 import { Router } from '@angular/router';
 import { ModalController } from '@ionic/angular';
 import { InfluencersModalPage } from '../pages/influencers-modal/influencers-modal.page';
 
+import { TypeUser } from '../interface/typeUser';
+
+
 @Injectable({
   providedIn: 'root',
 })
+
+
 export class UserService {
+
   headers;
   requestOptions;
   profileImage = "/assets/images/user-profile.png"
-
+  typeUser: TypeUser
   constructor(
     private modal: ModalController,
     private router: Router,
-    private http: HttpClient
+    private http: HttpClient,
+
   ) {
-      
+
   }
 
 
   pagesToRemoveWithoutPermission = [
     'influencer', 'admin'
   ]
+
+
+
 
   private setHeader() {
     const headerDict = {
@@ -39,18 +49,22 @@ export class UserService {
     return requestOptions;
   }
 
-  async openModalUser() {
-    const modal = await this.modal.create({
-      component: InfluencersModalPage,
-      componentProps: {
-        influencer: 'influecer',
-        isEditMode: true,
-        isVisualizationMode: false,
-      },
-      cssClass: 'influencer-modal',
-    });
+  async openModalUser(user?: Object) {
+    console.log(user)
+    if (Object.keys(user).length > 0) {
+      const modal = await this.modal.create({
+        component: InfluencersModalPage,
+        componentProps: {
+          influencer: user,
+          isEditMode: true,
+          isVisualizationMode: false,
+        },
+        cssClass: 'influencer-modal',
+      });
 
-    return await modal.present();
+      return await modal.present();
+    }
+
   }
 
   logout() {
@@ -60,7 +74,7 @@ export class UserService {
 
   getInfluencers() {
     return this.http
-      .get('https://api.id.tec.br/Influenciador/listar', this.setHeader())
+      .get('https://api.id.tec.br/influenciador/listar', this.setHeader())
       .subscribe(
         (ret) => {
           console.log(ret);
@@ -70,6 +84,64 @@ export class UserService {
         }
       );
   }
+
+  getUserStorage(): Object {
+    try {
+      let user = {}
+      user = JSON.parse(localStorage.getItem('user'))
+      if (Object.keys(user).length > 0) {
+        return user
+      }
+
+      return {}
+
+
+
+    } catch (error) {
+      console.error('erro ao pegar usuariuo', error)
+    }
+  }
+
+  /*  name: new FormControl('', [Validators.required]),
+        tel: new FormControl('', [Validators.required]),
+        quantidadeSeguidores: new FormControl('', [Validators.required]),
+        linkRedeSocial: new FormControl('', [Validators.required]),
+        email: new FormControl('', [Validators.required, Validators.email]),
+        confirmEmail: new FormControl('', [Validators.required, Validators.email]),
+        password: new FormControl('', [Validators.required]),
+        confirmPassword: new FormControl('', [Validators.required]), */
+
+  signUpInfluencer(user) {
+    
+    const objUser = {
+      "usuario": {
+        "login": user['email'],
+        "senha": user['password']
+      }
+    }
+    user['usuario'] = objUser['usuario']
+
+
+    return this.http.post('https://api.id.tec.br/Influenciador/cadastrar', JSON.stringify(user), this.setHeader())
+  }
+
+  signUpEmpresa(user) {
+    
+    const objUser = {
+      "razaoSocial": user['nome'],
+      "usuario": {
+        "login": user['email'],
+        "senha": user['password']
+      }
+    }
+    user['usuario'] = objUser['usuario']
+    user['razaoSocial'] = objUser['razaoSocial']
+
+    return this.http.post('https://api.id.tec.br/empresa/cadastrar', JSON.stringify(user), this.setHeader())
+  }
+
+
+
 
 
 }

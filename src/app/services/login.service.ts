@@ -36,11 +36,8 @@ export class LoginService {
     })
   }
 
-  login(){
-    const body = {
-      login: 'user@teste.com',
-      senha:'123'
-    }
-    return this.http.post('https://api.id.tec.br/Usuario/login',JSON.stringify(body),this.setHeader()).subscribe(ret => console.log(ret))
+  login(user:Object){
+    
+    return this.http.post('https://api.id.tec.br/Usuario/login',JSON.stringify(user),this.setHeader())
   }
 }

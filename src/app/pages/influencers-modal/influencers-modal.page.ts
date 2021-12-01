@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Type } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { StepperOrientation } from '@angular/material/stepper';
 import { Observable } from 'rxjs';
@@ -8,6 +8,7 @@ import { Router } from '@angular/router';
 import { ModalController } from '@ionic/angular';
 import { DomSanitizer } from '@angular/platform-browser';
 import { UserService } from 'src/app/services/user.service';
+import { TypeUser } from 'src/app/interface/typeUser';
 @Component({
   selector: 'app-influencers-modal',
   templateUrl: './influencers-modal.page.html',
@@ -18,39 +19,7 @@ export class InfluencersModalPage implements OnInit {
   @Input() isEditMode
   @Input() isVisualizationMode
 
-  firstFormGroup = this._formBuilder.group({
-    nome: ['', Validators.required],
-    idade: [''],
-    tag: [''],
-    telefone: ['', Validators.required],
-    genero: [''],
-    qtdSeguidores: ['', Validators.required],
-    email: ['', Validators.required],
-    cpf: ['']
-  });
-  secondFormGroup = this._formBuilder.group({
-    porcSeguidoresMulheres: ['',],
-    permuta: ['',],
-    firstState: ['',],
-    secondState: ['',],
 
-  });
-  thirdFormGroup = this._formBuilder.group({
-    cep: ['',],
-    rua: ['',],
-    bairro: ['',],
-    numero: ['',],
-    complemento: ['',],
-    estado: ['',],
-    cidade: ['',]
-  });
-  fourthFormGroup = this._formBuilder.group({
-    banco: ['',],
-    contaCorrente: ['',],
-    agencia: ['',],
-    nome: ['',],
-    cpf: ['',],
-  });
   stepperOrientation: Observable<StepperOrientation>;
   porcSeguidores = 0;
   states = [
@@ -78,32 +47,99 @@ export class InfluencersModalPage implements OnInit {
   ]
 
 
-  typeUser: string = 'Empresa'
+  typeUser: number
+  firstFormGroup: any;
+  secondFormGroup: any;
+  thirdFormGroup: any;
+  fourthFormGroup: any;
 
   constructor(private _formBuilder: FormBuilder, private breakpointObserver: BreakpointObserver, private router: Router, private modal: ModalController, public _DomSanitizationService: DomSanitizer,
-    public user:UserService) {
+    public user: UserService) {
     this.stepperOrientation = breakpointObserver.observe('(min-width: 800px)')
       .pipe(map(({ matches }) => matches ? 'horizontal' : 'vertical'));
+    
 
   }
 
 
 
-  ngOnInit() {
-
-    this.influencer = {
-      nome: 'Jhennifer',
-      email: 'Jhejhe@gmail.com',
-      cpf: '40346922423',
-      telefone: '11993124017',
-      qtdSeguidores: '123'
+  createFormGroup() {
+    if (this.getTypeUser() == TypeUser.Influenciador) {
+      this.firstFormGroup = this._formBuilder.group({
+        nome: ['', Validators.required],
+        idade: [''],
+        tag: [''],
+        telefone: ['', Validators.required],
+        genero: [''],
+        quantidadeSeguidores: ['', Validators.required],
+        email: ['', Validators.required],
+        cpf: ['']
+      });
+    } else {
+      this.firstFormGroup = this._formBuilder.group({
+        razaoSocial: ['', Validators.required],
+        telefone: ['', Validators.required],
+        email: ['', Validators.required],
+        cnpj: ['']
+      });
     }
+
+    this.secondFormGroup = this._formBuilder.group({
+      porcSeguidoresMulheres: ['',],
+      permuta: ['',],
+      firstState: ['',],
+      secondState: ['',],
+
+    });
+    this.thirdFormGroup = this._formBuilder.group({
+      cep: ['',],
+      rua: ['',],
+      bairro: ['',],
+      numero: ['',],
+      complemento: ['',],
+      estado: ['',],
+      cidade: ['',]
+    });
+    this.fourthFormGroup = this._formBuilder.group({
+      banco: ['',],
+      contaCorrente: ['',],
+      agencia: ['',],
+      nome: ['',],
+      cpf: ['',],
+    });
+  }
+
+  userData: Object
+  ngOnInit() {
+    this.createFormGroup()
+    this.populateUserData()
+    this.typeUser = this.getTypeUser()
+
 
     if (this.isEditMode || this.isVisualizationMode) {
       this.populate()
     }
 
     //this.visualizationMode()
+
+  }
+
+
+  populateUserData() {
+    if (this.influencer['idTipoUsuario'] == TypeUser.Empresa) {
+      this.userData = this.influencer['empresa']
+    } else {
+      this.userData = this.influencer['influenciador']
+    }
+  }
+
+  getEnum(type) {
+    return TypeUser[type]
+  }
+
+  getTypeUser(): number {
+    console.log(this.influencer)
+    return this.influencer['idTipoUsuario']
 
   }
 
@@ -121,8 +157,9 @@ export class InfluencersModalPage implements OnInit {
 
   populate() {
     Object.keys(this.firstFormGroup.controls).forEach(element => {
-      this.firstFormGroup.controls[element].setValue(this.influencer[element])
+      this.firstFormGroup.controls[element].setValue(this.userData[element])
     });
+    this.firstFormGroup.controls['email'].setValue(this.influencer['login'])
   }
 
   back() {

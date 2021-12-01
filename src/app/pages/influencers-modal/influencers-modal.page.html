@@ -12,47 +12,56 @@
           <div style="text-align: center;width: 100%;">
             <img style="max-width: 130px;" [src]="_DomSanitizationService.bypassSecurityTrustUrl(user.profileImage)">
             <div>
-              <input style="display: none" type="file" (change)="onFileChanged($event, 'reels')" #fileInput
-                multiple>
+              <input style="display: none" type="file" (change)="onFileChanged($event, 'reels')" #fileInput multiple>
               <ion-button class="btn-upload " (click)="fileInput.click()" color="primary">
                 <ion-icon name="camera"></ion-icon>
               </ion-button>
             </div>
           </div>
-          <mat-form-field appearance="outline" style="max-width: 100%">
-            <mat-label>Nome</mat-label>
-            <input matInput placeholder="Last name, First name" formControlName="nome" required />
-          </mat-form-field>
-          <div class="tag-idade-genero">
-            <mat-form-field appearance="outline">
-              <mat-label>Tag</mat-label>
-              <input matInput formControlName="tag" [maxlength]="30" />
+          <div style="width: 100%;" *ngIf="typeUser == getEnum('Influenciador')">
+            <mat-form-field appearance="outline" style="max-width: 100%">
+              <mat-label>Nome</mat-label>
+              <input matInput placeholder="Last name, First name" formControlName="nome" required />
             </mat-form-field>
-            <div class="flex-field">
-              <mat-form-field appearance="outline" class="idade">
-                <mat-label>Idade</mat-label>
-                <input matInput placeholder="Last name, First name" formControlName="idade" maxlength="3"
-                  type="number" />
+            <div class="tag-idade-genero">
+              <mat-form-field appearance="outline">
+                <mat-label>Tag</mat-label>
+                <input matInput formControlName="tag" [maxlength]="30" />
               </mat-form-field>
-              <mat-form-field class="genero" appearance="outline">
-                <mat-label>Genero</mat-label>
-                <input matInput formControlName="genero" />
-              </mat-form-field>
+              <div class="flex-field">
+                <mat-form-field appearance="outline" class="idade">
+                  <mat-label>Idade</mat-label>
+                  <input matInput placeholder="Last name, First name" formControlName="idade" maxlength="3"
+                    type="number" />
+                </mat-form-field>
+                <mat-form-field class="genero" appearance="outline">
+                  <mat-label>Genero</mat-label>
+                  <input matInput formControlName="genero" />
+                </mat-form-field>
+              </div>
             </div>
           </div>
+
+          <mat-form-field *ngIf="typeUser == getEnum('Empresa')" appearance="outline" style="max-width: 100%">
+            <mat-label>Razão Social</mat-label>
+            <input matInput placeholder="Razão Social" formControlName="razaoSocial" required />
+          </mat-form-field>
+
           <ion-row style="width: 100%;">
-
-
             <ion-col size="6">
               <mat-form-field appearance="outline">
                 <mat-label>Telefone</mat-label>
                 <input matInput formControlName="telefone" [maxlength]="15" mask="(00) 00000-0000" required />
               </mat-form-field>
             </ion-col>
-            <ion-col size="6">
+            <mat-form-field *ngIf="typeUser == getEnum('Empresa')" appearance="outline">
+              <mat-label>CNPJ</mat-label>
+              <input formControlName="cnpj" matInput placeholder="Ex. 12345676" [maxlength]="14" mask="CPF_CNPJ" />
+            </mat-form-field>
+            <ion-col *ngIf="typeUser == getEnum('Influenciador')" size="6">
               <mat-form-field appearance="outline">
                 <mat-label>Qtd Seguidores</mat-label>
-                <input matInput formControlName="qtdSeguidores" required />
+                <input matInput formControlName="quantidadeSeguidores" required />
               </mat-form-field>
             </ion-col>
           </ion-row>
@@ -60,17 +69,13 @@
             <mat-label>Email</mat-label>
             <input matInput formControlName="email" required />
           </mat-form-field>
-          <mat-form-field appearance="outline">
-            <mat-label>Cpf</mat-label>
-            <input matInput formControlName="cpf" [maxlength]="14" mask="CPF_CNPJ" />
-          </mat-form-field>
+
         </div>
       </form>
     </mat-step>
     <!-- END FIRST FORM DADOS PESSOAIS -->
 
-    <mat-step *ngIf="typeUser.toLocaleLowerCase().includes('influencer')" [stepControl]="secondFormGroup"
-      label="Dados Empresáriais">
+    <mat-step *ngIf="typeUser == getEnum('Influenciador')" [stepControl]="secondFormGroup" label="Dados Empresáriais">
       <!-- INICIO SECOND FORRM GROUP DADOS EMPRESARIAIS  -->
 
       <form [formGroup]="secondFormGroup">
@@ -120,8 +125,7 @@
     </mat-step>
     <!-- FIM SECOND FORRM GROUP DADOS EMPRESARIAIS  -->
 
-    <mat-step *ngIf="typeUser.toLocaleLowerCase().includes('influencer')" [stepControl]="thirdFormGroup"
-      label="Endereço">
+    <mat-step *ngIf="typeUser == getEnum('Influenciador')" [stepControl]="thirdFormGroup" label="Endereço">
       <!-- INICIO THIRD FORRM GROUP ENDERECO  -->
 
       <form [formGroup]="thirdFormGroup">
@@ -167,8 +171,7 @@
     </mat-step>
     <!-- FIM THIRD FORRM GROUP ENDERECO  -->
 
-    <mat-step *ngIf="typeUser.toLocaleLowerCase().includes('influencer')" [stepControl]="fourthFormGroup"
-      label="Dados Bancários">
+    <mat-step *ngIf="typeUser == getEnum('Influenciador')" [stepControl]="fourthFormGroup" label="Dados Bancários">
       <!-- INICIO FOURTH FORRM GROUP DADOS BANCARIOS  -->
       <form [formGroup]="fourthFormGroup">
         <div class="banco-agencia-cc">
