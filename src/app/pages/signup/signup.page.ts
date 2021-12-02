@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { EnvironmentService } from 'src/app/services/environment.service';
 import { UserService } from 'src/app/services/user.service';
@@ -10,8 +10,8 @@ import { UserService } from 'src/app/services/user.service';
   styleUrls: ['./signup.page.scss'],
 })
 export class SignupPage implements OnInit {
-  form: FormGroup;
-
+  form: FormGroup
+  formBuilder = new FormBuilder()
   errorMsg = {
     email: [
       {
@@ -27,17 +27,27 @@ export class SignupPage implements OnInit {
         error: 'required',
         msg: '*Campo obrigatório',
       },
+      {
+        error: 'missMatch',
+        msg: '*Os emails não coincidem',
+      },
     ],
     cnpj: [
       {
         error: 'required',
         msg: '*Campo obrigatório',
       },
+      { error: 'minlength', msg: '*Tamanho do CNPJ inválido' }
+
     ],
     confirmPassword: [
       {
         error: 'required',
         msg: '*Campo obrigatório',
+      },
+      {
+        error: 'missMatch',
+        msg: '*As senhas não coincidem',
       },
     ],
     password: [
@@ -59,6 +69,7 @@ export class SignupPage implements OnInit {
         error: 'required',
         msg: '*Campo obrigatório',
       },
+      { error: 'minlength', msg: '*Tamanho de telefone inválido' }
     ],
     quantidadeSeguidores: [
       {
@@ -80,31 +91,54 @@ export class SignupPage implements OnInit {
     this.type = this.checkUrlTypeInfluencer() ? 'Influencer' : 'Empresa'
 
     if (this.type == 'Influencer') {
-      this.form = new FormGroup({
+      this.form = this.formBuilder.group({
         nome: new FormControl('', [Validators.required]),
-        telefone: new FormControl('', [Validators.required]),
+        telefone: new FormControl('', [Validators.required, Validators.minLength(11)]),
         quantidadeSeguidores: new FormControl(0, [Validators.required]),
         linkRedeSocial: new FormControl('', [Validators.required]),
         email: new FormControl('', [Validators.required, Validators.email]),
         confirmEmail: new FormControl('', [Validators.required, Validators.email]),
         password: new FormControl('', [Validators.required]),
         confirmPassword: new FormControl('', [Validators.required]),
+      }, {
+        validators: [this.checkIfMatch('password', 'confirmPassword'), this.checkIfMatch('email', 'confirmEmail')]
       });
     } else {
-      this.form = new FormGroup({
+      this.form = this.formBuilder.group({
         nome: new FormControl('', [Validators.required]),
-        telefone: new FormControl('', [Validators.required]),
+        telefone: new FormControl('', [Validators.required,  Validators.minLength(11)]),
         email: new FormControl('', [Validators.required, Validators.email]),
         confirmEmail: new FormControl('', [Validators.required, Validators.email]),
         password: new FormControl('', [Validators.required]),
         confirmPassword: new FormControl('', [Validators.required]),
-        cnpj: new FormControl('', [Validators.required])
-      });
+        cnpj: new FormControl('', [Validators.required, Validators.minLength(11)])
+      }, {
+        validators: [this.checkIfMatch('password', 'confirmPassword'), this.checkIfMatch('email', 'confirmEmail')]
+      }
+      );
     }
 
 
 
   }
+
+  validate(control: AbstractControl): ValidationErrors | null {
+    return this.checkIfMatch('', '');
+  }
+  checkIfMatch(passwordKey: string, passwordConfirmationKey: string) {
+    console.log('heyehyehe')
+    return (group: FormGroup) => {
+      let passwordInput = group.controls[passwordKey],
+        passwordConfirmationInput = group.controls[passwordConfirmationKey];
+      if (passwordInput.value !== passwordConfirmationInput.value) {
+        return passwordConfirmationInput.setErrors({ missMatch: true })
+      }
+      else {
+        return passwordConfirmationInput.setErrors(null);
+      }
+    }
+  }
+
 
   getErrorMsg(error, control) {
     return this.env.getMessageError(this.errorMsg, error, control);
