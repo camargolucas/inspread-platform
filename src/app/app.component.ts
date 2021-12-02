@@ -20,9 +20,6 @@ export class AppComponent {
 
   sideMenu = 'end'
 
-
-
-
   hideMenu = [
     'login',
     'signup',
@@ -60,6 +57,7 @@ export class AppComponent {
 
     this.appPages.splice(index, 1)   
   }
+
 
   logout() {
     this.user.logout()

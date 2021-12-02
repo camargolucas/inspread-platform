@@ -29,9 +29,13 @@ export class UserService {
 
 
   pagesToRemoveWithoutPermission = [
-    'influencer', 'admin'
+    
   ]
 
+
+  influencerMenuToRemove = [
+    'influencers'
+  ]
 
 
 
@@ -47,6 +51,17 @@ export class UserService {
     };
 
     return requestOptions;
+  }
+
+
+
+  removeMenuPermission(){
+    const user = this.getUserStorage()
+    if (Object.keys(user).length > 0){
+      if (user['idTipoUsuario']  == TypeUser.Influenciador){
+        this.pagesToRemoveWithoutPermission.push('influencers')
+      }
+    }
   }
 
   async openModalUser(user?: Object) {

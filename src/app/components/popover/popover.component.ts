@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { PopoverController } from '@ionic/angular';
+import { TypeUser } from 'src/app/interface/typeUser';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
@@ -12,7 +13,9 @@ export class PopoverComponent implements OnInit {
 
   constructor(public user:UserService, private popover:PopoverController, public _DomSanitizationService: DomSanitizer) { }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.getUserName()
+  }
 
  
 
@@ -20,6 +23,18 @@ export class PopoverComponent implements OnInit {
     const user = this.user.getUserStorage()
     this.user.openModalUser(user)
     this.popover.dismiss()
+  }
+
+  userName:string = "Nome"
+  getUserName(){
+    const user = this.user.getUserStorage()
+    if (Object.keys(user).length > 0 ){
+      if (user['idTipoUsuario'] == TypeUser.Influenciador){
+        this.userName = user['influenciador']['nome']
+      }else{
+        this.userName = user['empresa']['razaoSocial']
+      }
+    }
   }
 
   leave(){

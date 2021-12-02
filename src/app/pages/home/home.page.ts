@@ -45,6 +45,7 @@ export class HomePage implements OnInit {
 
   ngOnInit() {
     this.getUserStorage()
+    this.user.removeMenuPermission()
   }
 
 }
