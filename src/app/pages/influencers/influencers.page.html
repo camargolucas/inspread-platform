@@ -13,35 +13,35 @@
     <ion-card-content>
       <ion-row style="align-items: center;">
         <ion-thumbnail class="user-avatar">
-          <img src="/assets/images/aa.jpg" />
+          <img src="/assets/images/user-profile.png" />
         </ion-thumbnail>
 
         <!-- <ion-col style="text-align: start;" sizeXs="5" sizeMd="3"><span>Isabel ferreira dos santos</span></ion-col> -->
         <ion-col style="text-align: start;" sizeXs="5" sizeMd="3" class="col-label">
             <span class="title-col">Nome</span>
-            <span>{{influencer.nome}}</span>
+            <span>{{influencer?.nome}}</span>
         </ion-col>
         <ion-col style="text-align: start;" sizeXs="4" sizeMd="2" class="col-label">
-            <span class="title-col">Tag</span>
-            <span>{{influencer.tag}}</span>
+            <span class="title-col">Telefone</span>
+            <span>{{influencer?.telefone}}</span>
         </ion-col>
      
         <ion-col  class="col-label">
-            <span class="title-col">Telefone</span>
-            <span>{{influencer.telefone}}</span>
+            <span class="title-col">Qtd Seguidores</span>
+            <span>{{influencer?.quantidadeSeguidores}}</span>
         </ion-col>
         <ion-col class="col-label">
-            <span class="title-col">Genero</span>
-            <span>{{influencer.genero}}</span>
+            <span class="title-col">Aceita Permuta</span>
+            <span>{{influencer?.aceitaPermuta != null ? influencer?.aceitaPermuta : false}}</span>
         </ion-col>
-        <ion-col class="col-label">
+    <!--     <ion-col class="col-label">
             <span class="title-col">Idade</span>
             <span>{{influencer.idade}}</span>
         </ion-col>
         <ion-col  class="col-label">
             <span class="title-col">UF</span>
             <span>{{influencer.uf}}</span>
-        </ion-col>
+        </ion-col> -->
       </ion-row>
     </ion-card-content>
   </ion-card>

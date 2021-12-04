@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
+import { TypeUser } from 'src/app/interface/typeUser';
 import { UserService } from 'src/app/services/user.service';
 import { InfluencersModalPage } from '../influencers-modal/influencers-modal.page';
 
@@ -10,14 +11,12 @@ import { InfluencersModalPage } from '../influencers-modal/influencers-modal.pag
 })
 export class InfluencersPage implements OnInit {
 
-  influencers = [
-    {
-      nome:'Isabel Ferreira dos Santos',
-      tag:'@joellma',
-      telefone:'22222222',
-      genero:'Feminino',
-      idade: '25',
-      uf: 'SP'
+  influencers
+   /*  {
+      nome:'Isabel Ferreira dos Santos',     
+      quantidadeSeguidores:'12222',
+      telefone:'22222222',     
+      aceitaPermuta: true   
     },
     {
       nome:'Larissa Ribeiro',
@@ -34,20 +33,26 @@ export class InfluencersPage implements OnInit {
       genero:'Feminino',
       idade: '25',
       uf: 'SP'
-    }
-  ]
+    } */
+  
 
   constructor(private modal:ModalController, private userService:UserService) { }
 
   ngOnInit() {
-    this.userService.getInfluencers();
-    this.filteredInfluencers = this.influencers
+    this.userService.getInfluencers().subscribe(ret =>{
+      
+      this.influencers = ret;
+      this.filteredInfluencers = ret;
+  
+      
+    });
+    //this.filteredInfluencers = this.influencers
 
     
   }
 
 
-  filteredInfluencers = []
+  filteredInfluencers
   filter(event){
     const wordToFilter = event.target.value
     if(wordToFilter != null){
@@ -57,11 +62,18 @@ export class InfluencersPage implements OnInit {
     }
   }
 
-  async openDetails(influencer){
+  async openDetails(influenciador){
+
+    const customObj = {
+      idTipoUsuario:TypeUser.Influenciador,
+      influenciador
+
+
+    }
     const modal = await this.modal.create({
       component:InfluencersModalPage,
       componentProps: {
-        influencer:influencer,
+        influencer:customObj,
         isEditMode: false,
         isVisualizationMode: true
       },

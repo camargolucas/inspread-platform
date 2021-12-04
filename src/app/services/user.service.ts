@@ -29,7 +29,7 @@ export class UserService {
 
 
   pagesToRemoveWithoutPermission = [
-    
+
   ]
 
 
@@ -55,10 +55,10 @@ export class UserService {
 
 
 
-  removeMenuPermission(){
+  removeMenuPermission() {
     const user = this.getUserStorage()
-    if (Object.keys(user).length > 0){
-      if (user['idTipoUsuario']  == TypeUser.Influenciador){
+    if (Object.keys(user).length > 0) {
+      if (user['idTipoUsuario'] == TypeUser.Influenciador) {
         this.pagesToRemoveWithoutPermission.push('influencers')
       }
     }
@@ -89,14 +89,7 @@ export class UserService {
 
   getInfluencers() {
     return this.http
-      .get('https://api.id.tec.br/influenciador/listar', this.setHeader())
-      .subscribe(
-        (ret) => {
-          console.log(ret);
-        },
-        (error) => {
-          console.log(error);
-        }
+      .get('https://api.id.tec.br/influenciador/listar', this.setHeader()
       );
   }
 
@@ -127,7 +120,7 @@ export class UserService {
         confirmPassword: new FormControl('', [Validators.required]), */
 
   signUpInfluencer(user) {
-    
+
     const objUser = {
       "usuario": {
         "login": user['email'],
@@ -141,7 +134,7 @@ export class UserService {
   }
 
   signUpEmpresa(user) {
-    
+
     const objUser = {
       "razaoSocial": user['nome'],
       "usuario": {

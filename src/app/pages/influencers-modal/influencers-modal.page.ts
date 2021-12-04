@@ -126,6 +126,7 @@ export class InfluencersModalPage implements OnInit {
 
 
   populateUserData() {
+    console.log(this.influencer)
     if (this.influencer['idTipoUsuario'] == TypeUser.Empresa) {
       this.userData = this.influencer['empresa']
     } else {
@@ -138,7 +139,7 @@ export class InfluencersModalPage implements OnInit {
   }
 
   getTypeUser(): number {
-    console.log(this.influencer)
+    
     return this.influencer['idTipoUsuario']
 
   }
@@ -156,10 +157,29 @@ export class InfluencersModalPage implements OnInit {
   }
 
   populate() {
-    Object.keys(this.firstFormGroup.controls).forEach(element => {
+    console.log(this.userData['influenciadorEnderecos'])
+    Object.keys(this.firstFormGroup.controls).forEach(element => {      
       this.firstFormGroup.controls[element].setValue(this.userData[element])
     });
+
+    if(TypeUser.Influenciador == this.getTypeUser()){
+      this.populateEnderecos()
+    }
+    
+
     this.firstFormGroup.controls['email'].setValue(this.influencer['login'])
+  }
+
+
+  populateEnderecos(){
+    
+    Object.keys(this.thirdFormGroup.controls).forEach(element => {
+      if(this.userData['influenciadorEnderecos'][0] && this.userData['influenciadorEnderecos'][0][element]){
+        this.thirdFormGroup.controls[element].setValue(this.userData['influenciadorEnderecos'][0][element])
+      }
+     
+    });
+
   }
 
   back() {
