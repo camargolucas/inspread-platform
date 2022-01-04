@@ -47,7 +47,7 @@
         </ion-row>
 
         <ion-row class="login-btn">
-          <ion-button (click)="login()" color="primary" expand="block"
+          <ion-button [disabled]="loading" (click)="login()" color="primary" expand="block"
             >Login</ion-button
           >
         </ion-row>

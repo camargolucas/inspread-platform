@@ -94,7 +94,7 @@
                   </div>
                 </div>
               </form>
-              <ion-button (click)="signUp()" style="width: 100%" expand="block">
+              <ion-button [disabled]="loading" (click)="signUp()" style="width: 100%" expand="block">
                 Cadastrar
               </ion-button>
             </ion-row>

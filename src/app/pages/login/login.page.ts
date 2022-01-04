@@ -70,18 +70,19 @@ export class LoginPage implements OnInit {
   }
 
   
-
+  loading = false;
   login(){
     let userObject = {
     
       login: this.form.controls['email'].value,
       senha: this.form.controls['password'].value
     }
-   
+    
+    this.loading = true
     if(this.validateForm(this.form)){
-
+      
       this.loginService.login(userObject).subscribe(ret => {      
-        console.log(ret)  
+        this.loading = false
         if(ret['mensagemDeErro']){
           this.env.alert({
             header:'Ops, algo deu errado',
@@ -98,14 +99,15 @@ export class LoginPage implements OnInit {
             buttons:['OK']
           })
         }
+      }, error =>{
+        this.loading = false
+        console.error(error)
       })
   
-      
-    
       //this.navigate('/home')
      
     }else{
-    
+      this.loading = false
       this.env.alert({
         header:'Ops, algo deu errado',
         message:'Preencha corretamente os campos',

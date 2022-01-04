@@ -106,7 +106,7 @@ export class SignupPage implements OnInit {
     } else {
       this.form = this.formBuilder.group({
         nome: new FormControl('', [Validators.required]),
-        telefone: new FormControl('', [Validators.required,  Validators.minLength(11)]),
+        telefone: new FormControl('', [Validators.required, Validators.minLength(11)]),
         email: new FormControl('', [Validators.required, Validators.email]),
         confirmEmail: new FormControl('', [Validators.required, Validators.email]),
         password: new FormControl('', [Validators.required]),
@@ -163,28 +163,39 @@ export class SignupPage implements OnInit {
     this.router.navigate([`/login`], { replaceUrl: true });
   }
 
+  loading = false
   signUp() {
 
+    this.loading = true
     if (this.env.validateForm(this.form)) {
       if (this.type == 'Influencer') {
         this.user.signUpInfluencer(this.form.value).subscribe(ret => {
+          this.loading = false
           if (ret) {
             this.sucessSignUp()
           } else {
             this.popUp('Ops, Algo deu errado!', 'Houve um problema ao cadastrar o usuário!')
           }
+        }, error => {
+          this.loading = false
+          console.error(error)
         }
         )
       } else {
         this.user.signUpEmpresa(this.form.value).subscribe(ret => {
+          this.loading = false
           if (ret) {
             this.sucessSignUp()
           } else {
             this.popUp('Ops, Algo deu errado!', 'Houve um problema ao cadastrar o usuário!')
           }
+        }, error => {
+          this.loading = false
+          console.error(error)
         })
       }
     } else {
+      this.loading = false
       this.popUp('Campos inválidos!', 'Preencha todos os campos corretamente!')
     }
   }
