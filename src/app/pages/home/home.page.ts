@@ -30,7 +30,7 @@ export class HomePage implements OnInit {
       
   }
 
-  userObj: Object
+  userObj: any
   getUserStorage() {
     try {
       this.userObj = JSON.parse(localStorage.getItem('user'))

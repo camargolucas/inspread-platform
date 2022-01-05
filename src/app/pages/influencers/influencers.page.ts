@@ -12,6 +12,7 @@ import { InfluencersModalPage } from '../influencers-modal/influencers-modal.pag
 export class InfluencersPage implements OnInit {
 
   influencers
+  filteredInfluencers
    /*  {
       nome:'Isabel Ferreira dos Santos',     
       quantidadeSeguidores:'12222',
@@ -45,6 +46,9 @@ export class InfluencersPage implements OnInit {
       this.filteredInfluencers = ret;
   
       
+    },
+    error => {
+      console.error(error)
     });
     //this.filteredInfluencers = this.influencers
 
@@ -52,7 +56,7 @@ export class InfluencersPage implements OnInit {
   }
 
 
-  filteredInfluencers
+
   filter(event){
     const wordToFilter = event.target.value
     if(wordToFilter != null){

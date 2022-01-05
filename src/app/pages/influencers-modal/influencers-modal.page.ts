@@ -109,7 +109,7 @@ export class InfluencersModalPage implements OnInit {
     });
   }
 
-  userData: Object
+  userData: any
   ngOnInit() {
     this.createFormGroup()
     this.populateUserData()
@@ -132,6 +132,11 @@ export class InfluencersModalPage implements OnInit {
     } else {
       this.userData = this.influencer['influenciador']
     }
+  }
+
+
+  verifyTypeUser(type){
+    return this.typeUser === Number(this.getEnum(type)) 
   }
 
   getEnum(type) {

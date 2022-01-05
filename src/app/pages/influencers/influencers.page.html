@@ -4,12 +4,18 @@
 
   <ion-row>
     <mat-form-field appearance="outline">
-      <mat-label><ion-icon style="margin-right: 0.5rem;" name="search-outline"></ion-icon>Buscar Influencer</mat-label>
+      <mat-label>
+        <ion-icon style="margin-right: 0.5rem;" name="search-outline"></ion-icon>Buscar Influencer
+      </mat-label>
       <input (keyup)="filter($event)" placeholder="Digite nome de um influencer" matInput />
     </mat-form-field>
   </ion-row>
 
-  <ion-card (click)="openDetails(influencer)" *ngFor="let influencer of filteredInfluencers" >
+  <div class="notfound" *ngIf="!filteredInfluencers">    
+    <h3>Não encontramos influencers ):</h3>
+    <img src="/assets/images/notfound.png">
+  </div>
+  <ion-card (click)="openDetails(influencer)" *ngFor="let influencer of filteredInfluencers">
     <ion-card-content>
       <ion-row style="align-items: center;">
         <ion-thumbnail class="user-avatar">
@@ -18,23 +24,23 @@
 
         <!-- <ion-col style="text-align: start;" sizeXs="5" sizeMd="3"><span>Isabel ferreira dos santos</span></ion-col> -->
         <ion-col style="text-align: start;" sizeXs="5" sizeMd="3" class="col-label">
-            <span class="title-col">Nome</span>
-            <span>{{influencer?.nome}}</span>
+          <span class="title-col">Nome</span>
+          <span>{{influencer?.nome}}</span>
         </ion-col>
         <ion-col style="text-align: start;" sizeXs="4" sizeMd="2" class="col-label">
-            <span class="title-col">Telefone</span>
-            <span>{{influencer?.telefone}}</span>
+          <span class="title-col">Telefone</span>
+          <span>{{influencer?.telefone}}</span>
         </ion-col>
-     
-        <ion-col  class="col-label">
-            <span class="title-col">Qtd Seguidores</span>
-            <span>{{influencer?.quantidadeSeguidores}}</span>
+
+        <ion-col class="col-label">
+          <span class="title-col">Qtd Seguidores</span>
+          <span>{{influencer?.quantidadeSeguidores}}</span>
         </ion-col>
         <ion-col class="col-label">
-            <span class="title-col">Aceita Permuta</span>
-            <span>{{influencer?.aceitaPermuta != null ? influencer?.aceitaPermuta : false}}</span>
+          <span class="title-col">Aceita Permuta</span>
+          <span>{{influencer?.aceitaPermuta != null ? influencer?.aceitaPermuta : false}}</span>
         </ion-col>
-    <!--     <ion-col class="col-label">
+        <!--     <ion-col class="col-label">
             <span class="title-col">Idade</span>
             <span>{{influencer.idade}}</span>
         </ion-col>

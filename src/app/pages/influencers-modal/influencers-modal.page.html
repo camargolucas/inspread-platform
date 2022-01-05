@@ -18,7 +18,7 @@
               </ion-button>
             </div>
           </div>
-          <div style="width: 100%;" *ngIf="typeUser == getEnum('Influenciador')">
+          <div style="width: 100%;"  *ngIf="verifyTypeUser('Influenciador')">
             <mat-form-field appearance="outline" style="max-width: 100%">
               <mat-label>Nome</mat-label>
               <input matInput placeholder="Last name, First name" formControlName="nome" required />
@@ -42,7 +42,7 @@
             </div>
           </div>
 
-          <mat-form-field *ngIf="typeUser == getEnum('Empresa')" appearance="outline" style="max-width: 100%">
+          <mat-form-field *ngIf="verifyTypeUser('Empresa')" appearance="outline" style="max-width: 100%">
             <mat-label>Razão Social</mat-label>
             <input matInput placeholder="Razão Social" formControlName="razaoSocial" required />
           </mat-form-field>
@@ -54,11 +54,11 @@
                 <input matInput formControlName="telefone" [maxlength]="15" mask="(00) 00000-0000" required />
               </mat-form-field>
             </ion-col>
-            <mat-form-field *ngIf="typeUser == getEnum('Empresa')" appearance="outline">
+            <mat-form-field *ngIf="verifyTypeUser('Empresa')" appearance="outline">
               <mat-label>CNPJ</mat-label>
               <input formControlName="cnpj" matInput placeholder="Ex. 12345676" [maxlength]="14" mask="CPF_CNPJ" />
             </mat-form-field>
-            <ion-col *ngIf="typeUser == getEnum('Influenciador')" size="6">
+            <ion-col *ngIf="verifyTypeUser('Influenciador')" size="6">
               <mat-form-field appearance="outline">
                 <mat-label>Qtd Seguidores</mat-label>
                 <input matInput formControlName="quantidadeSeguidores" required />
@@ -75,7 +75,7 @@
     </mat-step>
     <!-- END FIRST FORM DADOS PESSOAIS -->
 
-    <mat-step *ngIf="typeUser == getEnum('Influenciador')" [stepControl]="secondFormGroup" label="Dados Empresáriais">
+    <mat-step *ngIf="verifyTypeUser('Influenciador')" [stepControl]="secondFormGroup" label="Dados Empresáriais">
       <!-- INICIO SECOND FORRM GROUP DADOS EMPRESARIAIS  -->
 
       <form [formGroup]="secondFormGroup">
@@ -125,7 +125,7 @@
     </mat-step>
     <!-- FIM SECOND FORRM GROUP DADOS EMPRESARIAIS  -->
 
-    <mat-step *ngIf="typeUser == getEnum('Influenciador')" [stepControl]="thirdFormGroup" label="Endereço">
+    <mat-step *ngIf="verifyTypeUser('Influenciador')" [stepControl]="thirdFormGroup" label="Endereço">
       <!-- INICIO THIRD FORRM GROUP ENDERECO  -->
 
       <form [formGroup]="thirdFormGroup">
@@ -171,7 +171,7 @@
     </mat-step>
     <!-- FIM THIRD FORRM GROUP ENDERECO  -->
 
-    <mat-step *ngIf="typeUser == getEnum('Influenciador')" [stepControl]="fourthFormGroup" label="Dados Bancários">
+    <mat-step *ngIf="verifyTypeUser('Influenciador')" [stepControl]="fourthFormGroup" label="Dados Bancários">
       <!-- INICIO FOURTH FORRM GROUP DADOS BANCARIOS  -->
       <form [formGroup]="fourthFormGroup">
         <div class="banco-agencia-cc">

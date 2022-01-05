@@ -89,7 +89,7 @@ export class UserService {
 
   getInfluencers() {
     return this.http
-      .get('https://api.id.tec.br/influenciador/listar', this.setHeader()
+      .get('https://api.id.tec.br/influenciador/listar'
       );
   }
 

@@ -2,7 +2,7 @@
 
 <ion-content>
   <ion-fab class="fab" vertical="bottom" horizontal="end" slot="fixed">
-    <ion-fab-button (click)="goTo(postagem)" >
+    <ion-fab-button (click)="goTo('')" >
       <ion-icon name="add-outline"></ion-icon>
     </ion-fab-button>
   </ion-fab>
@@ -13,7 +13,7 @@
       </mat-form-field>
     </ion-row>
     <h3 *ngIf="!(postagens && postagens.length)">Ainda não há postagens );</h3>
-    <ion-card (click)="goTo(postagem)" *ngFor="let postagem of filteredPosts" >
+    <ion-card *ngFor="let postagem of filteredPosts" (click)="goTo(postagem)">
         <ion-card-content>
           <ion-row style="align-items: center;">
             <ion-thumbnail class="user-avatar">
