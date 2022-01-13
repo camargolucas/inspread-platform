@@ -11,17 +11,19 @@
               <img [src]="_DomSanitizationService.bypassSecurityTrustUrl(user.profileImage)" />
             </ion-thumbnail>
           </div>
-          <div *ngIf="userObj?.idTipoUsuario === getTypeUser('Influenciador')" class="col-name" size="8">
-            <p>{{userObj?.influenciador?.nome}}</p>
-            <p><ion-icon  name="at-outline"></ion-icon> {{userObj?.influenciador?.linkRedeSocial}}</p>
-            <p><ion-icon src="/assets/images/followers-icon.svg"></ion-icon>{{userObj?.influenciador?.quantidadeSeguidores}}</p>
+
+          <div class="col-name" size="8">
+            <p>{{ getUserName() }}</p>
+            <p *ngIf="userObj?.idTipoUsuario != getTypeUser('Influenciador')">{{ getUserEmail() }}</p>
+            <p *ngIf="userObj?.idTipoUsuario === getTypeUser('Influenciador')">
+              <ion-icon name="at-outline"></ion-icon> {{userObj?.influenciador?.linkRedeSocial}}
+            </p>
+            <p *ngIf="userObj?.idTipoUsuario === getTypeUser('Influenciador')">
+              <ion-icon src="/assets/images/followers-icon.svg"></ion-icon>
+              {{userObj?.influenciador?.quantidadeSeguidores}}
+            </p>
           </div>
 
-          <div *ngIf="userObj?.idTipoUsuario != getTypeUser('Influenciador')" class="col-name" size="8">
-            <p>{{userObj?.empresa?.razaoSocial}}</p>
-            <p>{{userObj?.login}}</p>
-            <!-- <p><ion-icon src="/assets/images/followers-icon.svg"></ion-icon>{{userObj?.influenciador?.quantidadeSeguidores}}</p> -->
-          </div>
 
           <div class="floating-icon">
             <!-- <ion-icon name="person-outline"></ion-icon> -->
@@ -29,9 +31,8 @@
           </div>
         </ion-row>
         <ion-row class="more-info">
-          <span (click)="goToUser('/influencers-modal')"
-            >Saiba mais <ion-icon name="chevron-forward-outline"></ion-icon
-          ></span>
+          <span (click)="goToUser('/influencers-modal')">Saiba mais <ion-icon name="chevron-forward-outline"></ion-icon>
+          </span>
         </ion-row>
       </ion-card-content>
     </ion-card>
@@ -64,10 +65,8 @@
             <!-- <ion-icon src="/assets/images/postagem-icon.svg"></ion-icon> -->
           </div>
         </ion-row>
-        <ion-row  class="more-info">
-          <span  (click)="goToPostagem()" 
-            >Saiba mais <ion-icon name="chevron-forward-outline"></ion-icon
-          ></span>
+        <ion-row class="more-info">
+          <span (click)="goToPostagem()">Saiba mais <ion-icon name="chevron-forward-outline"></ion-icon></span>
         </ion-row>
       </ion-card-content>
     </ion-card>

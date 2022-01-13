@@ -15,7 +15,18 @@ import { InfluencersModalPage } from '../influencers-modal/influencers-modal.pag
 export class HomePage implements OnInit {
 
   constructor(private route: Router, private modal: ModalController, public _DomSanitizationService: DomSanitizer, public user: UserService) {
-    console.log('aaaaaa',TypeUser.Influenciador)
+
+   }
+
+
+   getUserName(){
+     const user = this.userObj
+     return this.userObj[user['descTipoUsuario'].toLowerCase()]['nome']
+   }
+
+   getUserEmail(){
+    const user = this.userObj
+    return this.userObj[user['descTipoUsuario'].toLowerCase()]['email']
    }
 
    getTypeUser(type:string){

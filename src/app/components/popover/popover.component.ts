@@ -29,11 +29,9 @@ export class PopoverComponent implements OnInit {
   getUserName(){
     const user = this.user.getUserStorage()
     if (Object.keys(user).length > 0 ){
-      if (user['idTipoUsuario'] == TypeUser.Influenciador){
-        this.userName = user['influenciador']['nome']
-      }else{
-        this.userName = user['empresa']['razaoSocial']
-      }
+    
+      this.userName = user[user['descTipoUsuario'].toLowerCase()]['nome']
+
     }
   }
 

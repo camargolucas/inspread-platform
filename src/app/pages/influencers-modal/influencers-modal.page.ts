@@ -17,7 +17,7 @@ import { TypeUser } from 'src/app/interface/typeUser';
 export class InfluencersModalPage implements OnInit {
   @Input() influencer
   @Input() isEditMode
-  @Input() isVisualizationMode
+
 
 
   stepperOrientation: Observable<StepperOrientation>;
@@ -77,7 +77,7 @@ export class InfluencersModalPage implements OnInit {
       });
     } else {
       this.firstFormGroup = this._formBuilder.group({
-        razaoSocial: ['', Validators.required],
+        nome: ['', Validators.required],
         telefone: ['', Validators.required],
         email: ['', Validators.required],
         cnpj: ['']
@@ -115,12 +115,9 @@ export class InfluencersModalPage implements OnInit {
     this.populateUserData()
     this.typeUser = this.getTypeUser()
 
-
-    if (this.isEditMode || this.isVisualizationMode) {
-      this.populate()
-    }
-
-    //this.visualizationMode()
+    this.populate()   
+  
+    this.visualizationMode()
 
   }
 
@@ -150,19 +147,20 @@ export class InfluencersModalPage implements OnInit {
   }
 
   visualizationMode() {
-    if (this.visualizationMode) {
-      this.firstFormGroup.disable()
-      this.secondFormGroup.disable()
-      this.thirdFormGroup.disable()
-    } else {
+    if (this.isEditMode) {
       this.firstFormGroup.enable()
       this.secondFormGroup.enable()
       this.thirdFormGroup.enable()
+    } else {
+      this.firstFormGroup.disable()
+      this.secondFormGroup.disable()
+      this.thirdFormGroup.disable()
+     
     }
   }
 
   populate() {
-    console.log(this.userData['influenciadorEnderecos'])
+    console.log(this.userData)
     Object.keys(this.firstFormGroup.controls).forEach(element => {      
       this.firstFormGroup.controls[element].setValue(this.userData[element])
     });
@@ -172,7 +170,7 @@ export class InfluencersModalPage implements OnInit {
     }
     
 
-    this.firstFormGroup.controls['email'].setValue(this.influencer['login'])
+  
   }
 
 

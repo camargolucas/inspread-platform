@@ -164,6 +164,16 @@ export class SignupPage implements OnInit {
   }
 
   loading = false
+
+
+  treatingApiReturnData(data) {
+    if (data) {
+      if (data['mensagemDeErro']){
+        return 
+      }
+    }
+  }
+
   signUp() {
 
     this.loading = true
@@ -171,7 +181,7 @@ export class SignupPage implements OnInit {
       if (this.type == 'Influencer') {
         this.user.signUpInfluencer(this.form.value).subscribe(ret => {
           this.loading = false
-          if (ret) {
+          if (ret['success']) {
             this.sucessSignUp()
           } else {
             this.popUp('Ops, Algo deu errado!', 'Houve um problema ao cadastrar o usuário!')
@@ -183,8 +193,9 @@ export class SignupPage implements OnInit {
         )
       } else {
         this.user.signUpEmpresa(this.form.value).subscribe(ret => {
+          console.log('retorno', ret)
           this.loading = false
-          if (ret) {
+          if (ret['success']) {
             this.sucessSignUp()
           } else {
             this.popUp('Ops, Algo deu errado!', 'Houve um problema ao cadastrar o usuário!')

@@ -40,12 +40,9 @@ export class InfluencersPage implements OnInit {
   constructor(private modal:ModalController, private userService:UserService) { }
 
   ngOnInit() {
-    this.userService.getInfluencers().subscribe(ret =>{
-      
-      this.influencers = ret;
-      this.filteredInfluencers = ret;
-  
-      
+    this.userService.getInfluencers().subscribe(ret =>{    
+      this.influencers = ret['response'];
+      this.filteredInfluencers = ret['response'];
     },
     error => {
       console.error(error)
@@ -79,7 +76,6 @@ export class InfluencersPage implements OnInit {
       componentProps: {
         influencer:customObj,
         isEditMode: false,
-        isVisualizationMode: true
       },
       cssClass: 'influencer-modal'
     })

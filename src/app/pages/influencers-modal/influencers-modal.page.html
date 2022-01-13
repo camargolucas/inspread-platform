@@ -18,7 +18,7 @@
               </ion-button>
             </div>
           </div>
-          <div style="width: 100%;"  *ngIf="verifyTypeUser('Influenciador')">
+          <div style="width: 100%;" *ngIf="verifyTypeUser('Influenciador')">
             <mat-form-field appearance="outline" style="max-width: 100%">
               <mat-label>Nome</mat-label>
               <input matInput placeholder="Last name, First name" formControlName="nome" required />
@@ -44,7 +44,7 @@
 
           <mat-form-field *ngIf="verifyTypeUser('Empresa')" appearance="outline" style="max-width: 100%">
             <mat-label>Razão Social</mat-label>
-            <input matInput placeholder="Razão Social" formControlName="razaoSocial" required />
+            <input matInput placeholder="Razão Social" formControlName="nome" required />
           </mat-form-field>
 
           <ion-row style="width: 100%;">

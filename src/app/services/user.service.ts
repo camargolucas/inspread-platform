@@ -64,15 +64,13 @@ export class UserService {
     }
   }
 
-  async openModalUser(user?: Object) {
-    console.log(user)
+  async openModalUser(user?: Object) {  
     if (Object.keys(user).length > 0) {
       const modal = await this.modal.create({
         component: InfluencersModalPage,
         componentProps: {
           influencer: user,
-          isEditMode: true,
-          isVisualizationMode: false,
+          isEditMode: true,        
         },
         cssClass: 'influencer-modal',
       });

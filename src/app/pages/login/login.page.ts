@@ -25,19 +25,19 @@ export class LoginPage implements OnInit {
       {
         error: 'required',
         msg: '*Campo obrigatório',
-      },   
+      },
       { error: 'minlength', msg: '*Tamanho da senha inválido' },
       { error: 'maxlength', msg: '*Tamanho da senha inválido' },
     ],
   };
 
   form: FormGroup;
-  constructor(private router: Router, public env: EnvironmentService, private loginService:LoginService) {}
+  constructor(private router: Router, public env: EnvironmentService, private loginService: LoginService) { }
 
   ngOnInit() {
     this.form = new FormGroup({
       email: new FormControl('', [Validators.maxLength(40), Validators.email]),
-      password: new FormControl('',[Validators.maxLength(16), Validators.minLength(5)]),
+      password: new FormControl('', [Validators.maxLength(16), Validators.minLength(5)]),
     });
 
 
@@ -45,7 +45,7 @@ export class LoginPage implements OnInit {
   }
 
   getErrorMsg(error, control) {
-   
+
     return this.env.getMessageError(this.errorMsg, error, control);
   }
 
@@ -58,64 +58,66 @@ export class LoginPage implements OnInit {
     }
   }
 
-  validateForm(form){
+  validateForm(form) {
     const keys = Object.keys(this.form.controls)
-     if (form.status == 'VALID') return true 
-     
-     return false
+    if (form.status == 'VALID') return true
+
+    return false
   }
 
-  setUserStorage(user){
+  setUserStorage(user) {
     localStorage.setItem('user', JSON.stringify(user))
   }
 
-  
+
+  treatingReturnMessage(ret):string{
+    if(ret['mensagem']){
+      return ret['mensagem']
+    }
+
+    return 'Houve um problema, tente novamente!'
+  }
+
   loading = false;
-  login(){
+  login() {
     let userObject = {
-    
+
       login: this.form.controls['email'].value,
       senha: this.form.controls['password'].value
     }
-    
+
     this.loading = true
-    if(this.validateForm(this.form)){
-      
-      this.loginService.login(userObject).subscribe(ret => {      
+    if (this.validateForm(this.form)) {
+
+      this.loginService.login(userObject).subscribe(ret => {
         this.loading = false
-        if(ret['mensagemDeErro']){
-          this.env.alert({
-            header:'Ops, algo deu errado',
-            message: ret['mensagemDeErro'],
-            buttons:['OK']
-          })
-        }else if (ret['idUsuario']){
+        if (ret['success']) {
           this.navigate('/home')
-          this.setUserStorage(ret)
-        }else{
+          this.setUserStorage(ret['response'])
+        } else {
           this.env.alert({
-            header:'Ops, algo deu errado',
-            message: 'Houve um problema, tente novamente',
-            buttons:['OK']
-          })
+            header: 'Ops, algo deu errado',
+            message: this.treatingReturnMessage(ret),
+            buttons: ['OK']
+          })       
         }
-      }, error =>{
+      }, error => {
         this.loading = false
         console.error(error)
       })
-  
+
       //this.navigate('/home')
-     
-    }else{
+
+    } else {
       this.loading = false
       this.env.alert({
-        header:'Ops, algo deu errado',
-        message:'Preencha corretamente os campos',
-        buttons:['OK']
+        header: 'Ops, algo deu errado',
+        message: 'Preencha corretamente os campos',
+        buttons: ['OK']
       })
-      
+
     }
-    
+
   }
 
 }

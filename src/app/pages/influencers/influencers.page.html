@@ -11,10 +11,15 @@
     </mat-form-field>
   </ion-row>
 
-  <div class="notfound" *ngIf="!filteredInfluencers">    
+  <div class="notfound" *ngIf="!filteredInfluencers || !filteredInfluencers.length">    
     <h3>Não encontramos influencers ):</h3>
     <img src="/assets/images/notfound.png">
   </div>
+
+  
+
+  
+
   <ion-card (click)="openDetails(influencer)" *ngFor="let influencer of filteredInfluencers">
     <ion-card-content>
       <ion-row style="align-items: center;">
