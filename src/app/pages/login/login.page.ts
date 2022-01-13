@@ -104,6 +104,11 @@ export class LoginPage implements OnInit {
       }, error => {
         this.loading = false
         console.error(error)
+        this.env.alert({
+          header: 'Ops, algo deu errado',
+          message: 'Tente novamente !',
+          buttons: ['OK']
+        })       
       })
 
       //this.navigate('/home')
