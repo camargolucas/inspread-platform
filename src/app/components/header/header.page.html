@@ -14,7 +14,7 @@
         <ion-thumbnail  (click)="presentPopover($event)">
           <img [src]="_DomSanitizationService.bypassSecurityTrustUrl(user.profileImage)">
         </ion-thumbnail>
-        <ion-button *ngIf="!env.isMobile" (click)="presentPopover($event)" fill="clear">     
+        <ion-button [disabled]="!enableButton" *ngIf="!env.isMobile" (click)="presentPopover($event)" fill="clear">     
           <ion-icon          
             name="chevron-down-outline"
           ></ion-icon>

@@ -1,66 +1,60 @@
-<ion-content  [ngClass]="{'ion-padding': env.isMobile}" class="ion-no-padding content-withou-scroll">
+<ion-content [ngClass]="{'ion-padding': env.isMobile}" class="ion-no-padding content-withou-scroll">
   <div class="conteudo">
     <ion-row>
-      <ion-col class="col-form-content"> 
+      <ion-col class="col-form-content">
         <div class="form-content">
-        <ion-row class="logo">
-          <img src="/assets/images/logo_pink.svg" />
-        </ion-row>
+          <ion-row class="logo">
+            <img src="/assets/images/logo_pink.svg" />
+          </ion-row>
 
-        <ion-row class="login">
-          <img src="/assets/images/login.png" />
-        </ion-row>
+          <ion-row class="login">
+            <img src="/assets/images/login.png" />
+          </ion-row>
 
-        <ion-row>
-          <form [formGroup]="form">
-            <mat-form-field  appearance="outline">
-              <mat-label>Email</mat-label>
-              <input formControlName="email" matInput  required/>
-              <mat-error>
-                <p>{{getErrorMsg('email', form.controls.email)}}</p>
-              </mat-error>
-            </mat-form-field>
-           
+          <ion-row>
+            <form [formGroup]="form">
+              <mat-form-field appearance="outline">
+                <mat-label>Email</mat-label>
+                <input formControlName="email" matInput required />
+                <mat-error>
+                  <p>{{getErrorMsg('email', form.controls.email)}}</p>
+                </mat-error>
+              </mat-form-field>
 
-            <mat-form-field  appearance="outline">
-              <mat-label>Senha</mat-label>
-              <input formControlName="password" matInput required type="password" />
-              <mat-error>
-                <p>{{getErrorMsg('password', form.controls.password)}}</p>
-              </mat-error>
-            </mat-form-field>
 
-          </form>
-        </ion-row>
+              <mat-form-field appearance="outline">
+                <mat-label>Senha</mat-label>
+                <input formControlName="password" matInput required type="password" />
+                <mat-error>
+                  <p>{{getErrorMsg('password', form.controls.password)}}</p>
+                </mat-error>
+              </mat-form-field>
 
-        <ion-row class="remember-and-forgetPassword">
-          <div>
-            <mat-checkbox color="primary" class="example-margin"
-              >Lembrar email</mat-checkbox
-            >
-          </div>
-          <div class="forget-password">
-            <ion-button (click)="navigate('/password-recovery')" fill="clear"
-              >Esqueceu a senha?</ion-button
-            >
-          </div>
-        </ion-row>
+            </form>
+          </ion-row>
 
-        <ion-row class="login-btn">
-          <ion-button [disabled]="loading" (click)="login()" color="primary" expand="block"
-            >Login</ion-button
-          >
-        </ion-row>
+          <ion-row class="remember-and-forgetPassword">
+            <div>
+              <mat-checkbox color="primary" class="example-margin">Lembrar email</mat-checkbox>
+            </div>
+            <div class="forget-password">
+              <ion-button (click)="navigate('/password-recovery')" fill="clear">Esqueceu a senha?</ion-button>
+            </div>
+          </ion-row>
 
-        <ion-row class="signup">
-          <ion-text color="primary"
-            >Não possui conta?
-            <ion-button (click)="navigate('/choose-type')" fill="clear"
-              >Cadastre-se</ion-button
-            ></ion-text
-          >
-        </ion-row>
-      </div>
+          <ion-row class="login-btn">
+            <ion-button [disabled]="loading" (click)="login()" color="primary" expand="block">Login</ion-button>
+              <div *ngIf="loading" class="generic-loading-spinner">
+                <mat-spinner diameter="30"></mat-spinner>
+              </div>
+          </ion-row>
+        
+          <ion-row class="signup">
+            <ion-text color="primary">Não possui conta?
+              <ion-button (click)="navigate('/choose-type')" fill="clear">Cadastre-se</ion-button>
+            </ion-text>
+          </ion-row>
+        </div>
       </ion-col>
       <ion-col *ngIf="!env.isMobile" class="desktop-image">
         <img src="/assets/images/login_image.png" />

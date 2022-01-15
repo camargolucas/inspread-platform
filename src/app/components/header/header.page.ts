@@ -21,7 +21,11 @@ export class HeaderPage implements OnInit {
 
   }
 
+  enableButton = true;
   async presentPopover(ev: any) {
+    this.enableButton = false;
+
+
     const popover = await this.popoverController.create({
       component: PopoverComponent,
       cssClass: 'my-custom-class',
@@ -29,6 +33,7 @@ export class HeaderPage implements OnInit {
       translucent: true
     });
     await popover.present();
+    this.enableButton = true;
 
     const { role } = await popover.onDidDismiss();
 

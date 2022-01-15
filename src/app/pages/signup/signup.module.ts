@@ -10,7 +10,7 @@ import { SignupPage } from './signup.page';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { NgxMaskModule } from 'ngx-mask';
-
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 @NgModule({
   imports: [
     CommonModule,
@@ -20,7 +20,8 @@ import { NgxMaskModule } from 'ngx-mask';
     MatFormFieldModule,
     NgxMaskModule.forRoot(),
     MatInputModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatProgressSpinnerModule
   ],
   declarations: [SignupPage]
 })

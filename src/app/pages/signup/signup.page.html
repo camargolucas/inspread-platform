@@ -28,7 +28,7 @@
 
                     <mat-form-field appearance="outline">
                       <mat-label>Telefone</mat-label>
-                      <input formControlName="telefone" matInput [maxlength]="15" mask="(00) 00000-0000" type="text"/>
+                      <input formControlName="telefone" matInput [maxlength]="15" mask="(00) 00000-0000" type="text" />
                       <mat-error>
                         <p>{{getErrorMsg('telefone', form.controls?.telefone)}}</p>
                       </mat-error>
@@ -38,7 +38,7 @@
                     <!-- INFLUENCER -->
                     <mat-form-field *ngIf="checkUrlTypeInfluencer()" appearance="outline">
                       <mat-label>Qtd Seguidores</mat-label>
-                      <input formControlName="quantidadeSeguidores" matInput type="number"/>
+                      <input formControlName="quantidadeSeguidores" matInput type="number" />
                       <mat-error>
                         <p>{{getErrorMsg('quantidadeSeguidores', form.controls.quantidadeSeguidores)}}</p>
                       </mat-error>
@@ -94,9 +94,14 @@
                   </div>
                 </div>
               </form>
-              <ion-button [disabled]="loading" (click)="signUp()" style="width: 100%" expand="block">
-                Cadastrar
-              </ion-button>
+              <ion-row class="row-signup-button">
+                <ion-button [disabled]="loading" (click)="signUp()" style="width: 100%" expand="block">
+                  Cadastrar
+                </ion-button>
+                <div *ngIf="loading" class="generic-loading-spinner">
+                  <mat-spinner diameter="30"></mat-spinner>
+                </div>
+              </ion-row>
             </ion-row>
           </div>
         </ion-col>
