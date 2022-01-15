@@ -126,7 +126,7 @@ export class SignupPage implements OnInit {
     return this.checkIfMatch('', '');
   }
   checkIfMatch(passwordKey: string, passwordConfirmationKey: string) {
-    console.log('heyehyehe')
+
     return (group: FormGroup) => {
       let passwordInput = group.controls[passwordKey],
         passwordConfirmationInput = group.controls[passwordConfirmationKey];
@@ -193,7 +193,7 @@ export class SignupPage implements OnInit {
         )
       } else {
         this.user.signUpEmpresa(this.form.value).subscribe(ret => {
-          console.log('retorno', ret)
+ 
           this.loading = false
           if (ret['success']) {
             this.sucessSignUp()

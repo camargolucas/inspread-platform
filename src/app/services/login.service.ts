@@ -30,7 +30,7 @@ export class LoginService {
 
 
     this.http.post('https://app.id.tec.br/usuario/listar', JSON.stringify(body),  this.setHeader()).subscribe(ret =>{
-      console.log(ret)
+   
     }, error => {
       console.log(error)
     })

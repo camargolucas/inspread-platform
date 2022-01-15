@@ -7,9 +7,8 @@ ion-thumbnail {
   margin-top: 0.3rem;
 }
 
-
-ion-content{
-  --offset-bottom: auto!important;
+ion-content {
+  --offset-bottom: auto !important;
   --overflow: hidden;
   overflow: auto;
   &::-webkit-scrollbar {
@@ -45,20 +44,17 @@ ul {
 }
 
 ion-card {
-  max-width: 460px;
+  max-width: 500px;
   width: 100%;
   border-radius: 8px;
   --background: rgba(var(--ion-color-primary-rgb), 0.6);
   color: var(--ion-color-primary-contrast);
   margin-bottom: 1.5rem;
-  transition:  0.8s;
+  transition: 0.8s;
 
-
-  &:hover{
-    
+  &:hover {
     --background: rgba(var(--ion-color-primary-rgb), 1);
   }
-  
 }
 
 ion-card-content {
@@ -73,7 +69,7 @@ ion-card-content {
     margin: 0;
   }
 
-  span{
+  span {
     color: var(--ion-color-pimary-contrast);
     display: flex;
     align-items: center;
@@ -103,16 +99,17 @@ ion-card-content {
 
   margin-left: 1rem;
   margin-top: 0.5rem;
+  max-width: 200px;
+  overflow-wrap: anywhere;
 
-  p{
-      display: flex;
-      align-items: center;
+  p {
+    display: flex;
+    align-items: center;
 
-      ion-icon{
-        font-size: 20px;
-        margin-right: 0.2rem;
-      }
-     
+    ion-icon {
+      font-size: 20px;
+      margin-right: 0.2rem;
+    }
   }
 }
 
@@ -125,45 +122,48 @@ ion-card-content {
     align-items: center;
     justify-content: center;
 
-    ion-icon{
-        margin-left: 0.2rem;
+    ion-icon {
+      margin-left: 0.2rem;
     }
   }
-  &:hover{
+  &:hover {
     cursor: pointer;
   }
 }
 
+.user-img {
+  visibility: visible ;
+}
+@media (max-width: 767px) {
+  .user-img {
+    visibility: hidden !important;
+  }
+}
 
-.floating-icon{
+.floating-icon {
   position: absolute;
-    right: -28px;
-   bottom: -8px;
-    color: var(--ion-color-primary);    
-    opacity: 55%;
+  right: -28px;
+  bottom: -8px;
+  color: var(--ion-color-primary);
+  opacity: 55%;
 
-  ion-icon{
+  ion-icon {
     font-size: 165px;
   }
 
- 
-
-  .user{
+  .user {
     max-width: 230px;
     border-radius: 20px 0 0 100px;
   }
- 
-  
-  .postagem{
+
+  .postagem {
     max-width: 250px;
     border-radius: 20px 0 0 100px;
   }
 
-
-  @media (max-width:767px) {
-    img{
+  @media (max-width: 767px) {
+    img {
       max-width: 180px !important;
     }
   }
-
 }

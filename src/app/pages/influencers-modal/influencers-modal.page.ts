@@ -123,7 +123,7 @@ export class InfluencersModalPage implements OnInit {
 
 
   populateUserData() {
-    console.log(this.influencer)
+
     if (this.influencer['idTipoUsuario'] == TypeUser.Empresa) {
       this.userData = this.influencer['empresa']
     } else {
@@ -160,7 +160,7 @@ export class InfluencersModalPage implements OnInit {
   }
 
   populate() {
-    console.log(this.userData)
+
     Object.keys(this.firstFormGroup.controls).forEach(element => {      
       this.firstFormGroup.controls[element].setValue(this.userData[element])
     });
@@ -194,7 +194,7 @@ export class InfluencersModalPage implements OnInit {
   onFileChanged(event, type) {
     const file = event.target.files[0]
     this.user.profileImage = URL.createObjectURL(file)
-    console.log(this.user.profileImage)
+
   }
 
 }

@@ -20,13 +20,15 @@ export class HomePage implements OnInit {
 
 
    getUserName(){
-     const user = this.userObj
-     return this.userObj[user['descTipoUsuario'].toLowerCase()]['nome']
+     
+     const typeUser = this.userObj['descTipoUsuario']
+     return this.userObj[typeUser.toLowerCase()]['nome']
    }
 
    getUserEmail(){
     const user = this.userObj
-    return this.userObj[user['descTipoUsuario'].toLowerCase()]['email']
+    const typeUser = user['descTipoUsuario']
+    return user[typeUser.toLowerCase()]['email']
    }
 
    getTypeUser(type:string){

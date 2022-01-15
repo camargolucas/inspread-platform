@@ -37,7 +37,7 @@ export class PostagemModalPage implements OnInit {
   }
 
   async openModalImage(image){
-    console.log(image)
+
     const modal = await this.modal.create({
       component: ImageBigscreenPage,
       componentProps: {
@@ -50,7 +50,7 @@ export class PostagemModalPage implements OnInit {
 
   save(){
     this.presentAlert()
-    console.log(this.uploadedImages)
+
   }
 
   async presentAlert() {
@@ -62,13 +62,13 @@ export class PostagemModalPage implements OnInit {
         {
           text:'Sim',
           handler:() => {
-            console.log('pressed YES')
+          
           }
         },
         {
           text:'Não',
           handler:() => {
-            console.log('pressed NO')
+    
           }
         }
       ]
@@ -92,7 +92,7 @@ export class PostagemModalPage implements OnInit {
         id: imageId,
         visualization: 0
       }
-      console.log(type)
+
       this.uploadedImages[type].push(objImage)
      /*  if (type == 'story') {
         this.uploadedImagesStory.push(objImage)

@@ -29,8 +29,9 @@ export class PopoverComponent implements OnInit {
   getUserName(){
     const user = this.user.getUserStorage()
     if (Object.keys(user).length > 0 ){
-    
-      this.userName = user[user['descTipoUsuario'].toLowerCase()]['nome']
+      
+      const typeUser = user['descTipoUsuario']
+      this.userName = user[typeUser.toLowerCase()]['nome']
 
     }
   }

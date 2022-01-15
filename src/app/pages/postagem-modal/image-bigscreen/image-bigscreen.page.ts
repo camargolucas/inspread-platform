@@ -15,7 +15,7 @@ export class ImageBigscreenPage implements OnInit {
    }
 
   ngOnInit() {
-    console.log(this.data)
+   
     //
   }
 
