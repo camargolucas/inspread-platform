@@ -13,6 +13,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { PopoverModule } from './components/popover/popover.module';
 import { NgxMaskModule, IConfig } from 'ngx-mask'
 import { HttpClientModule } from '@angular/common/http';
+import { HashLocationStrategy,LocationStrategy } from '@angular/common';
 export const options: Partial<IConfig> | (() => Partial<IConfig>) = null;
 
 @NgModule({
@@ -22,7 +23,7 @@ export const options: Partial<IConfig> | (() => Partial<IConfig>) = null;
      HeaderPageModule, BrowserAnimationsModule, 
      FormsModule, ReactiveFormsModule, MatSelectModule, PopoverModule,NgxMaskModule.forRoot()
      ],
-  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
+  providers: [{ provide: LocationStrategy, useClass: HashLocationStrategy }],
   bootstrap: [AppComponent],
   schemas:      [ CUSTOM_ELEMENTS_SCHEMA ]
 })
