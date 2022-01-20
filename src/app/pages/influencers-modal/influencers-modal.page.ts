@@ -124,11 +124,8 @@ export class InfluencersModalPage implements OnInit {
 
   populateUserData() {
 
-    if (this.influencer['idTipoUsuario'] == TypeUser.Empresa) {
-      this.userData = this.influencer['empresa']
-    } else {
-      this.userData = this.influencer['influenciador']
-    }
+    const typeUser = this.influencer['descTipoUsuario'].toLowerCase()
+    this.userData = this.influencer[typeUser]    
   }
 
 
@@ -151,11 +148,12 @@ export class InfluencersModalPage implements OnInit {
       this.firstFormGroup.enable()
       this.secondFormGroup.enable()
       this.thirdFormGroup.enable()
+      this.fourthFormGroup.enable()
     } else {
       this.firstFormGroup.disable()
       this.secondFormGroup.disable()
       this.thirdFormGroup.disable()
-     
+      this.fourthFormGroup.disable()
     }
   }
 

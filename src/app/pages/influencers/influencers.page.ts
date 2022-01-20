@@ -64,9 +64,10 @@ export class InfluencersPage implements OnInit {
   }
 
   async openDetails(influenciador){
-
+    console.log(influenciador)
     const customObj = {
       idTipoUsuario:TypeUser.Influenciador,
+      descTipoUsuario: 'influenciador',
       influenciador
 
 
