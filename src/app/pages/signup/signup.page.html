@@ -54,7 +54,7 @@
                     <!-- EMPRESA -->
                     <mat-form-field *ngIf="!checkUrlTypeInfluencer()" appearance="outline">
                       <mat-label>CNPJ</mat-label>
-                      <input [maxlength]="14" mask="CPF_CNPJ" formControlName="cnpj" matInput />
+                      <input [maxlength]="18" mask="CPF_CNPJ" formControlName="cnpj" matInput />
                       <mat-error>
                         <p>{{getErrorMsg('cnpj', form.controls.cnpj)}}</p>
                       </mat-error>

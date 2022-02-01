@@ -13,7 +13,7 @@ export class AppComponent {
     
     {id:'influencers', title: 'Influencers', url: '/influencers', icon: '/assets/images/influencer-icon.svg' },
     
-    {id:'posts', title: 'Postagem', url: '/postagem', icon: '/assets/images/postagem-icon.svg' },    
+   /*  {id:'posts', title: 'Postagem', url: '/postagem', icon: '/assets/images/postagem-icon.svg' },     */
   ];
 
   

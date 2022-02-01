@@ -188,6 +188,7 @@ export class SignupPage implements OnInit {
           }
         }, error => {
           this.loading = false
+          this.popUp('Ops, Algo deu errado!', 'Houve um problema ao cadastrar o usuário!')
           console.error(error)
         }
         )
@@ -202,6 +203,7 @@ export class SignupPage implements OnInit {
           }
         }, error => {
           this.loading = false
+          this.popUp('Ops, Algo deu errado!', 'Houve um problema ao cadastrar o usuário!')
           console.error(error)
         })
       }
