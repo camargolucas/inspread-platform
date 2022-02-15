@@ -4,27 +4,23 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { PostagemModalPageRoutingModule } from './postagem-modal-routing.module';
+import { CompanysPageRoutingModule } from './companys-routing.module';
 
-import { PostagemModalPage } from './postagem-modal.page';
+import { CompanysPage } from './companys.page';
 import { HeaderPageModule } from 'src/app/components/header/header.module';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { NgxMaskModule } from 'ngx-mask';
-import { SharedModule } from 'src/app/shared/shared.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    PostagemModalPageRoutingModule,
+    CompanysPageRoutingModule,
     HeaderPageModule,
     MatFormFieldModule,
-    MatInputModule,
-    NgxMaskModule.forRoot(),
-    SharedModule
+    MatInputModule
   ],
-  declarations: [PostagemModalPage]
+  declarations: [CompanysPage]
 })
-export class PostagemModalPageModule {}
+export class CompanysPageModule {}

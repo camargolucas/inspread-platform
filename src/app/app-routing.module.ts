@@ -63,8 +63,16 @@ const routes: Routes = [
     data: { title: 'Postagem' },
     canActivate: [AuthGuard]
   },
+  {
+    path: 'companys',
+    loadChildren: () => import('./pages/companys/companys.module').then( m => m.CompanysPageModule),
+    data: { title: 'Empresas', id:'companys' },
+    canActivate: [AuthGuard, PermissionGuard]
+  },
 
   { path: '**', redirectTo: '/home' },
+
+
 
 
 

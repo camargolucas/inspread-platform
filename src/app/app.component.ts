@@ -8,15 +8,8 @@ import { UserService } from './services/user.service';
   styleUrls: ['app.component.scss'],
 })
 export class AppComponent {
-  public appPages = [
-    {id:'home', title: 'Ínicio', url: '/home', icon: '/assets/images/home-icon.svg' },
-    
-    {id:'influencers', title: 'Influencers', url: '/influencers', icon: '/assets/images/influencer-icon.svg' },
-    
-   /*  {id:'posts', title: 'Postagem', url: '/postagem', icon: '/assets/images/postagem-icon.svg' },     */
-  ];
 
-  
+
 
   sideMenu = 'end'
 
@@ -29,17 +22,15 @@ export class AppComponent {
 
   public labels = ['Family', 'Friends', 'Notes', 'Work', 'Travel', 'Reminders'];
   constructor(public router: Router, private activatedRoute: ActivatedRoute, public env: EnvironmentService, public user: UserService) {
-    //this.permissionControl()
+    this.menuControl()
   }
-
-  // TODO Tratar no guard a rota que necessita autenticação do usuário
 
   ngOnInit(): void {
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
     //Add 'implements OnInit' to the class.
     //console.log(this.router.url.toString().split('/'))
     setTimeout(() => {
-     
+
     }, 400);
 
 
@@ -48,7 +39,21 @@ export class AppComponent {
     return this.router.url == "/login"
   }
 
-  permissionControl(){
+  menu = []
+  menuControl() {
+    try {
+      const user = this.user.getUserStorage()
+      const typeUser = user['descTipoUsuario'].toLowerCase();
+
+      this.menu = this.user.arrMenus[typeUser]
+    
+    } catch (error) {
+
+    }
+  }
+
+
+  /* permissionControl(){
     const pagesToBlock = ['influencers']
     
     const index = this.appPages.findIndex(page =>{
@@ -57,7 +62,7 @@ export class AppComponent {
 
     this.appPages.splice(index, 1)   
   }
-
+ */
 
   logout() {
     this.user.logout()

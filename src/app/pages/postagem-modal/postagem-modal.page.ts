@@ -3,6 +3,14 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { AlertController, ModalController } from '@ionic/angular';
 import { ImageBigscreenPage } from './image-bigscreen/image-bigscreen.page';
 
+
+interface postData {
+  type: string,
+  icon: string,
+  color: string,
+}
+
+
 @Component({
   selector: 'app-postagem-modal',
   templateUrl: './postagem-modal.page.html',
@@ -11,7 +19,7 @@ import { ImageBigscreenPage } from './image-bigscreen/image-bigscreen.page';
 export class PostagemModalPage implements OnInit {
   @ViewChild('fileInputStory') uploadElRef: ElementRef
 
-  constructor(public _DomSanitizationService: DomSanitizer, private modal:ModalController, private alertController:AlertController) { }
+  constructor(public _DomSanitizationService: DomSanitizer, private modal: ModalController, private alertController: AlertController) { }
   selectedFile;
   uploadedImagesFeed = []
   uploadedImagesStory = []
@@ -19,12 +27,24 @@ export class PostagemModalPage implements OnInit {
   uploadedImages = {
     story: [],
     reels: [],
-    feed:[]
+    feed: []
   }
-  
-  types = ['story', 'reels', 'feed']
 
+  types: Array<postData> = [
+    { type: 'story', color: 'secondary', icon: '/assets/images/story-icon.svg' },
+    { type: 'feed', color: 'primary', icon: '/assets/images/feed-icon.svg' },
+    { type: 'reels', color: 'tertiary', icon: '/assets/images/reels-icon.svg' }
+  ]
+
+
+  /* 
+  = [
+    {type:'story', color:}, 
+  'reels', 
+  'feed']
+ */
   ngOnInit() {
+   
   }
 
   removeImage(id, type) {
@@ -36,19 +56,19 @@ export class PostagemModalPage implements OnInit {
     this.uploadedImages[type].splice(index, 1);
   }
 
-  async openModalImage(image){
+  async openModalImage(image) {
 
     const modal = await this.modal.create({
       component: ImageBigscreenPage,
       componentProps: {
-        data:image
+        data: image
       }
     })
 
     await modal.present()
   }
 
-  save(){
+  save() {
     this.presentAlert()
 
   }
@@ -60,15 +80,15 @@ export class PostagemModalPage implements OnInit {
       message: 'Deseja salvar suas alteracoes?',
       buttons: [
         {
-          text:'Sim',
-          handler:() => {
-          
+          text: 'Sim',
+          handler: () => {
+
           }
         },
         {
-          text:'Não',
-          handler:() => {
-    
+          text: 'Não',
+          handler: () => {
+
           }
         }
       ]
@@ -94,13 +114,13 @@ export class PostagemModalPage implements OnInit {
       }
 
       this.uploadedImages[type].push(objImage)
-     /*  if (type == 'story') {
-        this.uploadedImagesStory.push(objImage)
-      } else if (type == 'reels') {
-        this.uploadedImagesReels.push(objImage)
-      } else if (type == 'feed') {
-        this.uploadedImagesFeed.push(objImage)
-      } */
+      /*  if (type == 'story') {
+         this.uploadedImagesStory.push(objImage)
+       } else if (type == 'reels') {
+         this.uploadedImagesReels.push(objImage)
+       } else if (type == 'feed') {
+         this.uploadedImagesFeed.push(objImage)
+       } */
 
       //this.uploadElRef.nativeElement.value = ''
     });

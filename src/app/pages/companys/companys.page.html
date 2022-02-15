@@ -1,0 +1,40 @@
+<app-header></app-header>
+
+<ion-content>
+  <ion-row>
+    <mat-form-field appearance="outline">
+      <mat-label><ion-icon style="margin-right: 0.5rem;" name="search-outline"></ion-icon>Buscar Empresas</mat-label>
+      <input (keyup)="filter($event)" placeholder="Digite nome de uma empresa" matInput />
+    </mat-form-field>
+  </ion-row>
+
+  <div class="notfound" *ngIf="!filteredCompanys || !filteredCompanys.length">    
+    <h3>Não encontramos empresa ):</h3>
+    <img src="/assets/images/notfound.png">
+  </div>
+
+  <ion-card *ngFor="let company of filteredCompanys" >
+    <ion-card-content>
+      <ion-row style="align-items: center;">   
+        <ion-col *ngIf="company.nome" style="text-align: start;" sizeXs="6" sizeMd="3" class="col-label">
+            <span class="title-col">Nome</span>
+            <span>{{company.nome}}</span>
+        </ion-col>
+        <ion-col *ngIf="company.cnpj" style="text-align: start;" sizeXs="6" sizeMd="3" class="col-label">
+          <span class="title-col">CNPJ</span>
+          <span>{{company.cnpj}}</span>
+      </ion-col>
+      <ion-col *ngIf="company.email" style="text-align: start;" sizeXs="6" sizeMd="3" class="col-label">
+        <span class="title-col">Email</span>
+        <span>{{company.email}}</span>
+    </ion-col>
+    <ion-col *ngIf="company.telefone" style="text-align: start;" sizeXs="6" sizeMd="3" class="col-label">
+      <span class="title-col">Telefone</span>
+      <span>{{company.telefone}}</span>
+  </ion-col>
+      </ion-row>
+    </ion-card-content>
+  </ion-card>
+
+
+</ion-content>

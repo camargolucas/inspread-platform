@@ -10,6 +10,7 @@ import { LoginPage } from './login.page';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import {MatCheckboxModule} from '@angular/material/checkbox';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 @NgModule({
   imports: [
@@ -22,6 +23,7 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
     MatCheckboxModule,
     ReactiveFormsModule,
     MatProgressSpinnerModule,
+    SharedModule
 
   
     

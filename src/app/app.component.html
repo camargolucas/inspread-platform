@@ -10,7 +10,13 @@
           <ion-list-header>
             <img src="/assets/images/logo_pink.svg" />
           </ion-list-header>
-          <ion-menu-toggle  [ngClass]="{hide: user.pagesToRemoveWithoutPermission.includes(p.id)}" auto-hide="false" *ngFor="let p of appPages; let i = index">
+
+          <ion-menu-toggle *ngFor="let p of menu" >
+
+          </ion-menu-toggle>
+ <!-- OLD VALIDATION -->
+<!--  [ngClass]="{hide: user.pagesToRemoveWithoutPermission.includes(p.id)}" -->
+          <ion-menu-toggle  auto-hide="false" *ngFor="let p of menu; let i = index">
             <ion-item class="item-menu" routerDirection="root" [routerLink]="[p.url]"
               lines="none" detail="false" routerLinkActive="selected">
               <!--  <ion-icon slot="start" [ios]="p.icon + '-outline'" [md]="p.icon + '-sharp'"></ion-icon> -->

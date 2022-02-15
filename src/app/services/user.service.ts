@@ -27,10 +27,31 @@ export class UserService {
 
   }
 
+  arrMenus = {
+    influencer: [
+      { id: 'home', title: 'Ínicio', url: '/home', icon: '/assets/images/home-icon.svg' },
+    ],
+    empresa: [
+      { id: 'home', title: 'Ínicio', url: '/home', icon: '/assets/images/home-icon.svg' },
+
+      { id: 'influencers', title: 'Influencers', url: '/influencers', icon: '/assets/images/influencer-icon.svg' },
+    ],
+    administrador: [
+      { id: 'home', title: 'Ínicio', url: '/home', icon: '/assets/images/home-icon.svg' },
+
+      { id: 'influencers', title: 'Influencers', url: '/influencers', icon: '/assets/images/influencer-icon.svg' },
+
+      { id: 'companys', title: 'Empresas', url: '/companys', icon: '/assets/images/company.svg' },
+    ]
+
+  }
+  
+
 
   pagesToRemoveWithoutPermission = [
-
+   
   ]
+
 
 
   influencerMenuToRemove = [
@@ -64,13 +85,13 @@ export class UserService {
     }
   }
 
-  async openModalUser(user?: Object) {  
+  async openModalUser(user?: Object) {
     if (Object.keys(user).length > 0) {
       const modal = await this.modal.create({
         component: InfluencersModalPage,
         componentProps: {
           influencer: user,
-          isEditMode: true,        
+          isEditMode: true,
         },
         cssClass: 'influencer-modal',
       });
@@ -144,6 +165,13 @@ export class UserService {
     user['razaoSocial'] = objUser['razaoSocial']
 
     return this.http.post('https://api.id.tec.br/empresa/cadastrar', JSON.stringify(user), this.setHeader())
+  }
+
+
+  getCompanys(){
+    return this.http
+    .get('https://api.id.tec.br/Empresa/listar'
+    );
   }
 
 

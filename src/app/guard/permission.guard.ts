@@ -13,10 +13,11 @@ export class PermissionGuard implements CanActivate {
 
 
     if (this.auth.cantAccessThisPage(route.data['id'])) {
+      return true
+    } else {
+
       this.router.navigate(['/home'], { replaceUrl: true })
       return false
-    } else {
-      return true
     }
 
   }

@@ -42,8 +42,8 @@
             </div>
           </div>
 
-          <mat-form-field *ngIf="verifyTypeUser('Empresa')" appearance="outline" style="max-width: 100%">
-            <mat-label>Razão Social</mat-label>
+          <mat-form-field *ngIf="!verifyTypeUser('Influenciador')" appearance="outline" style="max-width: 100%">
+            <mat-label>{{verifyTypeUser('Empresa') ? 'Razão Social' : 'Nome' }} </mat-label>
             <input matInput placeholder="Razão Social" formControlName="nome" required />
           </mat-form-field>
 

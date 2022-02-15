@@ -21,9 +21,18 @@ export class AuthenticationService {
 
 
   cantAccessThisPage(pageId){
+
     try {
-      const permissionsToExclude = this.user.pagesToRemoveWithoutPermission
-      return permissionsToExclude.includes(pageId)
+      const user = this.user.getUserStorage()
+
+      const typeUser = user['descTipoUsuario'].toLowerCase()
+      const pages = this.user.arrMenus[typeUser]
+
+      const pagesUserId = pages.map(page => {
+        return page.id
+      })
+
+      return pagesUserId.includes(pageId)
     } catch (error) {
       console.log('can get user', error)
     }

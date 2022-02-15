@@ -15,6 +15,10 @@
     </ion-fab-button>
   </ion-fab>
   <div>
+    <div *ngFor="let type of types">
+      <app-postagem [type]="type.type" [color]="type.color" [icon]="type.icon"></app-postagem>
+    </div>
+    
     <ion-row>
       <div class="section">
         <ion-icon color="secondary" src="/assets/images/story-icon.svg"></ion-icon>

@@ -1,0 +1,43 @@
+
+ion-card{
+    margin-bottom: 1.5rem;
+    ion-card-content{
+        padding: 1rem 0.5rem 0.5rem 0.5rem;
+        text-align: center;
+    }
+
+   /*  &:hover{
+        cursor: pointer;
+    } */
+}
+
+ion-col{
+    margin-bottom: 1rem;
+}
+
+
+.col-label{
+    display: flex;
+    flex-direction: column;
+    color: var(--ion-color-medium-shade);
+
+    .title-col{
+        font-weight: 500;
+    }
+}
+
+.notfound{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+    img{
+
+        max-width: 400px;
+    }
+
+    h3{
+        color: gray;
+    }
+}
