@@ -74,7 +74,19 @@ export class UserService {
     return requestOptions;
   }
 
+  menu = []
+  menuUserControl() {
+    try {
 
+      const user = this.getUserStorage()
+      const typeUser = user['descTipoUsuario'].toLowerCase();
+
+      this.menu = this.arrMenus[typeUser]
+    
+    } catch (error) {
+
+    }
+  }
 
   removeMenuPermission() {
     const user = this.getUserStorage()

@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
 import { EnvironmentService } from 'src/app/services/environment.service';
 import { LoginService } from 'src/app/services/login.service';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-login',
@@ -32,7 +33,7 @@ export class LoginPage implements OnInit {
   };
 
   form: FormGroup;
-  constructor(private router: Router, public env: EnvironmentService, private loginService: LoginService) { }
+  constructor(private router: Router, public env: EnvironmentService, private loginService: LoginService, private user:UserService) { }
 
   ngOnInit() {
     this.form = new FormGroup({
@@ -65,8 +66,9 @@ export class LoginPage implements OnInit {
     return false
   }
 
-  setUserStorage(user) {
-    localStorage.setItem('user', JSON.stringify(user))
+  async setUserStorage(user) {
+    await localStorage.setItem('user', JSON.stringify(user))
+    this.user.menuUserControl()
   }
 
 
@@ -92,6 +94,7 @@ export class LoginPage implements OnInit {
       this.loginService.login(userObject).subscribe(ret => {
         this.loading = false
         if (ret['success']) {
+         
           this.navigate('/home')
           this.setUserStorage(ret['response'])
         } else {

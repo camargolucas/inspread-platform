@@ -22,7 +22,7 @@ export class AppComponent {
 
   public labels = ['Family', 'Friends', 'Notes', 'Work', 'Travel', 'Reminders'];
   constructor(public router: Router, private activatedRoute: ActivatedRoute, public env: EnvironmentService, public user: UserService) {
-    this.menuControl()
+    this.user.menuUserControl()
   }
 
   ngOnInit(): void {
@@ -39,18 +39,7 @@ export class AppComponent {
     return this.router.url == "/login"
   }
 
-  menu = []
-  menuControl() {
-    try {
-      const user = this.user.getUserStorage()
-      const typeUser = user['descTipoUsuario'].toLowerCase();
 
-      this.menu = this.user.arrMenus[typeUser]
-    
-    } catch (error) {
-
-    }
-  }
 
 
   /* permissionControl(){
