@@ -144,7 +144,8 @@ export class InfluencersModalPage implements OnInit {
   }
 
   visualizationMode() {
-    if (this.isEditMode) {
+    /* this.isEditMode */
+    if (false) {
       this.firstFormGroup.enable()
       this.secondFormGroup.enable()
       this.thirdFormGroup.enable()
