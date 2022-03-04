@@ -12,10 +12,11 @@
           <div style="text-align: center;width: 100%;">
             <img style="max-width: 130px;" [src]="_DomSanitizationService.bypassSecurityTrustUrl(user.profileImage)">
             <div>
-              <input style="display: none" type="file" (change)="onFileChanged($event, 'reels')" #fileInput multiple>
+                <!-- IMAGE BUTTON -->
+             <!--  <input style="display: none" type="file" (change)="onFileChanged($event, 'reels')" #fileInput multiple>
               <ion-button [disabled]="!isEditMode" class="btn-upload " (click)="fileInput.click()" color="primary">
                 <ion-icon name="camera"></ion-icon>
-              </ion-button>
+              </ion-button> -->
             </div>
           </div>
           <div style="width: 100%;" *ngIf="verifyTypeUser('Influenciador')">
