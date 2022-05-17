@@ -1,83 +1,82 @@
-form{
+form {
     width: 100%;
-    .mat-form-field{
+    .mat-form-field {
         width: 100%;
     }
 
     padding-top: 0.5rem;
 }
 
+.save-fab {
+    width: 45px;
+    height: 45px;
+    margin: 0 0.5rem 0.5rem 0;
+}
 
 .mat-slider-horizontal {
     height: 48px;
     width: 100%;
 }
 
-.btn-upload{
+.btn-upload {
     max-width: 130px;
     width: 100%;
-    ion-icon{
+    ion-icon {
         font-size: 28px;
     }
 }
 
-span{
+span {
     text-transform: inherit;
 }
 
-.section{
+.section {
     margin-top: 0.5rem;
 }
 
-
-.public-content{
+.public-content {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
     padding: 5px;
-    border: solid 1px var(--ion-color-medium);
+    border: none;
     border-radius: 8px;
 
-    .content-title{
+    .content-title {
         padding: 0.5rem 0.5rem 0.5rem 0.2rem;
         font-weight: 500;
     }
 
-    ion-col{
-        .mat-checkbox{
+    ion-col {
+        .mat-checkbox {
             max-width: 120px;
             min-width: 90px;
         }
     }
-   
-   
-
 }
 
-
-ion-row{
+ion-row {
     margin: 0.5rem 0 1rem 0;
 }
 
-.banco-agencia-cc{
+.banco-agencia-cc {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
 
-    .banco{
-
+    .banco {
         max-width: 270px;
     }
 
-    .mat-form-field{
+    .mat-form-field {
         max-width: 330px;
     }
 
-    .cc-agencia{
+    .cc-agencia {
         display: flex;
         justify-content: space-between;
-    
-        .mat-form-field{
+
+        .mat-form-field {
             max-width: 110px;
             padding-right: 0.5rem;
         }
@@ -86,50 +85,42 @@ ion-row{
 
 $field-with: 330px;
 
-.flex-content{
-
+.flex-content {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-    .mat-form-field{
+    .mat-form-field {
         max-width: $field-with;
     }
-        
-        
-    .flex-field{
-            
+
+    .flex-field {
         display: flex;
         justify-content: space-between;
         width: $field-with;
 
-        .numero{
+        .numero {
             max-width: 80px;
             margin-right: 1rem;
         }
 
-        .complemento{
+        .complemento {
             max-width: 100%;
         }
-    }   
-
+    }
 }
 
-.tag-idade-genero{
+.tag-idade-genero {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
     width: 100%;
 
-    .idade{
+    .idade {
         max-width: 130px;
         padding-right: 1rem;
     }
 
-    .genero{
+    .genero {
         max-width: 165px;
     }
 }
-
-
-
-

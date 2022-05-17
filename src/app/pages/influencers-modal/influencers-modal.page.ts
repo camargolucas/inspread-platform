@@ -15,7 +15,7 @@ import { TypeUser } from 'src/app/interface/typeUser';
   styleUrls: ['./influencers-modal.page.scss'],
 })
 export class InfluencersModalPage implements OnInit {
-  @Input() influencer
+  @Input() userObjectDB
   @Input() isEditMode
 
 
@@ -48,16 +48,16 @@ export class InfluencersModalPage implements OnInit {
 
 
   typeUser: number
-  firstFormGroup: any;
-  secondFormGroup: any;
-  thirdFormGroup: any;
-  fourthFormGroup: any;
+  userPersonalFormGroup: any;
+  accountDataFormGroup: any;
+  addressFormGroup: any;
+  bankDataFormGroup: any;
 
   constructor(private _formBuilder: FormBuilder, private breakpointObserver: BreakpointObserver, private router: Router, private modal: ModalController, public _DomSanitizationService: DomSanitizer,
     public user: UserService) {
     this.stepperOrientation = breakpointObserver.observe('(min-width: 800px)')
       .pipe(map(({ matches }) => matches ? 'horizontal' : 'vertical'));
-    
+
 
   }
 
@@ -65,7 +65,7 @@ export class InfluencersModalPage implements OnInit {
 
   createFormGroup() {
     if (this.getTypeUser() == TypeUser.Influenciador) {
-      this.firstFormGroup = this._formBuilder.group({
+      this.userPersonalFormGroup = this._formBuilder.group({
         nome: ['', Validators.required],
         idade: [''],
         tag: [''],
@@ -76,7 +76,7 @@ export class InfluencersModalPage implements OnInit {
         cpf: ['']
       });
     } else {
-      this.firstFormGroup = this._formBuilder.group({
+      this.userPersonalFormGroup = this._formBuilder.group({
         nome: ['', Validators.required],
         telefone: ['', Validators.required],
         email: ['', Validators.required],
@@ -84,14 +84,14 @@ export class InfluencersModalPage implements OnInit {
       });
     }
 
-    this.secondFormGroup = this._formBuilder.group({
+    this.accountDataFormGroup = this._formBuilder.group({
       porcSeguidoresMulheres: ['',],
       permuta: ['',],
       firstState: ['',],
       secondState: ['',],
 
     });
-    this.thirdFormGroup = this._formBuilder.group({
+    this.addressFormGroup = this._formBuilder.group({
       cep: ['',],
       rua: ['',],
       bairro: ['',],
@@ -100,12 +100,12 @@ export class InfluencersModalPage implements OnInit {
       estado: ['',],
       cidade: ['',]
     });
-    this.fourthFormGroup = this._formBuilder.group({
+    this.bankDataFormGroup = this._formBuilder.group({
       banco: ['',],
       contaCorrente: ['',],
       agencia: ['',],
-      nome: ['',],
-      cpf: ['',],
+      nomeFavorecido: ['',],
+      cpfFavorecido: ['',],
     });
   }
 
@@ -115,8 +115,8 @@ export class InfluencersModalPage implements OnInit {
     this.populateUserData()
     this.typeUser = this.getTypeUser()
 
-    this.populate()   
-  
+    this.populate()
+    console.log(this.userObjectDB)
     this.visualizationMode()
 
   }
@@ -124,13 +124,14 @@ export class InfluencersModalPage implements OnInit {
 
   populateUserData() {
 
-    const typeUser = this.influencer['descTipoUsuario'].toLowerCase()
-    this.userData = this.influencer[typeUser]    
+    const typeUser = this.userObjectDB['descTipoUsuario'].toLowerCase()
+    this.userData = this.userObjectDB[typeUser]
+    console.log(this.userData)
   }
 
 
-  verifyTypeUser(type){
-    return this.typeUser === Number(this.getEnum(type)) 
+  verifyTypeUser(type) {
+    return this.typeUser === Number(this.getEnum(type))
   }
 
   getEnum(type) {
@@ -138,48 +139,48 @@ export class InfluencersModalPage implements OnInit {
   }
 
   getTypeUser(): number {
-    
-    return this.influencer['idTipoUsuario']
+
+    return this.userObjectDB['idTipoUsuario']
 
   }
 
   visualizationMode() {
     /* this.isEditMode */
     if (false) {
-      this.firstFormGroup.enable()
-      this.secondFormGroup.enable()
-      this.thirdFormGroup.enable()
-      this.fourthFormGroup.enable()
+      this.userPersonalFormGroup.enable()
+      this.accountDataFormGroup.enable()
+      this.addressFormGroup.enable()
+      this.bankDataFormGroup.enable()
     } else {
-      this.firstFormGroup.disable()
-      this.secondFormGroup.disable()
-      this.thirdFormGroup.disable()
-      this.fourthFormGroup.disable()
+      this.userPersonalFormGroup.disable()
+      this.accountDataFormGroup.disable()
+      this.addressFormGroup.disable()
+      this.bankDataFormGroup.disable()
     }
   }
 
   populate() {
 
-    Object.keys(this.firstFormGroup.controls).forEach(element => {      
-      this.firstFormGroup.controls[element].setValue(this.userData[element])
+    Object.keys(this.userPersonalFormGroup.controls).forEach(element => {
+      this.userPersonalFormGroup.controls[element].setValue(this.userData[element])
     });
 
-    if(TypeUser.Influenciador == this.getTypeUser()){
+    if (TypeUser.Influenciador == this.getTypeUser()) {
       this.populateEnderecos()
     }
-    
 
-  
+
+
   }
 
 
-  populateEnderecos(){
-    
-    Object.keys(this.thirdFormGroup.controls).forEach(element => {
-      if(this.userData['influenciadorEnderecos'][0] && this.userData['influenciadorEnderecos'][0][element]){
-        this.thirdFormGroup.controls[element].setValue(this.userData['influenciadorEnderecos'][0][element])
+  populateEnderecos() {
+
+    Object.keys(this.addressFormGroup.controls).forEach(element => {
+      if (this.userData['influenciadorEnderecos'][0] && this.userData['influenciadorEnderecos'][0][element]) {
+        this.addressFormGroup.controls[element].setValue(this.userData['influenciadorEnderecos'][0][element])
       }
-     
+
     });
 
   }
@@ -193,6 +194,26 @@ export class InfluencersModalPage implements OnInit {
   onFileChanged(event, type) {
     const file = event.target.files[0]
     this.user.profileImage = URL.createObjectURL(file)
+
+  }
+
+  concatForms(): Object {
+    let concatedFormsGroups = {
+      ...this.userPersonalFormGroup.value,
+      ...this.accountDataFormGroup.value,
+      InfluenciadorDadosBancarios: {
+        ...this.bankDataFormGroup.value
+      }
+    }
+
+    return concatedFormsGroups
+  }
+
+  save() {
+    const payload = this.concatForms()
+    this.user.updateUser(payload, '').subscribe(ret => {
+      console.log(ret)
+    })
 
   }
 

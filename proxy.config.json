@@ -1,0 +1,11 @@
+{
+    "/url-api/*": {
+      "target": "https://api.id.tec.br",
+      "secure": false,
+      "changeOrigin": true,
+      "logLevel":"debug",
+      "pathRewrite": {
+        "^/url-api": ""
+      }
+    }
+}

@@ -2,18 +2,23 @@
   <div style="position: absolute; right:0;top: 0;">
     <ion-button (click)="back()" fill="clear">Voltar</ion-button>
   </div>
+  <ion-fab *ngIf="isEditMode" vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button class="save-fab" (click)="save()" color="success" >
+      <ion-icon name="checkmark-outline"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
   <mat-stepper style="margin-top: 1rem;" class="example-stepper" [orientation]="(stepperOrientation | async)!">
-    <mat-step [stepControl]="firstFormGroup" label="Dados Pessoais">
+    <mat-step [stepControl]="userPersonalFormGroup" label="Dados Pessoais">
       <!-- FIRST FORRM GROUP DADOS PESSOAIS  -->
 
-      <form [formGroup]="firstFormGroup">
+      <form [formGroup]="userPersonalFormGroup">
         <div class="flex-content">
 
           <div style="text-align: center;width: 100%;">
             <img style="max-width: 130px;" [src]="_DomSanitizationService.bypassSecurityTrustUrl(user.profileImage)">
             <div>
-                <!-- IMAGE BUTTON -->
-             <!--  <input style="display: none" type="file" (change)="onFileChanged($event, 'reels')" #fileInput multiple>
+              <!-- IMAGE BUTTON -->
+              <!--  <input style="display: none" type="file" (change)="onFileChanged($event, 'reels')" #fileInput multiple>
               <ion-button [disabled]="!isEditMode" class="btn-upload " (click)="fileInput.click()" color="primary">
                 <ion-icon name="camera"></ion-icon>
               </ion-button> -->
@@ -76,10 +81,10 @@
     </mat-step>
     <!-- END FIRST FORM DADOS PESSOAIS -->
 
-    <mat-step *ngIf="verifyTypeUser('Influenciador')" [stepControl]="secondFormGroup" label="Dados Empresáriais">
+    <mat-step *ngIf="verifyTypeUser('Influenciador')" [stepControl]="accountDataFormGroup" label="Dados Empresáriais">
       <!-- INICIO SECOND FORRM GROUP DADOS EMPRESARIAIS  -->
 
-      <form [formGroup]="secondFormGroup">
+      <form [formGroup]="accountDataFormGroup">
         <ion-row>
           <label><span>% de mulheres que te seguem <b>{{porcSeguidores}}</b></span></label>
           <mat-slider thumbLabel formControlName="porcSeguidoresMulheres" [(ngModel)]="porcSeguidores"
@@ -126,10 +131,10 @@
     </mat-step>
     <!-- FIM SECOND FORRM GROUP DADOS EMPRESARIAIS  -->
 
-    <mat-step *ngIf="verifyTypeUser('Influenciador')" [stepControl]="thirdFormGroup" label="Endereço">
+    <mat-step *ngIf="verifyTypeUser('Influenciador')" [stepControl]="addressFormGroup" label="Endereço">
       <!-- INICIO THIRD FORRM GROUP ENDERECO  -->
 
-      <form [formGroup]="thirdFormGroup">
+      <form [formGroup]="addressFormGroup">
         <div class="flex-content">
           <mat-form-field appearance="outline">
             <mat-label>Cep</mat-label>
@@ -172,9 +177,9 @@
     </mat-step>
     <!-- FIM THIRD FORRM GROUP ENDERECO  -->
 
-    <mat-step *ngIf="verifyTypeUser('Influenciador')" [stepControl]="fourthFormGroup" label="Dados Bancários">
+    <mat-step *ngIf="verifyTypeUser('Influenciador')" [stepControl]="bankDataFormGroup" label="Dados Bancários">
       <!-- INICIO FOURTH FORRM GROUP DADOS BANCARIOS  -->
-      <form [formGroup]="fourthFormGroup">
+      <form [formGroup]="bankDataFormGroup">
         <div class="banco-agencia-cc">
           <mat-form-field appearance="outline" class="banco">
             <mat-label>Banco</mat-label>
@@ -193,11 +198,11 @@
 
           <mat-form-field appearance="outline">
             <mat-label>Nome Favorecido</mat-label>
-            <input formControlName="nome" matInput placeholder="Ex. 12345678" />
+            <input formControlName="nomeFavorecido" matInput placeholder="Ex. 12345678" />
           </mat-form-field>
           <mat-form-field appearance="outline">
             <mat-label>CPF Favorecido</mat-label>
-            <input formControlName="cpf" matInput placeholder="Ex. 12345678" [maxlength]="14" mask="CPF_CNPJ" />
+            <input formControlName="cpfFavorecido" matInput placeholder="Ex. 12345678" [maxlength]="14" mask="CPF_CNPJ" />
           </mat-form-field>
         </div>
 

@@ -63,23 +63,17 @@ export class InfluencersPage implements OnInit {
     }
   }
 
+  
+
   async openDetails(influenciador){
-    console.log(influenciador)
-    const customObj = {
+ 
+   
+    const fullInfluencerObject = {
       idTipoUsuario:TypeUser.Influenciador,
       descTipoUsuario: 'influenciador',
       influenciador
-
-
     }
-    const modal = await this.modal.create({
-      component:InfluencersModalPage,
-      componentProps: {
-        influencer:customObj,
-        isEditMode: false,
-      },
-      cssClass: 'influencer-modal'
-    })
-   return await modal.present();
+
+    this.userService.openModalUser(fullInfluencerObject, false)  
   }
 }

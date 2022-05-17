@@ -5,6 +5,9 @@ import { ModalController } from '@ionic/angular';
 import { InfluencersModalPage } from '../pages/influencers-modal/influencers-modal.page';
 
 import { TypeUser } from '../interface/typeUser';
+import { Observable, of } from 'rxjs';
+import { switchMap, take } from 'rxjs/operators';
+import { ApiService } from './api.service';
 
 
 @Injectable({
@@ -22,13 +25,14 @@ export class UserService {
     private modal: ModalController,
     private router: Router,
     private http: HttpClient,
+    private api: ApiService
 
   ) {
 
   }
 
   arrMenus = {
-    influencer: [
+    influenciador: [
       { id: 'home', title: 'Ínicio', url: '/home', icon: '/assets/images/home-icon.svg' },
     ],
     empresa: [
@@ -45,17 +49,17 @@ export class UserService {
     ]
 
   }
-  
+
 
 
   pagesToRemoveWithoutPermission = [
-   
+
   ]
 
 
 
   influencerMenuToRemove = [
-    'influencers'
+    'influenciador'
   ]
 
 
@@ -82,7 +86,7 @@ export class UserService {
       const typeUser = user['descTipoUsuario'].toLowerCase();
 
       this.menu = this.arrMenus[typeUser]
-    
+
     } catch (error) {
 
     }
@@ -92,18 +96,18 @@ export class UserService {
     const user = this.getUserStorage()
     if (Object.keys(user).length > 0) {
       if (user['idTipoUsuario'] == TypeUser.Influenciador) {
-        this.pagesToRemoveWithoutPermission.push('influencers')
+        this.pagesToRemoveWithoutPermission.push('influenciador')
       }
     }
   }
 
-  async openModalUser(user?: Object) {
+  async openModalUser(user?: Object,  isEditMode = true) {
     if (Object.keys(user).length > 0) {
       const modal = await this.modal.create({
         component: InfluencersModalPage,
         componentProps: {
-          influencer: user,
-          isEditMode: true,
+          userObjectDB: user,
+          isEditMode: isEditMode,
         },
         cssClass: 'influencer-modal',
       });
@@ -119,9 +123,13 @@ export class UserService {
   }
 
   getInfluencers() {
-    return this.http
-      .get('https://api.id.tec.br/influenciador/listar'
-      );
+    return this.api.getApiUrl().pipe(
+      take(1),
+      switchMap((url: string) => {
+        return this.http
+        .get(`${url}/influenciador/listar`); 
+      }))
+   
   }
 
   getUserStorage(): Object {
@@ -141,14 +149,6 @@ export class UserService {
     }
   }
 
-  /*  name: new FormControl('', [Validators.required]),
-        tel: new FormControl('', [Validators.required]),
-        quantidadeSeguidores: new FormControl('', [Validators.required]),
-        linkRedeSocial: new FormControl('', [Validators.required]),
-        email: new FormControl('', [Validators.required, Validators.email]),
-        confirmEmail: new FormControl('', [Validators.required, Validators.email]),
-        password: new FormControl('', [Validators.required]),
-        confirmPassword: new FormControl('', [Validators.required]), */
 
   signUpInfluencer(user) {
 
@@ -160,8 +160,12 @@ export class UserService {
     }
     user['usuario'] = objUser['usuario']
 
-
-    return this.http.post('https://api.id.tec.br/Influenciador/cadastrar', JSON.stringify(user), this.setHeader())
+    return this.api.getApiUrl().pipe(
+      take(1),
+      switchMap((url: string) => {
+        return this.http.post(`${url}/Influenciador/cadastrar`, JSON.stringify(user), this.setHeader())     
+      }))
+    
   }
 
   signUpEmpresa(user) {
@@ -176,18 +180,42 @@ export class UserService {
     user['usuario'] = objUser['usuario']
     user['razaoSocial'] = objUser['razaoSocial']
 
-    return this.http.post('https://api.id.tec.br/empresa/cadastrar', JSON.stringify(user), this.setHeader())
+    return this.api.getApiUrl().pipe(
+      take(1),
+      switchMap((url: string) => {
+        return this.http.post(`${url}/empresa/cadastrar`, JSON.stringify(user), this.setHeader())
+      }))
+
   }
 
 
-  getCompanys(){
-    return this.http
-    .get('https://api.id.tec.br/Empresa/listar'
-    );
+  getCompanys() {
+
+    return this.api.getApiUrl().pipe(
+      take(1),
+      switchMap((url: string) => {
+        return this.http.get(`${url}/Empresa/listar`)
+      }))
+
   }
 
 
+  updateUser(user: Object, typeUser:string) {
 
+    
+    const userobj = {
+      idInfluenciador: 31,
+      ...user
+    }
 
+    return this.api.getApiUrl().pipe(
+      take(1),
+      switchMap((url: string) => {
+        return this.http.post(`${url}/Influenciador/atualizar`, JSON.stringify(userobj), this.setHeader())
+      })
+
+    )
+
+  }
 
 }
