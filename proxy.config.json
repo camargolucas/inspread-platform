@@ -1,6 +1,7 @@
 {
     "/url-api/*": {
-      "target": "https://api.id.tec.br",
+      "target": "https://app.id.tec.br",
+      "target2": "https://api.id.tec.br",
       "secure": false,
       "changeOrigin": true,
       "logLevel":"debug",

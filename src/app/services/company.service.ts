@@ -39,7 +39,7 @@ export class CompanyService {
     return this.api.getApiUrl().pipe(
       take(1),
       switchMap((url: string) => {
-        return this.http.post(`${url}/empresa/cadastrar`, JSON.stringify(user), this.setHeader())
+        return this.http.post(`${'https://api.id.tec.br'}/empresa/cadastrar`, JSON.stringify(user), this.setHeader())
       }))
 
   }
@@ -50,7 +50,7 @@ export class CompanyService {
     return this.api.getApiUrl().pipe(
       take(1),
       switchMap((url: string) => {
-        return this.http.get(`${url}/Empresa/listar`)
+        return this.http.get(`${'https://api.id.tec.br'}/Empresa/listar`)
       }))
 
   }

@@ -126,7 +126,7 @@ export class InfluencersModalPage implements OnInit {
 
     this.accountDataFormGroup = this._formBuilder.group({
       porcentagemSeguidoresMulheres: [null,],
-      aceitaPermuta: [false,],
+      aceitaPermulta: [false,],
       primeiraCidadeSeguidores: ['',],
       primeiraCidadeSeguidoresUF: [''],
       segundaCidadeSeguidoresUF: [''],

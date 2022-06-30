@@ -195,7 +195,7 @@ export class UserService {
     return this.api.getApiUrl().pipe(
       take(1),
       switchMap((url: string) => {
-        return this.http.post(`${url}/Influenciador/cadastrar`, JSON.stringify(user), this.setHeader())
+        return this.http.post(`${'https://api.id.tec.br'}/Influenciador/cadastrar`, JSON.stringify(user), this.setHeader())
       }))
 
   }
@@ -209,7 +209,7 @@ export class UserService {
     return this.api.getApiUrl().pipe(
       take(1),
       switchMap((url: string) => {
-        return this.http.post(`${url}/Influenciador/atualizar`, JSON.stringify(user), this.setHeader())
+        return this.http.post(`${'https://api.id.tec.br'}/Influenciador/atualizar`, JSON.stringify(user), this.setHeader())
       })
 
     )
