@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CompanyService } from 'src/app/services/company.service';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
@@ -14,10 +15,10 @@ export class CompanysPage implements OnInit {
   ]
 
   filteredCompanys = []
-  constructor(private user: UserService) { }
+  constructor(private user: UserService, private company:CompanyService) { }
 
   ngOnInit() {
-    this.user.getCompanys().subscribe((ret: []) => {
+    this.company.getCompanys().subscribe((ret: []) => {
       this.companys = ret['response']     
       this.filteredCompanys = ret['response'];
     },

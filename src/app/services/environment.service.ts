@@ -16,7 +16,7 @@ export class EnvironmentService {
   getMessageError(arr ,error, control) {
   
     let ret = '';
-    //console.log(control.errors);
+
     arr[error].forEach(element => {
       let msg = control.hasError(element.error) ? element.msg : '';
       if (ret === '' && msg !== '') ret = msg;

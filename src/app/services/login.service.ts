@@ -22,19 +22,6 @@ export class LoginService {
     return requestOptions
    }
 
-  signIn(){
-    const body = {
-      login: 'user@teste.com',
-      senha:'123'
-    }
-
-
-    this.http.post('https://app.id.tec.br/usuario/listar', JSON.stringify(body),  this.setHeader()).subscribe(ret =>{
-   
-    }, error => {
-      console.log(error)
-    })
-  }
 
   login(user:Object){
     

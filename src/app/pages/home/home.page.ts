@@ -16,37 +16,52 @@ export class HomePage implements OnInit {
 
   constructor(private route: Router, private modal: ModalController, public _DomSanitizationService: DomSanitizer, public user: UserService) {
 
-   }
+  }
 
 
-   getUserName(){
-     
-     const typeUser = this.userObj['descTipoUsuario']
-     return this.userObj[typeUser.toLowerCase()]['nome']
-   }
+  getUserName() {
+    try {
 
-   getUserEmail(){
-    const user = this.userObj
-    const typeUser = user['descTipoUsuario']
-    return user[typeUser.toLowerCase()]['email']
-   }
+      const typeUser = this.userObj['descTipoUsuario']
+      return this.userObj[typeUser.toLowerCase()]['nome']
+    } catch (error) {
+      console.error(error)
+    }
 
-   getTypeUser(type:string){
-     return TypeUser[type]
-   }
+  }
+
+  getUserEmail() {
+    try {
+
+      const user = this.userObj
+      const typeUser = user['descTipoUsuario']
+
+      return user[typeUser.toLowerCase()]['email']
+    } catch (error) {
+
+    }
+  }
+
+  getTypeUser(type: string) {
+    return TypeUser[type]
+  }
 
   async goToUser(url) {
     const user = this.user.getUserStorage()
-    this.user.openModalUser(user)
+    this.user.openModalUser(user).then(ret => {
 
-    
-      
+      if (ret['data']) {
+        this.userObj = ret['data']
+      }
+    })
   }
 
   userObj: any
   getUserStorage() {
     try {
-      this.userObj = JSON.parse(localStorage.getItem('user'))
+
+      this.userObj = this.user.userObject//JSON.parse(localStorage.getItem('user'))
+
     } catch (error) {
       console.error('erro ao pegar usuariuo', error)
     }

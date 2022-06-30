@@ -27,7 +27,7 @@ export class PostagemComponent implements OnInit {
   constructor(public _DomSanitizationService: DomSanitizer, private modal:ModalController) { }
 
   ngOnInit() {
-    console.log(this.type)
+
   }
 
   click() {

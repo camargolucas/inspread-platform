@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { CompanyService } from 'src/app/services/company.service';
 import { EnvironmentService } from 'src/app/services/environment.service';
 import { UserService } from 'src/app/services/user.service';
 
@@ -85,7 +86,7 @@ export class SignupPage implements OnInit {
     ],
   };
   type: string = 'Influencer'
-  constructor(public env: EnvironmentService, private router: Router, private user: UserService) { }
+  constructor(public env: EnvironmentService, private router: Router, private user: UserService, private company:CompanyService) { }
 
   ngOnInit() {
     this.type = this.checkUrlTypeInfluencer() ? 'Influencer' : 'Empresa'
@@ -193,7 +194,7 @@ export class SignupPage implements OnInit {
         }
         )
       } else {
-        this.user.signUpEmpresa(this.form.value).subscribe(ret => {
+        this.company.signUpEmpresa(this.form.value).subscribe(ret => {
  
           this.loading = false
           if (ret['success']) {

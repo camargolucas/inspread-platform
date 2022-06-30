@@ -3,39 +3,42 @@
 <ion-content>
   <div class="cards">
     <ion-card>
-      <ion-card-content>
-        <ion-row>
-          <div size="4" class="img-title">
-            <span>Meu Usuário </span>
+      <mat-accordion>
+        <mat-expansion-panel [expanded]="true">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              Olá,
+            </mat-panel-title>
+            <mat-panel-description>
+              {{ getUserName() }}
+            </mat-panel-description>
+
+          </mat-expansion-panel-header>
+          <div class="description-expansion-panel">
             <ion-thumbnail>
-              <img [src]="_DomSanitizationService.bypassSecurityTrustUrl(user.profileImage)" />
+              <img [src]="_DomSanitizationService.bypassSecurityTrustUrl(user?.profileImage)" />
             </ion-thumbnail>
-          </div>
+            <div class="col-name">
 
-          <div class="col-name" size="8">
-            <p>{{ getUserName() }}</p>
-            <p *ngIf="userObj?.idTipoUsuario != getTypeUser('Influenciador')">{{ getUserEmail() }}</p>
-            <p *ngIf="userObj?.idTipoUsuario === getTypeUser('Influenciador')">
-              <ion-icon name="at-outline"></ion-icon> {{userObj?.influenciador?.linkRedeSocial}}
-            </p>
-            <p *ngIf="userObj?.idTipoUsuario === getTypeUser('Influenciador')">
-              <ion-icon src="/assets/images/followers-icon.svg"></ion-icon>
-              {{userObj?.influenciador?.quantidadeSeguidores}}
-            </p>
+              <p *ngIf="userObj?.idTipoUsuario != getTypeUser('Influenciador')">{{ getUserEmail() }}</p>
+              <p *ngIf="userObj?.idTipoUsuario === getTypeUser('Influenciador')">
+                <ion-icon name="at-outline"></ion-icon>{{userObj?.influenciador?.linkRedeSocial}}
+              </p>
+              <p *ngIf="userObj?.idTipoUsuario === getTypeUser('Influenciador')">
+                <ion-icon src="/assets/images/followers-icon.svg"></ion-icon>
+                {{userObj?.influenciador?.quantidadeSeguidores | number}} seguidores
+              </p>
+            </div>
           </div>
-
-
-          <div class="floating-icon user-img">
-            <!-- <ion-icon name="person-outline"></ion-icon> -->
-            <img class="user" src="/assets/images/home_user.png">
-          </div>
-        </ion-row>
-        <ion-row class="more-info">
-          <span (click)="goToUser('/influencers-modal')">Saiba mais <ion-icon name="chevron-forward-outline"></ion-icon>
-          </span>
-        </ion-row>
-      </ion-card-content>
+          <ion-row class="more-info">
+            <span (click)="goToUser('/influencers-modal')">Saiba mais <ion-icon name="chevron-forward-outline"></ion-icon>
+            </span>
+          </ion-row>
+        </mat-expansion-panel>
+      </mat-accordion>
     </ion-card>
+
+
 
     <ion-card style="display: none;">
       <ion-card-content>

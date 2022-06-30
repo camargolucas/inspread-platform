@@ -26,6 +26,7 @@ export class AppComponent {
   }
 
   ngOnInit(): void {
+    this.user.userObject = this.user.getUserStorage();
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
     //Add 'implements OnInit' to the class.
     //console.log(this.router.url.toString().split('/'))

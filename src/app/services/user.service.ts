@@ -21,6 +21,9 @@ export class UserService {
   requestOptions;
   profileImage = "/assets/images/user-profile.png"
   typeUser: TypeUser
+
+  userObject: Object
+
   constructor(
     private modal: ModalController,
     private router: Router,
@@ -101,7 +104,7 @@ export class UserService {
     }
   }
 
-  async openModalUser(user?: Object,  isEditMode = true) {
+  async openModalUser(user?: Object, isEditMode = true) {
     if (Object.keys(user).length > 0) {
       const modal = await this.modal.create({
         component: InfluencersModalPage,
@@ -112,7 +115,9 @@ export class UserService {
         cssClass: 'influencer-modal',
       });
 
-      return await modal.present();
+      await modal.present();
+
+      return modal.onDidDismiss()
     }
 
   }
@@ -127,9 +132,36 @@ export class UserService {
       take(1),
       switchMap((url: string) => {
         return this.http
-        .get(`${url}/influenciador/listar`); 
+          .get(`${url}/influenciador/listar`);
       }))
-   
+
+  }
+
+  async setUserStorage(user) {
+    this.userObject = {}
+    await localStorage.setItem('user', JSON.stringify(user))
+    this.userObject = user;
+  
+    this.menuUserControl()
+  }
+
+  updateUserStorage(userDataToUpdate) {
+    try {
+
+      let user = this.getUserStorage()
+
+      if (user && Object.keys(user).length > 0) {
+        if (userDataToUpdate && Object.keys(userDataToUpdate).length > 0) {
+
+          this.setUserStorage(userDataToUpdate);
+        }
+
+      }
+
+
+    } catch (error) {
+
+    }
   }
 
   getUserStorage(): Object {
@@ -163,55 +195,21 @@ export class UserService {
     return this.api.getApiUrl().pipe(
       take(1),
       switchMap((url: string) => {
-        return this.http.post(`${url}/Influenciador/cadastrar`, JSON.stringify(user), this.setHeader())     
-      }))
-    
-  }
-
-  signUpEmpresa(user) {
-
-    const objUser = {
-      "razaoSocial": user['nome'],
-      "usuario": {
-        "login": user['email'],
-        "senha": user['password']
-      }
-    }
-    user['usuario'] = objUser['usuario']
-    user['razaoSocial'] = objUser['razaoSocial']
-
-    return this.api.getApiUrl().pipe(
-      take(1),
-      switchMap((url: string) => {
-        return this.http.post(`${url}/empresa/cadastrar`, JSON.stringify(user), this.setHeader())
+        return this.http.post(`${url}/Influenciador/cadastrar`, JSON.stringify(user), this.setHeader())
       }))
 
   }
 
 
-  getCompanys() {
+  updateUser(user: Object) {
+
+
+
 
     return this.api.getApiUrl().pipe(
       take(1),
       switchMap((url: string) => {
-        return this.http.get(`${url}/Empresa/listar`)
-      }))
-
-  }
-
-
-  updateUser(user: Object, typeUser:string) {
-
-    
-    const userobj = {
-      idInfluenciador: 31,
-      ...user
-    }
-
-    return this.api.getApiUrl().pipe(
-      take(1),
-      switchMap((url: string) => {
-        return this.http.post(`${url}/Influenciador/atualizar`, JSON.stringify(userobj), this.setHeader())
+        return this.http.post(`${url}/Influenciador/atualizar`, JSON.stringify(user), this.setHeader())
       })
 
     )

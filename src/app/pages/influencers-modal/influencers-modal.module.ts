@@ -16,6 +16,8 @@ import { MatOptionModule } from '@angular/material/core';
 import {MatSelectModule} from '@angular/material/select';
 import { NgxMaskModule } from 'ngx-mask';
 import { BrowserModule } from '@angular/platform-browser';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+
 @NgModule({
   imports: [
     CommonModule,
@@ -30,7 +32,8 @@ import { BrowserModule } from '@angular/platform-browser';
     MatCheckboxModule,
     NgxMaskModule.forRoot(),
     BrowserModule,
-    MatSelectModule
+    MatSelectModule,
+    MatProgressSpinnerModule
     
     
   ],

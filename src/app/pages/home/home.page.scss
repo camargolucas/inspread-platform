@@ -1,10 +1,11 @@
 ion-thumbnail {
   --border-radius: 100px;
-  max-height: 80px;
-  max-width: 80px;
+  max-height: 60px;
+  max-width: 60px;
   width: 100%;
   height: 100%;
   margin-top: 0.3rem;
+  margin-right: 0.5rem;
 }
 
 ion-content {
@@ -96,10 +97,6 @@ ion-card-content {
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
-
-  margin-left: 1rem;
-  margin-top: 0.5rem;
-  max-width: 200px;
   overflow-wrap: anywhere;
 
   p {
@@ -116,6 +113,12 @@ ion-card-content {
 .more-info {
   margin-top: 0.5rem;
   justify-content: flex-start;
+  
+  span{
+    color: white !important;
+    display: flex;
+    align-items: center;
+  }
 
   small {
     display: flex;
@@ -138,6 +141,49 @@ ion-card-content {
   .user-img {
     visibility: hidden !important;
   }
+}
+
+.mat-accordion .mat-expansion-panel{
+  background: #81a0cd !important;
+}
+::ng-deep{
+  .mat-expansion-panel-body{
+    padding: 0 15px 10px !important;
+   
+    color: white;
+    
+  }
+  
+}
+.description-expansion-panel{
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+
+}
+
+
+
+.mat-expansion-indicator{
+  color: white !important;
+}
+
+.mat-expansion-panel-header-title, .mat-expansion-panel-header-description{
+  display: flex;
+  /* flex-grow: 1; */
+  margin-right: 5px;
+  flex-grow: 0;
+}
+.mat-expansion-panel-header-description{
+  color: white;
+}
+
+.mat-expansion-panel:not(.mat-expanded):not([aria-disabled=true]) .mat-expansion-panel-header:hover{
+  background: #81a0cd;
+}
+
+.mat-expansion-panel-header-title{
+  color: white;
 }
 
 .floating-icon {

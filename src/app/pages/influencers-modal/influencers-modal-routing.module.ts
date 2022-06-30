@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { Routes, RouterModule } from '@angular/router';
 
 import { InfluencersModalPage } from './influencers-modal.page';

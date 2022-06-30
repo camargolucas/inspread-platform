@@ -33,7 +33,7 @@ export class LoginPage implements OnInit {
   };
 
   form: FormGroup;
-  constructor(private router: Router, public env: EnvironmentService, private loginService: LoginService, private user:UserService) { }
+  constructor(private router: Router, public env: EnvironmentService, private loginService: LoginService, private user: UserService) { }
 
   ngOnInit() {
     this.form = new FormGroup({
@@ -51,12 +51,14 @@ export class LoginPage implements OnInit {
   }
 
   navigate(route) {
-    console.log(route)
-    if (route == '/home') {
-      this.router.navigate([`${route}`], { replaceUrl: true });
-    } else {
-      this.router.navigate([`${route}`]);
-    }
+    setTimeout(() => {
+      if (route == '/home') {
+        this.router.navigate([`${route}`], { replaceUrl: true });
+      } else {
+        this.router.navigate([`${route}`]);
+      }
+    }, 300);
+
   }
 
   validateForm(form) {
@@ -66,14 +68,8 @@ export class LoginPage implements OnInit {
     return false
   }
 
-  async setUserStorage(user) {
-    await localStorage.setItem('user', JSON.stringify(user))
-    this.user.menuUserControl()
-  }
-
-
-  treatingReturnMessage(ret):string{
-    if(ret['mensagem']){
+  treatingReturnMessage(ret): string {
+    if (ret['mensagem']) {
       return ret['mensagem']
     }
 
@@ -94,15 +90,15 @@ export class LoginPage implements OnInit {
       this.loginService.login(userObject).subscribe(ret => {
         this.loading = false
         if (ret['success']) {
-         
+          this.user.setUserStorage(ret['response'])
           this.navigate('/home')
-          this.setUserStorage(ret['response'])
+
         } else {
           this.env.alert({
             header: 'Ops, algo deu errado',
             message: this.treatingReturnMessage(ret),
             buttons: ['OK']
-          })       
+          })
         }
       }, error => {
         this.loading = false
@@ -111,7 +107,7 @@ export class LoginPage implements OnInit {
           header: 'Ops, algo deu errado',
           message: 'Tente novamente !',
           buttons: ['OK']
-        })       
+        })
       })
 
       //this.navigate('/home')

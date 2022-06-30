@@ -8,14 +8,15 @@ import { HomePageRoutingModule } from './home-routing.module';
 
 import { HomePage } from './home.page';
 import { HeaderPageModule } from 'src/app/components/header/header.module';
-
+import {MatExpansionModule} from '@angular/material/expansion';
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
     HomePageRoutingModule,
-    HeaderPageModule
+    HeaderPageModule,
+    MatExpansionModule
   ],
   declarations: [HomePage]
 })

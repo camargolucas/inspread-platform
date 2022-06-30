@@ -6,11 +6,12 @@ form {
 
     padding-top: 0.5rem;
 }
-
-.save-fab {
-    width: 45px;
-    height: 45px;
-    margin: 0 0.5rem 0.5rem 0;
+.fab {
+    margin: 0 1rem 0.5rem 0;
+    .save-fab {
+        width: 45px;
+        height: 45px;
+    }
 }
 
 .mat-slider-horizontal {
