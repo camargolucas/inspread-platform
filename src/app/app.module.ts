@@ -14,6 +14,7 @@ import { PopoverModule } from './components/popover/popover.module';
 import { NgxMaskModule, IConfig } from 'ngx-mask'
 import { HttpClientModule } from '@angular/common/http';
 import { HashLocationStrategy,LocationStrategy } from '@angular/common';
+import { MatDialogModule } from '@angular/material/dialog';
 export const options: Partial<IConfig> | (() => Partial<IConfig>) = null;
 
 @NgModule({
@@ -21,7 +22,8 @@ export const options: Partial<IConfig> | (() => Partial<IConfig>) = null;
   entryComponents: [],
   imports: [BrowserModule, HttpClientModule, IonicModule.forRoot(), AppRoutingModule,
      HeaderPageModule, BrowserAnimationsModule, 
-     FormsModule, ReactiveFormsModule, MatSelectModule, PopoverModule,NgxMaskModule.forRoot()
+     FormsModule, ReactiveFormsModule, MatSelectModule, PopoverModule,NgxMaskModule.forRoot(),
+     MatDialogModule
      ],
   providers: [{ provide: LocationStrategy, useClass: HashLocationStrategy }],
   bootstrap: [AppComponent],

@@ -1,15 +1,15 @@
-<ion-content>
-  <div style="position: absolute; right:0;top: 0;">
+<mat-dialog-content class="mat-typography">
+  <div style="position: absolute; right:0;top: 0;z-index: 1000;">
     <ion-button (click)="back()" fill="clear">Voltar</ion-button>
   </div>
   <ion-fab class="fab" *ngIf="isEditMode" vertical="bottom" horizontal="end" slot="fixed">
-    <ion-fab-button *ngIf="!savingLoading" diameter="30" class="save-fab" (click)="presentAlertConfirm()" color="success">
-      <ion-icon name="checkmark-outline"></ion-icon>     
-      
+    <ion-fab-button *ngIf="!savingLoading" diameter="30" class="save-fab" (click)="save()" color="success">
+      <ion-icon name="checkmark-outline"></ion-icon>
+
     </ion-fab-button>
     <mat-spinner *ngIf="savingLoading" diameter="30"></mat-spinner>
   </ion-fab>
-  
+
   <mat-stepper style="margin-top: 1rem;" class="example-stepper" [orientation]="(stepperOrientation | async)!">
     <mat-step [stepControl]="userPersonalFormGroup" label="Dados Pessoais">
       <!-- FIRST FORRM GROUP DADOS PESSOAIS  -->
@@ -18,7 +18,8 @@
         <div class="flex-content">
 
           <div style="text-align: center;width: 100%;">
-            <img style="max-width: 130px;" [src]="_DomSanitizationService.bypassSecurityTrustUrl(userService.profileImage)">
+            <img style="max-width: 130px;"
+              [src]="_DomSanitizationService.bypassSecurityTrustUrl(userService.profileImage)">
             <div>
               <!-- IMAGE BUTTON -->
               <!--  <input style="display: none" type="file" (change)="onFileChanged($event, 'reels')" #fileInput multiple>
@@ -40,8 +41,7 @@
               <div class="flex-field">
                 <mat-form-field *ngIf="false" appearance="outline" class="idade">
                   <mat-label>Idade</mat-label>
-                  <input matInput placeholder="20" formControlName="idade" min="1" max="3"
-                    type="number" />
+                  <input matInput placeholder="20" formControlName="idade" min="1" max="3" type="number" />
                 </mat-form-field>
                 <mat-form-field *ngIf="false" class="genero" appearance="outline">
                   <mat-label>Genero</mat-label>
@@ -70,7 +70,7 @@
             <ion-col *ngIf="verifyTypeUser('Influenciador')" size="6">
               <mat-form-field appearance="outline">
                 <mat-label>Qtd Seguidores</mat-label>
-                <input matInput formControlName="quantidadeSeguidores" required  type="number"/>
+                <input matInput formControlName="quantidadeSeguidores" required type="number" />
               </mat-form-field>
             </ion-col>
           </ion-row>
@@ -89,9 +89,10 @@
 
       <form [formGroup]="accountDataFormGroup">
         <ion-row>
-          <label><span>% de mulheres que te seguem <b>{{accountDataFormGroup?.controls?.porcentagemSeguidoresMulheres?.value}}</b></span></label>
-          <mat-slider thumbLabel formControlName="porcentagemSeguidoresMulheres" 
-            tickInterval="1000" step="1" min="0" max="100" aria-label="units"></mat-slider>
+          <label><span>% de mulheres que te seguem
+              <b>{{accountDataFormGroup?.controls?.porcentagemSeguidoresMulheres?.value}}</b></span></label>
+          <mat-slider thumbLabel formControlName="porcentagemSeguidoresMulheres" tickInterval="1000" step="1" min="0"
+            max="100" aria-label="units"></mat-slider>
         </ion-row>
         <ion-row style="margin-bottom: 2rem">
           <mat-checkbox formControlName="aceitaPermulta">Aceita permulta?</mat-checkbox>
@@ -100,19 +101,19 @@
 
         <mat-form-field appearance="outline">
           <mat-label>Facebook</mat-label>
-          <input [maxlength]="40" matInput formControlName="facebook" placeholder="Ex. /usuarioFacebook"  />
+          <input [maxlength]="40" matInput formControlName="facebook" placeholder="Ex. /usuarioFacebook" />
         </mat-form-field>
         <mat-form-field appearance="outline">
           <mat-label>Instagram</mat-label>
-          <input  [maxlength]="40" matInput formControlName="instagram" placeholder="Ex. @usuario" />
+          <input [maxlength]="40" matInput formControlName="instagram" placeholder="Ex. @usuario" />
         </mat-form-field>
         <mat-form-field appearance="outline">
           <mat-label>Linkedin</mat-label>
-          <input  [maxlength]="40" matInput formControlName="linkedIn" placeholder="Ex. /usuario"  />
+          <input [maxlength]="40" matInput formControlName="linkedIn" placeholder="Ex. /usuario" />
         </mat-form-field>
         <mat-form-field appearance="outline">
           <mat-label>Pinterest</mat-label>
-          <input  [maxlength]="40" matInput formControlName="pinterest" placeholder="Ex. /usuario"  />
+          <input [maxlength]="40" matInput formControlName="pinterest" placeholder="Ex. /usuario" />
         </mat-form-field>
 
 
@@ -167,7 +168,8 @@
           </div>
 
           <ion-col *ngFor="let content of publicContent" size="6">
-            <mat-checkbox [disabled]="!isEditMode"  [(ngModel)]="content.checked" [checked]="content.checked">{{content.descricao}}</mat-checkbox>
+            <mat-checkbox [disabled]="!isEditMode" [(ngModel)]="content.checked" [checked]="content.checked">
+              {{content.descricao}}</mat-checkbox>
           </ion-col>
         </div>
       </ion-row>
@@ -194,7 +196,7 @@
           <div class="flex-field">
             <mat-form-field appearance="outline" class="numero">
               <mat-label>Nº</mat-label>
-              <input [maxlength]="10" matInput formControlName="numero" placeholder="Ex. 231" type="number"/>
+              <input [maxlength]="10" matInput formControlName="numero" placeholder="Ex. 231" type="number" />
             </mat-form-field>
             <mat-form-field appearance="outline" class="complemento">
               <mat-label>Complemento</mat-label>
@@ -220,7 +222,7 @@
             <ion-col size="6">
               <mat-form-field appearance="outline">
                 <mat-label>Cidade</mat-label>
-                <mat-select formControlName="cidade">                
+                <mat-select formControlName="cidade">
                   <mat-option *ngFor="let district of districts" [value]="district?.nome">
                     {{district?.nome}}
                   </mat-option>
@@ -244,11 +246,11 @@
           <div class="cc-agencia">
             <mat-form-field appearance="outline">
               <mat-label>C/C</mat-label>
-              <input  formControlName="contaCorrente" matInput placeholder="Ex. 1231" [maxlength]="4" />
+              <input formControlName="contaCorrente" matInput placeholder="Ex. 1231" [maxlength]="4" />
             </mat-form-field>
             <mat-form-field appearance="outline">
               <mat-label>Agencia</mat-label>
-              <input  formControlName="agencia" matInput placeholder="Ex. 2231431" mask="00000-0" />
+              <input formControlName="agencia" matInput placeholder="Ex. 2231431" mask="00000-0" />
             </mat-form-field>
           </div>
 
@@ -258,7 +260,7 @@
           </mat-form-field>
           <mat-form-field appearance="outline">
             <mat-label>CPF Favorecido</mat-label>
-            <input  formControlName="cpfFavorecido" matInput placeholder="Ex. 4123124123" [maxlength]="14"
+            <input formControlName="cpfFavorecido" matInput placeholder="Ex. 4123124123" [maxlength]="14"
               mask="CPF_CNPJ" />
           </mat-form-field>
         </div>
@@ -267,4 +269,4 @@
     </mat-step>
   </mat-stepper>
   <!-- FIM FOURTH FORRM GROUP DADOS BANCARIOS   -->
-</ion-content>
+</mat-dialog-content>

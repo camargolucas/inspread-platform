@@ -136,3 +136,23 @@ span{
 .display-none {
   display: none;
 }
+.cdk-overlay-pane{
+  max-width: 100% !important;
+  position: relative !important;
+
+}
+.modal-user{
+  .mat-dialog-content{
+    max-height: 100% !important;
+  }
+  .mat-dialog-container{
+    padding: 14px 5px !important;
+
+ 
+  }
+  .cdk-overlay-pane{
+    max-width: 100% !important;
+    position: relative;
+    height: 100%;
+  }
+}

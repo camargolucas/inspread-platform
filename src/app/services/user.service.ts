@@ -8,6 +8,8 @@ import { TypeUser } from '../interface/typeUser';
 import { Observable, of } from 'rxjs';
 import { switchMap, take } from 'rxjs/operators';
 import { ApiService } from './api.service';
+import { MatDialog } from '@angular/material/dialog';
+import { EnvironmentService } from './environment.service';
 
 
 @Injectable({
@@ -28,7 +30,9 @@ export class UserService {
     private modal: ModalController,
     private router: Router,
     private http: HttpClient,
-    private api: ApiService
+    private api: ApiService,
+    public dialog: MatDialog,
+    public env:EnvironmentService
 
   ) {
 
@@ -104,18 +108,35 @@ export class UserService {
     }
   }
 
-  async openModalUser(user?: Object, isEditMode = true) {
+
+  openModalUser(user:Object, isEditMode = true) {   
+    const dialogRef = this.dialog.open(InfluencersModalPage, {
+      data: {
+        userObjectDB: user,
+        isEditMode: isEditMode,
+      },
+      width: this.env.isMobile ? "100%" : "800px",
+      height: this.env.isMobile ? "100%" : "670px",
+      panelClass: "modal-user"
+    });
+
+    return dialogRef.afterClosed()
+  }
+
+  async openModalUser1(user?: Object, isEditMode = true) {
     if (Object.keys(user).length > 0) {
       const modal = await this.modal.create({
         component: InfluencersModalPage,
         componentProps: {
           userObjectDB: user,
           isEditMode: isEditMode,
+
         },
+        mode:'ios',
         cssClass: 'influencer-modal',
       });
 
-      await modal.present();
+      modal.present();
 
       return modal.onDidDismiss()
     }
@@ -132,7 +153,7 @@ export class UserService {
       take(1),
       switchMap((url: string) => {
         return this.http
-          .get(`${url}/influenciador/listar`);
+          .get(`${'https://api.id.tec.br'}/influenciador/listar`);
       }))
 
   }

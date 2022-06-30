@@ -5,7 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 
 import { HomePageRoutingModule } from './home-routing.module';
-
+import {MatDialogModule} from '@angular/material/dialog';
 import { HomePage } from './home.page';
 import { HeaderPageModule } from 'src/app/components/header/header.module';
 import {MatExpansionModule} from '@angular/material/expansion';
@@ -16,7 +16,9 @@ import {MatExpansionModule} from '@angular/material/expansion';
     IonicModule,
     HomePageRoutingModule,
     HeaderPageModule,
-    MatExpansionModule
+    MatExpansionModule,
+    MatDialogModule
+
   ],
   declarations: [HomePage]
 })

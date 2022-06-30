@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, Type } from '@angular/core';
+import { Component, Inject, Input, OnInit, Type } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { StepperOrientation } from '@angular/material/stepper';
 import { Observable } from 'rxjs';
@@ -10,6 +10,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { UserService } from 'src/app/services/user.service';
 import { TypeUser } from 'src/app/interface/typeUser';
 import { ApiService } from 'src/app/services/api.service';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-influencers-modal',
@@ -58,7 +59,8 @@ export class InfluencersModalPage implements OnInit {
   bankDataFormGroup: FormGroup;
 
   constructor(private _formBuilder: FormBuilder, private breakpointObserver: BreakpointObserver, private router: Router, private modal: ModalController, private alertController: AlertController, public _DomSanitizationService: DomSanitizer,
-    public userService: UserService, private api: ApiService, private toast: ToastController) {
+    public userService: UserService, private api: ApiService, private toast: ToastController, @Inject(MAT_DIALOG_DATA) public data: any,
+    public dialogRef: MatDialogRef<InfluencersModalPage>) {
     this.stepperOrientation = breakpointObserver.observe('(min-width: 800px)')
       .pipe(map(({ matches }) => matches ? 'horizontal' : 'vertical'));
 
@@ -74,7 +76,7 @@ export class InfluencersModalPage implements OnInit {
       }
 
     } catch (error) {
-  
+
 
 
     }
@@ -163,6 +165,8 @@ export class InfluencersModalPage implements OnInit {
 
   userData: any
   ngOnInit() {
+    this.userObjectDB = this.data['userObjectDB']
+    this.isEditMode = this.data['isEditMode']
     this.createFormGroup()
     this.getUserData()
     this.typeUser = this.getTypeUserId()
@@ -323,33 +327,35 @@ export class InfluencersModalPage implements OnInit {
 
 
 
-  async presentAlertConfirm() {
-    const alert = await this.alertController.create({
-      header: 'Confirmação!',
-      message: 'Deseja <strong>salvar</strong> as alterações do seu perfil?',
-      buttons: [
-        {
-          text: 'Cancelar',
-          role: 'cancel',
-          cssClass: 'secondary',
-
-          handler: (blah) => {
-        
+  /*   async presentAlertConfirm() {
+      const alert = await this.alertController.create({
+        header: 'Confirmação!',
+        message: 'Deseja <strong>salvar</strong> as alterações do seu perfil?',
+        cssClass:"",
+        buttons: [
+          {
+            text: 'Cancelar',
+            role: 'cancel',
+            cssClass: 'secondary',
+  
+            handler: (blah) => {
+  
+            }
+          }, {
+            text: 'Confirmar',
+            handler: () => {
+            
+            }
           }
-        }, {
-          text: 'Confirmar',
-          handler: () => {
-            this.save()
-          }
-        }
-      ]
-    });
-
-    await alert.present();
-  }
+        ]
+      });
+  
+      await alert.present();
+    } */
 
 
   populateDadosEmpresariais() {
+
 
     try {
       Object.keys(this.accountDataFormGroup.controls).forEach(element => {
@@ -393,7 +399,7 @@ export class InfluencersModalPage implements OnInit {
 
   back() {
 
-    this.modal.dismiss()
+    this.dialogRef.close()
   }
 
   selectedFile
@@ -404,7 +410,7 @@ export class InfluencersModalPage implements OnInit {
   }
 
   concatForms(): Object {
-   
+
 
     let concatedFormsGroups = {
       ...this.userPersonalFormGroup.value,
@@ -446,11 +452,20 @@ export class InfluencersModalPage implements OnInit {
   }
 
   successSave(msg, userObjectToUpdate) {
+
+
+
+
+
     const updatedUser = this.mountUserToUpdateInStorage(userObjectToUpdate);
 
     this.userService.updateUserStorage(updatedUser)
     this.presentAlert(msg)
-    this.modal.dismiss(updatedUser)
+
+    console.log('returning value', updatedUser)
+    this.dialogRef.close(updatedUser)
+
+
   }
 
 
@@ -471,12 +486,14 @@ export class InfluencersModalPage implements OnInit {
       const descrTipoUsuario = this.userObjectDB['descTipoUsuario']
       const idUsuario = this.userData[`id${descrTipoUsuario}`];
       let payload: Object = {}
+
+      
       if (this.verifyTypeUser('Influenciador')) {
         payload = this.concatForms()
-      }else{
+      } else {
         payload = {}
       }
-     
+
       const userObject = {
         ...payload,
         [`id${descrTipoUsuario}`]: idUsuario
@@ -486,15 +503,19 @@ export class InfluencersModalPage implements OnInit {
       if (idUsuario) {
         this.setSaveLoading(true)
         this.userService.updateUser(userObject).subscribe(ret => {
-          if (ret['success']) {
-            this.successSave(ret['mensagem'], ret['response'])
-          }
-          this.setSaveLoading(false)
+          setTimeout(() => {
+
+
+            if (ret['success']) {
+              this.successSave(ret['mensagem'], ret['response'])
+            }
+            this.setSaveLoading(false)
+          }, 500);
 
         }, error => {
           this.setSaveLoading(false)
         })
-      }else{
+      } else {
         this.presentAlert("Houve um problema ao salvar seu usuário, contactar o TI.")
       }
     } catch (error) {
@@ -506,3 +527,5 @@ export class InfluencersModalPage implements OnInit {
   }
 
 }
+
+
