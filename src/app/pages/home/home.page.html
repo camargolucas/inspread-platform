@@ -20,10 +20,12 @@
             </ion-thumbnail>
             <div class="col-name">
 
+              <!-- Se não for influenciador mostrar o email -->
               <p *ngIf="userObj?.idTipoUsuario != getTypeUser('Influenciador')">{{ getUserEmail() }}</p>
-              <p *ngIf="userObj?.idTipoUsuario === getTypeUser('Influenciador')">
+              <!-- Se for influenciador mostrar a rede social -->
+             <!--  <p *ngIf="userObj?.idTipoUsuario === getTypeUser('Influenciador')">
                 <ion-icon name="at-outline"></ion-icon>{{userObj?.influenciador?.linkRedeSocial}}
-              </p>
+              </p> -->
               <p *ngIf="userObj?.idTipoUsuario === getTypeUser('Influenciador')">
                 <ion-icon src="/assets/images/followers-icon.svg"></ion-icon>
                 {{userObj?.influenciador?.quantidadeSeguidores | number}} seguidores

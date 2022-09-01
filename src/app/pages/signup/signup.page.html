@@ -43,13 +43,13 @@
                         <p>{{getErrorMsg('quantidadeSeguidores', form.controls.quantidadeSeguidores)}}</p>
                       </mat-error>
                     </mat-form-field>
-                    <mat-form-field *ngIf="checkUrlTypeInfluencer()" appearance="outline">
+                    <!--      <mat-form-field *ngIf="checkUrlTypeInfluencer()" appearance="outline">
                       <mat-label>Link Rede Social</mat-label>
                       <input formControlName="linkRedeSocial" matInput />
                       <mat-error>
                         <p>{{getErrorMsg('linkRedeSocial', form.controls.linkRedeSocial)}}</p>
                       </mat-error>
-                    </mat-form-field>
+                    </mat-form-field> -->
 
                     <!-- EMPRESA -->
                     <mat-form-field *ngIf="!checkUrlTypeInfluencer()" appearance="outline">
@@ -77,13 +77,17 @@
                         <p>{{getErrorMsg('confirmEmail', form.controls.confirmEmail)}}</p>
                       </mat-error>
                     </mat-form-field>
-                    <mat-form-field appearance="outline">
-                      <mat-label>Senha</mat-label>
-                      <input type="password" formControlName="password" matInput />
-                      <mat-error>
-                        <p>{{getErrorMsg('password', form.controls.password)}}</p>
-                      </mat-error>
-                    </mat-form-field>
+                    <div class="password-field">
+                      <mat-form-field appearance="outline">
+                        <mat-label>Senha</mat-label>
+                        <input type="password" formControlName="password" matInput />
+                        <mat-error>
+                          <p>{{getErrorMsg('password', form.controls.password)}}</p>
+                        </mat-error>
+                      </mat-form-field>
+                      <span *ngIf="showPasswordComplexityTip()">Sua senha deve ter no mínimo 6 caracteres.</span>
+                    </div>
+
                     <mat-form-field appearance="outline">
                       <mat-label>Confirmar Senha</mat-label>
                       <input type="password" formControlName="confirmPassword" matInput />

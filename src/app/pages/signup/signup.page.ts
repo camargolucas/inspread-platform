@@ -78,12 +78,12 @@ export class SignupPage implements OnInit {
         msg: '*Campo obrigatório',
       },
     ],
-    linkRedeSocial: [
+/*     linkRedeSocial: [
       {
         error: 'required',
         msg: '*Campo obrigatório',
       },
-    ],
+    ], */
   };
   type: string = 'Influencer'
   constructor(public env: EnvironmentService, private router: Router, private user: UserService, private company:CompanyService) { }
@@ -96,7 +96,7 @@ export class SignupPage implements OnInit {
         nome: new FormControl('', [Validators.required]),
         telefone: new FormControl('', [Validators.required, Validators.minLength(11)]),
         quantidadeSeguidores: new FormControl(0, [Validators.required]),
-        linkRedeSocial: new FormControl('', [Validators.required]),
+   /*      linkRedeSocial: new FormControl('', [Validators.required]), */
         email: new FormControl('', [Validators.required, Validators.email]),
         confirmEmail: new FormControl('', [Validators.required, Validators.email]),
         password: new FormControl('', [Validators.required]),
@@ -125,7 +125,14 @@ export class SignupPage implements OnInit {
 
   validate(control: AbstractControl): ValidationErrors | null {
     return this.checkIfMatch('', '');
+
   }
+
+  showPasswordComplexityTip(){
+    /* esconder a dica de complexidade de senha caso tenha erro */
+    return !(this.form.controls.password.touched && this.form.controls.password.invalid)
+  }
+
   checkIfMatch(passwordKey: string, passwordConfirmationKey: string) {
 
     return (group: FormGroup) => {

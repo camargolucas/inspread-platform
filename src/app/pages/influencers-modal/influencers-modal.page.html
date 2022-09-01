@@ -70,7 +70,7 @@
             <ion-col *ngIf="verifyTypeUser('Influenciador')" size="6">
               <mat-form-field appearance="outline">
                 <mat-label>Qtd Seguidores</mat-label>
-                <input matInput formControlName="quantidadeSeguidores" required type="number" />
+                <input class="input-qtdSeguidores" matInput formControlName="quantidadeSeguidores" required type="number" min="0" />
               </mat-form-field>
             </ion-col>
           </ion-row>

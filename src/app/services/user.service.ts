@@ -40,15 +40,15 @@ export class UserService {
 
   arrMenus = {
     influenciador: [
-      { id: 'home', title: 'Ínicio', url: '/home', icon: '/assets/images/home-icon.svg' },
+      { id: 'home', title: 'Início', url: '/home', icon: '/assets/images/home-icon.svg' },
     ],
     empresa: [
-      { id: 'home', title: 'Ínicio', url: '/home', icon: '/assets/images/home-icon.svg' },
+      { id: 'home', title: 'Início', url: '/home', icon: '/assets/images/home-icon.svg' },
 
       { id: 'influencers', title: 'Influencers', url: '/influencers', icon: '/assets/images/influencer-icon.svg' },
     ],
     administrador: [
-      { id: 'home', title: 'Ínicio', url: '/home', icon: '/assets/images/home-icon.svg' },
+      { id: 'home', title: 'Início', url: '/home', icon: '/assets/images/home-icon.svg' },
 
       { id: 'influencers', title: 'Influencers', url: '/influencers', icon: '/assets/images/influencer-icon.svg' },
 
