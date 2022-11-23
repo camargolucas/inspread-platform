@@ -22,6 +22,10 @@ export class InfluencersModalPage implements OnInit {
   @Input() isEditMode
 
 
+  PROFILE_IMAGE_WIDTH = 500;
+  PROFILE_IMAGE_HEIGTH = 500;
+
+  PROFILE_IMAGE_QUALITY = 0.75;
 
   stepperOrientation: Observable<StepperOrientation>;
   porcSeguidores = 0;
@@ -127,7 +131,7 @@ export class InfluencersModalPage implements OnInit {
     }
 
     this.accountDataFormGroup = this._formBuilder.group({
-      porcentagemSeguidoresMulheres: [null,],
+      porcentagemSeguidoresMulheres: [0,],
       aceitaPermulta: [false,],
       primeiraCidadeSeguidores: ['',],
       primeiraCidadeSeguidoresUF: [''],
@@ -404,8 +408,22 @@ export class InfluencersModalPage implements OnInit {
 
   selectedFile
   onFileChanged(event, type) {
-    const file = event.target.files[0]
-    this.userService.profileImage = URL.createObjectURL(file)
+    const file: File = event.target.files[0];
+    this.userService.profileImage = URL.createObjectURL(file);
+    this.selectedFile = file;
+  }
+
+  async uploadImage(idUsuario: number) {
+
+    if (this.selectedFile) {
+      await this.uploadImageService(this.selectedFile, idUsuario).toPromise()
+        .catch(err => console.log(err));
+    }
+  }
+
+  uploadImageService(imgProfile, idInfluenciador) {
+
+    return this.userService.uploadImgPerfil(imgProfile, idInfluenciador)
 
   }
 
@@ -426,9 +444,7 @@ export class InfluencersModalPage implements OnInit {
       },
       SegmentosConteudo: [
         ...this.publicContent
-      ]
-
-
+      ],
     }
 
     return concatedFormsGroups
@@ -451,11 +467,7 @@ export class InfluencersModalPage implements OnInit {
 
   }
 
-  successSave(msg, userObjectToUpdate) {
-
-
-
-
+  async successSave(msg, userObjectToUpdate) {
 
     const updatedUser = this.mountUserToUpdateInStorage(userObjectToUpdate);
 
@@ -479,7 +491,7 @@ export class InfluencersModalPage implements OnInit {
   }
 
   savingLoading = false;
-  save() {
+  async save() {
     try {
 
 
@@ -487,7 +499,7 @@ export class InfluencersModalPage implements OnInit {
       const idUsuario = this.userData[`id${descrTipoUsuario}`];
       let payload: Object = {}
 
-      
+
       if (this.verifyTypeUser('Influenciador')) {
         payload = this.concatForms()
       } else {
@@ -502,10 +514,10 @@ export class InfluencersModalPage implements OnInit {
 
       if (idUsuario) {
         this.setSaveLoading(true)
-        this.userService.updateUser(userObject).subscribe(ret => {
+      
+        await this.uploadImage(idUsuario);
+        this.userService.updateUser(userObject).subscribe(async (ret) => {        
           setTimeout(() => {
-
-
             if (ret['success']) {
               this.successSave(ret['mensagem'], ret['response'])
             }

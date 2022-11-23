@@ -22,10 +22,11 @@
               [src]="_DomSanitizationService.bypassSecurityTrustUrl(userService.profileImage)">
             <div>
               <!-- IMAGE BUTTON -->
-              <!--  <input style="display: none" type="file" (change)="onFileChanged($event, 'reels')" #fileInput multiple>
+               <input style="display: none" type="file" (change)="onFileChanged($event, 'reels')" #fileInput multiple>
               <ion-button [disabled]="!isEditMode" class="btn-upload " (click)="fileInput.click()" color="primary">
                 <ion-icon name="camera"></ion-icon>
-              </ion-button> -->
+              </ion-button>
+              
             </div>
           </div>
           <div style="width: 100%;" *ngIf="verifyTypeUser('Influenciador')">

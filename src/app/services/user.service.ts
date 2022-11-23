@@ -1,4 +1,4 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable, Type } from '@angular/core';
 import { Router } from '@angular/router';
 import { ModalController } from '@ionic/angular';
@@ -18,7 +18,7 @@ import { EnvironmentService } from './environment.service';
 
 
 export class UserService {
-
+  /* "https://app.id.tec.br/assets/images-influencers-perfil/influenciador-38/b186774d-ed3b-4b47-bae3-190473a0e7bf.jpeg" */
   headers;
   requestOptions;
   profileImage = "/assets/images/user-profile.png"
@@ -32,7 +32,7 @@ export class UserService {
     private http: HttpClient,
     private api: ApiService,
     public dialog: MatDialog,
-    public env:EnvironmentService
+    public env: EnvironmentService
 
   ) {
 
@@ -109,7 +109,7 @@ export class UserService {
   }
 
 
-  openModalUser(user:Object, isEditMode = true) {   
+  openModalUser(user: Object, isEditMode = true) {
     const dialogRef = this.dialog.open(InfluencersModalPage, {
       data: {
         userObjectDB: user,
@@ -132,7 +132,7 @@ export class UserService {
           isEditMode: isEditMode,
 
         },
-        mode:'ios',
+        mode: 'ios',
         cssClass: 'influencer-modal',
       });
 
@@ -162,8 +162,20 @@ export class UserService {
     this.userObject = {}
     await localStorage.setItem('user', JSON.stringify(user))
     this.userObject = user;
-  
+
     this.menuUserControl()
+    this.setUserImageProfile(user)
+  }
+
+
+
+  setUserImageProfile(user) {
+
+    if (user) {
+      const typeUser = user['descTipoUsuario'].toString().toLowerCase();
+      this.profileImage = user[typeUser]['urlImagemPerfil'];
+    }
+    return
   }
 
   updateUserStorage(userDataToUpdate) {
@@ -222,11 +234,37 @@ export class UserService {
   }
 
 
+  paramsImgPerfil(imageProfile, idInfluenciador) {
+    let params = new FormData();
+
+    if (imageProfile) {
+      params.append('ImagemPerfil', imageProfile)
+    }
+
+    if (idInfluenciador) {
+      params.append('IdInfluenciador', idInfluenciador)
+    }
+
+    return params;
+
+  }
+
+  uploadImgPerfil(imageProfile, idInfluenciador) {
+
+    const params = this.paramsImgPerfil(imageProfile, idInfluenciador)
+    return this.api.getApiUrl().pipe(
+      take(1),
+      switchMap((url: string) => {
+        return this.http.post(`${'https://api.id.tec.br'}/Influenciador/upload-img-perfil`, params)
+      })
+    )
+  }
+
   updateUser(user: Object) {
 
 
 
-
+    
     return this.api.getApiUrl().pipe(
       take(1),
       switchMap((url: string) => {

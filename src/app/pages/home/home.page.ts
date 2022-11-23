@@ -93,8 +93,8 @@ export class HomePage implements OnInit {
   getUserStorage() {
     try {
 
-      this.userObj = this.user.userObject//JSON.parse(localStorage.getItem('user'))
-
+      this.userObj = this.user.userObject
+      this.user.setUserImageProfile(this.userObj)
     } catch (error) {
       console.error('erro ao pegar usuariuo', error)
     }

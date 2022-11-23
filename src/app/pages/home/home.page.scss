@@ -6,6 +6,11 @@ ion-thumbnail {
   height: 100%;
   margin-top: 0.3rem;
   margin-right: 0.5rem;
+
+  img{
+    max-width: 60px;
+    max-height: 60px;
+  }
 }
 
 ion-content {
